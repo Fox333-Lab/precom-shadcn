@@ -8,7 +8,7 @@ export default function Home() {
         style={{ minHeight: "-webkit-fill-available" }}
       >
         <div className="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe unde
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nde
           inventore expedita omnis alias dolorem ut, vero pariatur sed quod,
           natus odio tempora sunt itaque id repellat soluta. Blanditiis,
           tenetur? Lorem ipsum dolor sit amet consectetur adipisicing elit.

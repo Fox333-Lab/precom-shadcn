@@ -30,8 +30,8 @@ const Categories = () => {
                 <div className="p-1">
                   <Card className="bg-gray-100 border-none shadow-none">
                     <CardContent className="flex items-center justify-center p-6">
-                      <span className="text-3xl font-semibold">
-                        {index + 1}
+                      <span className="text-base md:text-lg font-semibold">
+                        Category {index + 1}
                       </span>
                     </CardContent>
                   </Card>

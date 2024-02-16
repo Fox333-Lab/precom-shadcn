@@ -8,11 +8,3 @@ const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
 };
 
 export default ThemeProvider;
-
-// import React from "react";
-
-// const themeprovider = () => {
-//   return <div>themeprovider</div>;
-// };
-
-// export default themeprovider;

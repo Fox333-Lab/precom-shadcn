@@ -1,0 +1,33 @@
+[
+  {
+    "_id": { "$oid": "6537fa5478e0e73017b5f8a0" },
+    "reviewBy": { "$oid": "6537f42d78e0e73017b5f895" },
+    "rating": 4,
+    "review": "Cillum cupidatat eiusmod commodo sit eiusmod minim quis incididunt proident. Sit labore ad consectetur ex dolor ad. Aliqua labore dolor mollit eiusmod veniam sit mollit laborum. In nulla exercitation enim pariatur eiusmod nulla nostrud.\r\n",
+    "size": "L",
+    "images": [
+      {
+        "url": "",
+        "public_url": ""
+      },
+      {
+        "url": "",
+        "public_url": ""
+      }
+    ],
+    "likes": {
+      "likes": 4
+    },
+    "style": {
+      "color": "blue",
+      "image": "http://placehold.it/32x32"
+    },
+    "fit": "Regular",
+    "createdAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    },
+    "updatedAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    }
+  }
+]

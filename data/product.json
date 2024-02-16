@@ -1,0 +1,341 @@
+[
+  {
+    "_id": { "$oid": "6537f75d78e0e73017b5f89c" },
+    "name": "Product 1",
+    "description": "Dolor et tempor sunt quis pariatur. Anim consectetur minim esse labore. Ex in ex Lorem sint culpa esse nisi ipsum. Elit irure mollit deserunt consectetur. Non excepteur exercitation tempor occaecat ad eiusmod exercitation labore irure aute. Culpa est sint reprehenderit do. Excepteur irure pariatur amet consectetur dolor laborum exercitation.\r\n",
+    "brand": "Brand 1",
+    "slug": "product-1",
+    "category": { "$oid": "6537f63078e0e73017b5f896" },
+    "subCategories": [{ "$oid": "6537f70678e0e73017b5f899" }],
+    "details": [
+      {
+        "name": "StyleY",
+        "value": "Style1",
+        "_id": { "$oid": "653792b49cb61f27231d5887" }
+      },
+      {
+        "name": "StyleY",
+        "value": "Style3",
+        "_id": { "$oid": "653792b4245f6cb27771f37c" }
+      }
+    ],
+    "questions": [{ "question": "How is the quality", "answer": "nice" }],
+    "reviews": [
+      {
+        "_id": { "$oid": "6537fa5478e0e73017b5f8a0" },
+        "reviewBy": { "$oid": "6537f42d78e0e73017b5f895" },
+        "rating": 4,
+        "review": "Cillum cupidatat eiusmod commodo sit eiusmod minim quis incididunt proident. Sit labore ad consectetur ex dolor ad. Aliqua labore dolor mollit eiusmod veniam sit mollit laborum. In nulla exercitation enim pariatur eiusmod nulla nostrud.\r\n",
+        "size": "L",
+        "images": [
+          {
+            "url": "",
+            "public_url": ""
+          },
+          {
+            "url": "",
+            "public_url": ""
+          }
+        ],
+        "likes": {
+          "likes": 4
+        },
+        "style": {
+          "color": "blue",
+          "image": "https://picsum.photos/id/74/200/300"
+        },
+        "fit": "Regular",
+        "createdAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        },
+        "updatedAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        }
+      },
+      {
+        "_id": { "$oid": "6537fa9578e0e73017b5f8a0" },
+        "reviewBy": { "$oid": "6537f42d78e0e73017b5f895" },
+        "rating": 4,
+        "review": "Cillum cupidatat eiusmod commodo sit eiusmod minim quis incididunt proident. Sit labore ad consectetur ex dolor ad. Aliqua labore dolor mollit eiusmod veniam sit mollit laborum. In nulla exercitation enim pariatur eiusmod nulla nostrud.\r\n",
+        "size": "L",
+        "images": [
+          {
+            "url": "",
+            "public_url": ""
+          },
+          {
+            "url": "",
+            "public_url": ""
+          }
+        ],
+        "likes": {
+          "likes": 1
+        },
+        "style": {
+          "color": "blue",
+          "image": "http://placehold.it/32x32"
+        },
+        "fit": "Regular",
+        "createdAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        },
+        "updatedAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        }
+      },
+      {
+        "_id": { "$oid": "6585fa5478e0e73017b5f8a0" },
+        "reviewBy": { "$oid": "6537f42d78e0e73017b5f895" },
+        "rating": 4,
+        "review": "Cillum cupidatat eiusmod commodo sit eiusmod minim quis incididunt proident. Sit labore ad consectetur ex dolor ad. Aliqua labore dolor mollit eiusmod veniam sit mollit laborum. In nulla exercitation enim pariatur eiusmod nulla nostrud.\r\n",
+        "size": "L",
+        "images": [
+          {
+            "url": "",
+            "public_url": ""
+          },
+          {
+            "url": "",
+            "public_url": ""
+          }
+        ],
+        "likes": {
+          "likes": 4
+        },
+        "style": {
+          "color": "blue",
+          "image": "http://placehold.it/32x32"
+        },
+        "fit": "Regular",
+        "createdAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        },
+        "updatedAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        }
+      },
+      {
+        "_id": { "$oid": "6537fa5678e0e73017b5f8a0" },
+        "reviewBy": { "$oid": "6537f42d78e0e73017b5f895" },
+        "rating": 4,
+        "review": "Cillum cupidatat eiusmod commodo sit eiusmod minim quis incididunt proident. Sit labore ad consectetur ex dolor ad. Aliqua labore dolor mollit eiusmod veniam sit mollit laborum. In nulla exercitation enim pariatur eiusmod nulla nostrud.\r\n",
+        "size": "L",
+        "images": [
+          {
+            "url": "",
+            "public_url": ""
+          },
+          {
+            "url": "",
+            "public_url": ""
+          }
+        ],
+        "likes": {
+          "likes": 3
+        },
+        "style": {
+          "color": "blue",
+          "image": "http://placehold.it/32x32"
+        },
+        "fit": "Regular",
+        "createdAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        },
+        "updatedAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        }
+      },
+      {
+        "_id": { "$oid": "6537fa5478e0373017b5f8a0" },
+        "reviewBy": { "$oid": "6537f42d78e0e73017b5f895" },
+        "rating": 4,
+        "review": "Cillum cupidatat eiusmod commodo sit eiusmod minim quis incididunt proident. Sit labore ad consectetur ex dolor ad. Aliqua labore dolor mollit eiusmod veniam sit mollit laborum. In nulla exercitation enim pariatur eiusmod nulla nostrud.\r\n",
+        "size": "L",
+        "images": [
+          {
+            "url": "",
+            "public_url": ""
+          },
+          {
+            "url": "",
+            "public_url": ""
+          }
+        ],
+        "likes": {
+          "likes": 2
+        },
+        "style": {
+          "color": "blue",
+          "image": "http://placehold.it/32x32"
+        },
+        "fit": "Regular",
+        "createdAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        },
+        "updatedAt": {
+          "$date": "2023-10-24T08:59:09.799Z"
+        }
+      }
+    ],
+    "refundPolicy": "34 days",
+    "rating": { "$numberInt": "0" },
+    "numberOfReviews": { "$numberInt": "30" },
+    "shipping": { "$numberInt": "9" },
+    "subProducts": [
+      {
+        "_id": { "$oid": "653904c5f1f0957dbd5e9a03" },
+        "sku": "sw3009253",
+        "images": [
+          {
+            "url": "https://picsum.photos/id/0/200/300",
+            "public_url": "https://picsum.photos/id/0/200/300"
+          },
+          {
+            "url": "https://picsum.photos/id/8/200/300",
+            "public_url": "https://picsum.photos/id/8/200/300"
+          }
+        ],
+        "description_images": [],
+        "color": {
+          "color": "blue",
+          "image": "https://picsum.photos/id/74/200/300"
+        },
+        "sizes": [
+          {
+            "size": "S",
+            "qty": { "$numberInt": "55" },
+            "price": { "$numberDouble": "3788.2" }
+          }
+        ],
+        "discount": { "$numberInt": "10" },
+        "sold": { "$numberInt": "126" }
+      },
+      {
+        "_id": { "$oid": "653904c5f1f0957dbd5e9b01" },
+        "sku": "sw3009254",
+        "images": [
+          {
+            "url": "https://picsum.photos/id/0/200/300",
+            "public_url": "https://picsum.photos/id/0/200/300"
+          },
+          {
+            "url": "https://picsum.photos/id/8/200/300",
+            "public_url": "https://picsum.photos/id/8/200/300"
+          }
+        ],
+        "description_images": [],
+        "color": {
+          "color": "green",
+          "image": "https://picsum.photos/id/89/200/300"
+        },
+        "sizes": [
+          {
+            "size": "M",
+            "qty": { "$numberInt": "25" },
+            "price": { "$numberDouble": "3788.2" }
+          }
+        ],
+        "discount": { "$numberInt": "10" },
+        "sold": { "$numberInt": "126" }
+      }
+    ],
+    "createdAt": { "$date": { "$numberLong": "1698137949799" } },
+    "updatedAt": { "$date": { "$numberLong": "1698137949799" } }
+  },
+  {
+    "_id": { "$oid": "6537f83578e0e73017b5f89d" },
+    "name": "Product 2",
+    "description": "Voluptate aliquip exercitation velit dolore amet enim ad quis occaecat cillum aliqua. Lorem cillum occaecat ea dolor consequat dolore minim deserunt ex. Voluptate dolor id et eu mollit nostrud Lorem incididunt laboris dolor sint. Tempor dolore fugiat cillum cupidatat dolor minim sunt exercitation incididunt excepteur veniam. Laborum magna commodo consectetur pariatur. Culpa voluptate mollit magna cillum amet eiusmod est est nisi amet. Qui labore sint fugiat quis laborum deserunt nisi consequat consectetur et excepteur irure dolor.\r\n",
+    "brand": "Brand 1",
+    "slug": "product-2",
+    "category": { "$oid": "6537f67178e0e73017b5f897" },
+    "subCategories": [{ "$oid": "6537f72178e0e73017b5f89a" }],
+    "details": [
+      {
+        "name": "StyleX",
+        "value": "Style2",
+        "_id": { "$oid": "653792b4d69b83f15c027762" }
+      },
+      {
+        "name": "StyleZ",
+        "value": "Style3",
+        "_id": { "$oid": "653792b47ed06017278d863e" }
+      }
+    ],
+    "questions": [{ "question": "How is the quality", "answer": "nice" }],
+    "reviews": [],
+    "refundPolicy": "26 days",
+    "rating": { "$numberInt": "0" },
+    "numberOfReviews": { "$numberInt": "24" },
+    "shipping": { "$numberInt": "4" },
+    "subProducts": [
+      {
+        "_id": { "$oid": "65390502f1f0957dbd5e9a04" },
+        "sku": "sw2090269",
+        "images": [
+          {
+            "url": "https://picsum.photos/id/308/200/300",
+            "public_url": "https://picsum.photos/id/308/200/300"
+          },
+          {
+            "url": "https://picsum.photos/id/429/200/300",
+            "public_url": "https://picsum.photos/id/429/200/300"
+          }
+        ],
+        "description_images": [],
+        "color": { "color": "red", "image": "" },
+        "sizes": [
+          {
+            "_id": { "$oid": "65390502f1f0957dbd5e9a15" },
+            "size": "M",
+            "qty": { "$numberInt": "30" },
+            "price": { "$numberDouble": "1421.68" }
+          },
+          {
+            "_id": { "$oid": "65390502f1f0957dbd5e9a16" },
+            "size": "L",
+            "qty": { "$numberInt": "40" },
+            "price": { "$numberDouble": "1422.68" }
+          }
+        ],
+        "discount": { "$numberInt": "5" },
+        "sold": { "$numberInt": "132" }
+      },
+      {
+        "_id": { "$oid": "65390502f1f0957dbd5e9b02" },
+        "sku": "sw2090369",
+        "images": [
+          {
+            "url": "https://picsum.photos/id/459/200/300",
+            "public_url": "https://picsum.photos/id/459/200/300"
+          },
+          {
+            "url": "https://res.cloudinary.com/dgtos2kpm/image/upload/v1698825548/Misc/perfumes/gab_chanelHD.png",
+            "public_url": "https://res.cloudinary.com/dgtos2kpm/image/upload/v1698825548/Misc/perfumes/gab_chanelHD.png"
+          },
+          {
+            "url": "https://res.cloudinary.com/dgtos2kpm/image/upload/v1698825547/Misc/perfumes/sauvage_black_shadowHD.png",
+            "public_url": "https://res.cloudinary.com/dgtos2kpm/image/upload/v1698825547/Misc/perfumes/sauvage_black_shadowHD.png"
+          }
+        ],
+        "description_images": [],
+        "color": {
+          "color": "black",
+          "image": "https://picsum.photos/id/458/200/300"
+        },
+        "sizes": [
+          {
+            "_id": { "$oid": "65390502f1f0957dbd5e9a14" },
+            "size": "S",
+            "qty": { "$numberInt": "0" },
+            "price": { "$numberDouble": "1420.68" }
+          }
+        ],
+        "discount": { "$numberInt": "5" },
+        "sold": { "$numberInt": "132" }
+      }
+    ],
+    "createdAt": { "$date": { "$numberLong": "1698137949799" } },
+    "updatedAt": { "$date": { "$numberLong": "1698137949799" } }
+  }
+]

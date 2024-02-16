@@ -1,0 +1,44 @@
+[
+  {
+    "_id": { "$oid": "6537f70678e0e73017b5f899" },
+    "name": "SubCategory 1",
+    "slug": "subcategory-1",
+    "parent": {
+      "$oid": "6537f63078e0e73017b5f896"
+    },
+    "createdAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    },
+    "updatedAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    }
+  },
+  {
+    "_id": { "$oid": "6537f72178e0e73017b5f89a" },
+    "name": "SubCategory 2",
+    "slug": "subcategory-2",
+    "parent": {
+      "$oid": "6537f67178e0e73017b5f897"
+    },
+    "createdAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    },
+    "updatedAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    }
+  },
+  {
+    "_id": { "$oid": "6537f73878e0e73017b5f89b" },
+    "name": "SubCategory 3",
+    "slug": "subcategory-3",
+    "parent": {
+      "$oid": "6537f68a78e0e73017b5f898"
+    },
+    "createdAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    },
+    "updatedAt": {
+      "$date": "2023-10-24T08:59:09.799Z"
+    }
+  }
+]

@@ -1,0 +1,165 @@
+
+[
+    {
+        "_id": "{{objectId()}}",
+        "name": "{{firstName()}} {{surname()}}",
+        "email": "{{email()}}",
+        "password": "",
+        "role": "user",
+        "image": "http://placehold.it/32x32",
+        "emailVerified": "{{bool()}}",
+        "defaultPaymentMethod": "COD",
+        "address": [
+        "{{repeat(2)}}",
+        {
+            "firstname": "{{firstName()}}",
+            "lastname": "{{surname()}}",
+            "phoneNumber": "+91 {{phone()}}",
+            "address1": "{{integer(100, 999)}} {{street()}}, {{integer(100, 10000)}}",
+            "address2": "{{integer(100, 999)}} {{street()}}, {{integer(100, 10000)}}",
+            "city": "{{city()}}",
+            "zipcode": "{{integer(400000, 400100)}}",
+            "state": "{{state()}}",
+            "country": "{{country()}}",
+            "active": "{{bool()}}"
+        }
+        ],
+        "createdAt": {
+            "$date": "{{date(new Date(), new Date(), \"YYYY-MM-ddThh:mm:ssZ\")}}"
+        },
+        "updatedAt": {
+            "$date": "{{date(new Date(2014, 0, 1), new Date(), \"YYYY-MM-ddThh:mm:ss Z\")}}"
+        }
+    }
+]
+  
+
+[
+    '{{repeat(3)}}',
+    {
+        _id: { $oid: '{{objectId()}}' },
+        name: 'Category {{index() + 1}}',
+        slug: function (tags) {
+            return this.name.replace(' ','-').toLowerCase();
+        },
+        createdAt: {
+            $date: '{{date(new Date(), new Date(), "YYYY-MM-ddThh:mm:ssZ")}}'
+        },
+        updatedAt: {
+            $date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+        }
+    }
+]
+
+[
+    {
+        name: 'SubCategory {{index() + 1}}',
+        slug: function (tags) {
+            return this.name.replace(' ','-').toLowerCase();
+        },
+        parent: {
+            $oid: '{{objectId()}}'
+        },
+        createdAt: {
+            $date: '{{date(new Date(), new Date(), "YYYY-MM-ddThh:mm:ssZ")}}'
+        },
+        updatedAt: {
+            $date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+        }
+    }
+]
+
+[
+    '{{repeat(2)}}',
+    {
+        name: 'Product {{index() + 1}}',
+        description: '{{lorem(1, "paragraphs")}}',
+        brand: '{{random("Brand 1", "Brand 2", "Brand 3")}}',
+        slug: function (tags) {
+            return this.name.replace(' ','-').toLowerCase();
+        },    
+        category: {
+            $oid: '{{objectId()}}'
+        },
+        subCategories: [
+        '{{repeat(3)}}',
+        {
+            $oid: '{{objectId()}}'
+        }
+        ],
+        details: [
+        '{{repeat(2)}}',
+        {
+            name: '{{random("StyleX", "StyleY", "StyleZ")}}',
+            value: '{{random("Style1", "Style2", "Style3")}}',
+            _id:{
+            $oid: '{{objectId()}}'
+            }
+        }
+        ],
+        questions: [
+        {
+            question: 'How is the quality',
+            answer: 'nice'        
+        }
+        ],
+        reviews: [],
+        refundPolicy: '{{integer(25,35)}} days',
+        rating: '{{integer(1,5)}}',
+        numberOfReviews: '{{integer(1,100)}}',
+        shipping: '{{integer(1,10)}}',
+        subProducts: [
+        {
+            sku: 'sw{{integer(1234567,4567899)}}',
+            images: [
+                '{{repeat(2)}}',
+                {
+                    url: 'https://fakeimg.pl/400x200',
+                    public_url: 'https://fakeimg.pl/400x200'
+                }
+            ],
+            description_images: [],
+            color: {
+                color: '{{random("blue", "brown", "green")}}',
+                image: 'https://fakeimg.pl/300x100'
+            },
+            sizes: [
+                {
+                    size: '{{random("S", "M", "L", "XL")}}',
+                    qty: '{{integer(1,100)}}',
+                    price: '{{floating(1000, 4000, 2, "$0,0.00")}}'
+                }
+            ],
+            discount: '{{random("5%", "10%", "15%", "20%")}}',
+            sold: '{{integer(1,500)}}'
+        }
+        ],
+        createdAt: {
+            $date: '{{date(new Date(), new Date(), "YYYY-MM-ddThh:mm:ssZ")}}'
+        },
+        updatedAt: {
+            $date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+        }
+    }
+]
+
+[
+    '{{repeat(1, 1)}}',
+    {
+        reviewBy: '{{objectId()}}',
+        rating: '{{integer(1, 5)}}',
+        review: '{{lorem(1, "paragraphs")}}',
+        size: '{{random("S", "M", "L", "XL")}}',
+        style: {
+            color: '{{random("blue", "brown", "green")}}',
+            image: 'http://placehold.it/32x32'
+        },
+        fit: '{{random("Regular", "Slim", "Skinny")}}',
+        createdAt: {
+            $date: '{{date(new Date(), new Date(), "YYYY-MM-ddThh:mm:ssZ")}}'
+        },
+        updatedAt: {
+            $date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+        }
+    }
+  ]

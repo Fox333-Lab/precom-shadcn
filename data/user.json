@@ -1,0 +1,44 @@
+{
+  "_id": { "$oid": "6537f42d78e0e73017b5f895" },
+  "name": "Sajin",
+  "email": "sajj.dev4@gmail.com",
+  "password": "$2a$12$XR3.LBlk7yxQ3uAV7aq6zuSLs1mTsjj1v0FPR86ky6jQwpa.jhw.2",
+  "role": "user",
+  "image": "http://placehold.it/32x32",
+  "emailVerified": false,
+  "defaultPaymentMethod": "COD",
+  "address": [
+    {
+      "_id": { "$oid": "6537f42d78e0e73017b5f896" },
+      "firstname": "Adrian",
+      "lastname": "Anthony",
+      "phoneNumber": "+91 (962) 510-2974",
+      "address1": "353 Whitwell Place, 3714",
+      "address2": "427 Amboy Street, 2198",
+      "city": "Ezel",
+      "zipcode": 400089,
+      "state": "Oklahoma",
+      "country": "Pakistan",
+      "active": false
+    },
+    {
+      "_id": { "$oid": "6537f42d78e0e73017b5f897" },
+      "firstname": "Sanchez",
+      "lastname": "Kline",
+      "phoneNumber": "+91 (910) 581-2609",
+      "address1": "919 Schermerhorn Street, 5042",
+      "address2": "680 Gerald Court, 7943",
+      "city": "Bentley",
+      "zipcode": 400053,
+      "state": "Pennsylvania",
+      "country": "Israel",
+      "active": false
+    }
+  ],
+  "createdAt": {
+    "$date": "2023-10-24T08:59:09.799Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-24T08:59:09.799Z"
+  }
+}

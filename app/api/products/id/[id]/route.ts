@@ -1,4 +1,4 @@
-import { db } from "@/lib";
+import db from "@/lib/db";
 import Product from "@/models/db/product";
 import IProduct from "@/types/db/product";
 import { NextRequest, NextResponse } from "next/server";

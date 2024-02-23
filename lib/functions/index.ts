@@ -1,11 +1,5 @@
-import { getCartByUserId, saveCartToDB } from "./cart";
+import { getCartByUserId } from "./cart";
 import sendEmail from "./sendemail";
-import {
-  applyCoupon,
-  changeActiveAddress,
-  deleteAddress,
-  saveAddressToDB,
-} from "./shipping";
 import {
   createActivationToken,
   createPwdResetToken,
@@ -17,10 +11,5 @@ export {
   createActivationToken,
   createPwdResetToken,
   verifyResetPwdJwtToken,
-  applyCoupon,
-  changeActiveAddress,
-  deleteAddress,
-  saveAddressToDB,
   getCartByUserId,
-  saveCartToDB,
 };

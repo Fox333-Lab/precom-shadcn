@@ -1,8 +1,9 @@
-import { db, createPwdResetToken, verifyResetPwdJwtToken } from "@/lib";
+import { createPwdResetToken, verifyResetPwdJwtToken } from "@/lib";
 import { NextResponse, NextRequest } from "next/server";
 import User from "@/models/db/user";
 import bcrypt from "bcryptjs";
 import { JwtPayload } from "@/types/misc/jwtpayload";
+import db from "@/lib/db";
 
 export const POST = async (req: NextRequest) => {
   console.log("in reset password request GET");

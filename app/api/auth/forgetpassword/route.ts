@@ -1,7 +1,8 @@
-import { db, validateEmail, createPwdResetToken, sendEmail } from "@/lib";
+import { validateEmail, createPwdResetToken, sendEmail } from "@/lib";
 import { NextResponse, NextRequest } from "next/server";
 import User from "@/models/db/user";
 import { resetPasswordEmailTemplate } from "@/templates/email/resetPwdEmailTemplate";
+import db from "@/lib/db";
 
 export const POST = async (req: NextRequest) => {
   try {

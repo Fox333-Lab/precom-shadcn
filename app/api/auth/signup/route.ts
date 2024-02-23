@@ -1,9 +1,10 @@
-import { db, validateEmail, createActivationToken, sendEmail } from "@/lib";
+import { validateEmail, createActivationToken, sendEmail } from "@/lib";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import User from "@/models/db/user";
 import { ActivateEmailTemplate } from "@/templates/email/activateEmailTemplate";
 import mongoose from "mongoose";
+import db from "@/lib/db";
 
 export const POST = async (req: NextRequest) => {
   try {

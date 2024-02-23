@@ -1,10 +1,10 @@
-import { db } from "@/lib";
 import User from "@/models/db/user";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../../../auth/[...nextauth]/route";
 import { IAddress } from "@/types/db/user";
 import mongoose from "mongoose";
+import db from "@/lib/db";
 
 export const PUT = async (req: NextRequest) => {
   console.log("in api/user/saveaddresstodb post request");

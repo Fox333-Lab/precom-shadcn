@@ -19,7 +19,7 @@ import { compareArrays } from "@/lib/utils";
 import ICart, { ICartProduct } from "@/types/db/cart";
 import { Checkbox } from "../ui/checkbox";
 import { useRouter } from "next/navigation";
-import { saveCartToDB } from "@/lib/functions";
+import { saveCartToDB } from "@/lib/functions/cart";
 
 const ItemsCart = ({ cartItems }: { cartItems: ICartProduct[] }) => {
   const [selected, setSelected] = useState<ICartProduct[]>([]);

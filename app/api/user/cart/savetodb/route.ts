@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { db } from "@/lib";
+import db from "@/lib/db";
 import Cart from "@/models/db/cart";
 import Product from "@/models/db/product";
 import User from "@/models/db/user";

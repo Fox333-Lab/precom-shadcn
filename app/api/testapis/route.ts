@@ -1,10 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import {
-  db,
-  validateEmail,
-  createPwdResetToken,
-  verifyResetPwdJwtToken,
-} from "@/lib";
+import { createPwdResetToken, verifyResetPwdJwtToken } from "@/lib";
 import { JwtPayload } from "@/types/misc/jwtpayload";
 
 export const POST = async (req: NextRequest) => {

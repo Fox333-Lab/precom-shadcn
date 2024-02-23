@@ -5,7 +5,6 @@ import {
   sendEmail,
 } from "./functions";
 import { cn, validateEmail, compareArrays } from "./utils";
-import db from "./db";
 import clientPromise from "./mongodb";
 
 export {
@@ -16,6 +15,5 @@ export {
   cn,
   validateEmail,
   compareArrays,
-  db,
   clientPromise,
 };

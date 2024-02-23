@@ -30,7 +30,7 @@ import {
   changeActiveAddress,
   deleteAddress,
   saveAddressToDB,
-} from "@/lib/functions";
+} from "@/lib/functions/shipping";
 
 const initialValues: ShippingInputTypes = {
   firstname: "",

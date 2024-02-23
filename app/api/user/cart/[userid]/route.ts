@@ -1,4 +1,4 @@
-import { db } from "@/lib";
+import db from "@/lib/db";
 import Cart from "@/models/db/cart";
 import User from "@/models/db/user";
 import ICart from "@/types/db/cart";

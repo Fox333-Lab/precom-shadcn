@@ -36,7 +36,7 @@ const Checkout = ({ cart, user }: CheckoutPropsTypes) => {
         setAddresses={setAddresses}
       />
       <CheckoutCart cart={cart} />
-      {/* <Payment
+      <Payment
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
       />
@@ -47,7 +47,7 @@ const Checkout = ({ cart, user }: CheckoutPropsTypes) => {
         cart={cart}
         paymentMethod={paymentMethod}
         selectedAddress={selectedAddress}
-      /> */}
+      />
     </div>
   );
 };

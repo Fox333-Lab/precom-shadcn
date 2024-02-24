@@ -32,30 +32,4 @@
       "$date": "2023-10-24T08:59:09.799Z"
     }
   }
-  /*
-
-BASE_URL=http://localhost:3000
-ECOM_MONGODB_URL=mongodb+srv://sajin333:BoYLkCqZFNcFLcnt@ecommmongo.agms9tu.mongodb.net/
-/---------- IP registry ----------
-LOCATION_API_KEY=c14xrbetf5dt4fkg
-NEXT_PUBLIC_LOCATION_API_URL=https://api.ipregistry.co/?key=${LOCATION_API_KEY}
-/---------- Next Auth ------------
-JWT_SECRET=U$VG^wT@j!I>a*K<H.v-b9NM~9S81y
-NEXTAUTH_URL=http://localhost:3000
-GOOGLE_ID=536606324802-ng1r5o6730s3kh2tapluc6gnd5kol7u5.apps.googleusercontent.com
-GOOGLE_SECRET=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
-NEXTAUTH_SECRET=U$VG^wT@j!I>a*K<H.v-b9NM~9S81y
-/---------- Account Activation ----
-ACT_ACTIVATION_TOKEN_SECRET=U$VG^twT@j!Ij>a*K<H.v-b90NM~9S181y
-PWD_RESET_TOKEN_SECRET=U$YG^tw0@j!Ij>a*K<H.v-ba0NM*9S182z
-/---------- Mailing service -------
-MAILING_SERVICE_CLIENT_ID=364416852259-4c86303udmf4ctg7u60jec8p3e0aaims.apps.googleusercontent.com
-MAILING_SERVICE_CLIENT_SECRET=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
-MAILING_SERVICE_REFRESH_TOKEN=1//04rpfcpViGSt_CgYIARAAGAQSNwF-L9IrcyvWYPLqfjO7a4QZJyMzml93lZsO8iXE4WkW6TpG5URssr9jXGp9H1GZrX7qiE6qcM0
-SENDER_EMAIL_ADDRESS=sajj.dev4@gmail.com
-/----------- Cloudinary ----------
-CLOUDINARY_NAME=dgtos2kpm
-CLOUDINARY_KEY=887244928887439
-CLOUDINARY_SECRET=iM9dTUGVIIC29bZ8rMxJCekXlJk
-*/
 ]

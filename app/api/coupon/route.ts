@@ -4,6 +4,7 @@ import ICoupon from "@/types/db/coupon";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
+  console.log("In the api/coupon/route.ts file");
   try {
     await db.ConnectDB();
     const { coupon, startDate, endDate, discount }: ICoupon = await req.json();

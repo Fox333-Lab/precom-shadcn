@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import db from "@/lib/db";
 
 export const PUT = async (req: NextRequest) => {
-  console.log("in api/user/saveaddresstodb post request");
+  console.log("in api/user/saveaddresstodb post file");
   const userSession = await getServerSession(authOptions);
   try {
     // console.log("in api/user/saveaddresstodb userSession : ", userSession);

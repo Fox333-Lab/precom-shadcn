@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "testport": "next dev -p 3005"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.0.14",

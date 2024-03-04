@@ -9,7 +9,6 @@ export type ShippingInitialValueTypes = {
   address2: string;
   country: string;
 };
-
 export type ShippingInputTypes = {
   firstname: string;
   lastname: string;

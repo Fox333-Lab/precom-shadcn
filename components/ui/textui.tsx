@@ -77,7 +77,6 @@ export const H6 = ({ className, ...props }: HeadingProps) => {
     />
   );
 };
-
 export const Para = ({ className, ...props }: ParagraphProps) => {
   return (
     <p

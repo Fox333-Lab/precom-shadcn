@@ -4,7 +4,6 @@ import { MongoClient } from "mongodb";
 if (!process.env.ECOM_MONGODB_URL) {
   throw new Error('Invalid/Missing environment variable: "ECOM_MONGODB_URL"');
 }
-
 const uri: string = process.env.ECOM_MONGODB_URL;
 const options = {};
 

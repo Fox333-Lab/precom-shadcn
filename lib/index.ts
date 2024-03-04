@@ -6,7 +6,6 @@ import {
 } from "./functions";
 import { cn, validateEmail, compareArrays } from "./utils";
 import clientPromise from "./mongodb";
-
 export {
   createActivationToken,
   createPwdResetToken,

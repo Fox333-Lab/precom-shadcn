@@ -17,7 +17,7 @@ export const saveCartToDB = async (cart: ICartProduct[]) => {
 };
 
 export const getCartByUserId = async (userId: string) => {
-  console.log("In functions/getCartByUserId : userId : ", userId);
+  console.log("Inside functions/getCartByUserId : userId : ", userId);
   try {
     const { data, error, isLoading } = await useSWRFetch(
       `/api/user/cart/${userId}`

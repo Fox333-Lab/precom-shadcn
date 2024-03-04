@@ -29,7 +29,6 @@ export interface IPaymentResult {
   status: String;
   email: String;
 }
-
 export default interface IOrder {
   _id: Types.ObjectId;
   user: Types.ObjectId;

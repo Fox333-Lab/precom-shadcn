@@ -91,7 +91,6 @@ const Order = ({ data }: OrderPropsTypes) => {
   function onErrorHandler(error: any) {
     console.log("in onErrorHandler : ", error);
   }
-
   useEffect(() => {
     if (!orderData._id) {
       // if (success) {

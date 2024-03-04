@@ -30,7 +30,6 @@ const couponSchema = new Schema<ICoupon>(
   },
   { timestamps: true }
 );
-
 const Coupon = models.Coupon || model<ICoupon>("Coupon", couponSchema);
 
 export default Coupon;

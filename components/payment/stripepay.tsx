@@ -16,6 +16,7 @@ const stripePromise = loadStripe(
 // };
 // console.log("stripePromise : ", stripePromise);
 const StripePay = ({ total, orderId, stripePublicKey }: StripePropsTypes) => {
+  console.log("In components/payment/stripepay.tsx");
   return (
     <Elements stripe={stripePromise}>
       <StripePaymentForm total={total} orderId={orderId} />

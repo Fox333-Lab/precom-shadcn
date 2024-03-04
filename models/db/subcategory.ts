@@ -22,7 +22,6 @@ const subCategorySchema = new Schema<ISubCategory>({
     required: true,
   },
 });
-
 const SubCategory =
   models.SubCategory || model("SubCategory", subCategorySchema);
 

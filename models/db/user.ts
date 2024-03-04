@@ -77,7 +77,6 @@ const userSchema: Schema = new Schema<IUser>(
   },
   { timestamps: true }
 );
-
 const User = models.User || model<IUser>("User", userSchema);
 //const User = model<IUser>("User", userSchema);
 

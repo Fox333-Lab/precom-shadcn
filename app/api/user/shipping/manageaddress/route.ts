@@ -6,7 +6,7 @@ import { IAddress } from "@/types/db/user";
 import db from "@/lib/db";
 
 export const PUT = async (req: NextRequest) => {
-  console.log("in api/user/manageaddress put request");
+  console.log("in api/user/manageaddress put file");
   const userSession = await getServerSession(authOptions);
   try {
     console.log("in api/user/manageaddress userSession : ", userSession);

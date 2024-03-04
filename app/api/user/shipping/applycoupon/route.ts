@@ -9,7 +9,7 @@ import db from "@/lib/db";
 import { authOptions } from "../../../auth/[...nextauth]/route";
 
 export const POST = async (req: NextRequest) => {
-  console.log("in api/user/shiping/applyCoupon post request");
+  console.log("in api/user/shiping/applyCoupon post file");
   const userSession = await getServerSession(authOptions);
   try {
     // console.log("in api/user/saveaddresstodb userSession : ", userSession);

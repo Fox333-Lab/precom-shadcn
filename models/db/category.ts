@@ -20,7 +20,6 @@ const categorySchema = new Schema<ICategory>(
   },
   { timestamps: true }
 );
-
 const Category =
   models.Category || model<ICategory>("Category", categorySchema);
 

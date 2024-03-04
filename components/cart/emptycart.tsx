@@ -4,7 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import { H2, H3, Para } from "../ui/textui";
 import { Button } from "../ui/button";
 const EmptyCart = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="flex flex-col items-center justify-center gap-10">

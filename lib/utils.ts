@@ -14,7 +14,6 @@ export const validateEmail = async (email: string) => {
   return { isEmailValid: true, message: "" };
   //return emailRegEx.test(email);
 };
-
 export const compareArrays = (array1: any, array2: any) => {
   if (array1.length !== array2.length) return false;
   const neww = (object: any) =>

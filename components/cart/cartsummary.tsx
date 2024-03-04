@@ -22,7 +22,7 @@ const CartSummary = ({
   saveCartToDBHandler: () => Promise<void>;
 }) => {
   console.log("cartsummary : shipping : ", shippingFee);
-  console.log("cartsummary : subTotal : ", subTotal);
+  // console.log("cartsummary : subTotal : ", subTotal);
   let total = Number(subTotal) + Number(shippingFee);
   console.log("cartsummary : total : ", total);
   return (

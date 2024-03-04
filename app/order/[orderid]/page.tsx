@@ -15,6 +15,7 @@ const OrderPage = ({ params }: { params: { orderid: string } }) => {
     currency: "USD",
     intent: "capture",
   };
+
   if (isLoading) return <div>loading...</div>;
   if (error) {
     console.log("errors : ", error);

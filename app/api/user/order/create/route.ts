@@ -9,7 +9,7 @@ import Order from "@/models/db/order";
 import { IOrderProduct } from "@/types/db/order";
 
 export const POST = async (req: NextRequest) => {
-  console.log("in api/user/order/create post request");
+  console.log("in api/user/order/create post file");
   const userSession = await getServerSession(authOptions);
   try {
     // console.log("in api/user/saveaddresstodb userSession : ", userSession);

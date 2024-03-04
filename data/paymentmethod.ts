@@ -8,8 +8,7 @@ export const paymentMethods = [
   {
     id: 2,
     name: "Paypal",
-    description:
-      "You can pay with your credit card if you don't have a PayPal account",
+    description: "You can pay with your credit card with PayPal account",
     image: "russian-ruble",
   },
   {

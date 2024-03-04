@@ -5,6 +5,7 @@ export const createActivationToken = (payload: any) => {
     expiresIn: "2d",
   });
 };
+
 export const createPwdResetToken = (payload: any) => {
   console.log(
     "token.js : createPwdResetToken : PWD_RESET_TOKEN_SECRET : ",
@@ -15,6 +16,7 @@ export const createPwdResetToken = (payload: any) => {
     expiresIn: "1m",
   });
 };
+
 export const verifyResetPwdJwtToken = (
   token: string
 ): string | jwt.JwtPayload => {

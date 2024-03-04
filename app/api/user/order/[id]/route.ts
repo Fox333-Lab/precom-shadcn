@@ -7,6 +7,7 @@ export const GET = async (
   req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
+  console.log("In the api/user/order/[id]/route.ts file");
   try {
     await db.ConnectDB();
 

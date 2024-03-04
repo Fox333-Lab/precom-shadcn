@@ -14,7 +14,7 @@ type PaymentPropsTypes = {
 
 const Payment = ({ paymentMethod, setPaymentMethod }: PaymentPropsTypes) => {
   const changePaymentMethod = async (name: string) => {
-    console.log("changePaymentMethod : ", name);
+    console.log("In changePaymentMethod : ", name);
     setPaymentMethod(name);
   };
 

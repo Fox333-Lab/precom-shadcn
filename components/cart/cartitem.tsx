@@ -22,7 +22,7 @@ const CartItem = ({
   const cartItems: ICartProduct[] = useSelector(getAllCartItems);
   const dispatch = useDispatch();
   console.log("CartItem selected : ", selected);
-  console.log("CartItem cartItem : ", cartItem);
+  // console.log("CartItem cartItem : ", cartItem);
 
   const updateQty = (type: string) => {
     let siqty = 0;

@@ -14,6 +14,7 @@ export interface ICartProduct {
   _uid: string;
   quantity: number;
 }
+
 export default interface ICart {
   products: Types.ArraySubdocument<ICartProduct>;
   cartTotal: Number;

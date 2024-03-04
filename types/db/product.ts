@@ -48,6 +48,7 @@ export interface ISubProduct {
   discount: number;
   sold: Number;
 }
+
 export default interface IProduct {
   _id: Types.ObjectId;
   name: String;

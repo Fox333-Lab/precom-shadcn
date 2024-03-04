@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 type TConnection = {
   isConnected: 0 | 1 | 2 | 3 | 99;
 };
-
 const connection: TConnection = {
   isConnected: 0,
 };

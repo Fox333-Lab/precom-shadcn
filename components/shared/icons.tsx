@@ -33,6 +33,5 @@ interface DIconProps extends LucideProps {
 type kk = keyof typeof dynamicIconImports;
 export const LIcon = ({ name, ...props }: DIconProps) => {
   const LucideIcon = dynamic(dynamicIconImports[name as kk]);
-
   return <LucideIcon {...props} />;
 };

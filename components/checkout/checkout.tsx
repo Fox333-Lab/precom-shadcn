@@ -25,7 +25,6 @@ const Checkout = ({ cart, user }: CheckoutPropsTypes) => {
       setSelectedAddress({} as IAddress);
     }
   }, [addresses]);
-
   return (
     <div className="flex flex-col gap-3">
       <Shipping

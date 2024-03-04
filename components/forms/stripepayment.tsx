@@ -36,7 +36,7 @@ const StripePaymentForm = ({ total, orderId }: StripePaymentPropsTypes) => {
   const elements = useElements();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("In components/forms/stripepayment.tsx - handleSubmit");
+    console.log("Inside components/forms/stripepayment.tsx - handleSubmit");
     e.preventDefault();
     const payCardElement = elements?.getElement(CardElement);
     if (!stripe || !payCardElement) {

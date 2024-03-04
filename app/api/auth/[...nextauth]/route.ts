@@ -45,6 +45,7 @@ export const authOptions: NextAuthOptions = {
       let _id = new ObjectId(iid);
       let user = await User.findById({ _id });
       // console.log("find one complete : ", user);
+
       session.user.uid = token.sub || user?._id.toString();
       session.user.role = user?.role || "user";
       //session.user.role = "user";

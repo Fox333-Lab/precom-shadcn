@@ -119,7 +119,7 @@ const Shipping = ({
   };
 
   const saveShippingHandler = async () => {
-    console.log("saveShippingHandler");
+    console.log("In saveShippingHandler");
     const res = await saveAddressToDB(shipping, user?._id.toString());
     //setAddresses([...addresses, res.address]);
     setAddresses(res.addresses);

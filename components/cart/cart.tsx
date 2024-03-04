@@ -5,7 +5,7 @@ import { EmptyCart, ItemsCart } from ".";
 import ICart, { ICartProduct } from "@/types/db/cart";
 const Cart = () => {
   //const { cart } = useSelector((state) => ({ ...state }));
-  const cartItems: ICartProduct[] = getAllCartItems;
+  const cartItems: ICartProduct[] = useSelector(getAllCartItems);
   console.log("Cart.jsx 1 : cartItems length : ", cartItems.length);
   return (
     <div>

@@ -17,7 +17,6 @@ const oauth2Client = new OAuth2(
   //MAILING_SERVICE_REFRESH_TOKEN,
   OAUTH_PLAYGROUND
 );
-
 // send email
 
 const sendEmail = async (

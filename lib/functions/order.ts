@@ -9,7 +9,7 @@ export const createOrder = async (
   totalAfterDiscount: string,
   couponApplied: string
 ) => {
-  console.log("In functions/order/createOrder");
+  console.log("Inside functions/order/createOrder");
   try {
     const { data } = await axios.post("/api/user/order/create", {
       products: cart.products as unknown as ICartProduct[],

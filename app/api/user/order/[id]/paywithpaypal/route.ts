@@ -7,6 +7,7 @@ export const PUT = async (
   req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
+  console.log("in the api/user/order/[id]/paywithpaypal/route.ts file");
   try {
     await db.ConnectDB();
     console.log("api/user/order/[id]/paywithpaypal params.id : ", params.id);

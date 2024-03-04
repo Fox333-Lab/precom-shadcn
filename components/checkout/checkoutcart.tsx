@@ -17,6 +17,7 @@ type CheckoutCartPropsTypes = {
 
 const CheckoutCart = ({ cart }: CheckoutCartPropsTypes) => {
   // console.log("cart :>> ", cart);
+  console.log("In CheckoutCart");
   const cartDetails = cart.products as unknown as ICartProduct[];
   return (
     <div>

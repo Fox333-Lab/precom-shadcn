@@ -37,7 +37,7 @@ const Summary = ({
     coupon: Yup.string().required("Coupon is required"),
   });
   const applyCouponHandler = async () => {
-    console.log("summary.tsx applyCouponHandler");
+    console.log("In summary.tsx applyCouponHandler");
     if (coupon == "") {
       setDiscount("");
       setTotalAfterDiscount("");

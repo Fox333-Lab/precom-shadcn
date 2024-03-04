@@ -16,7 +16,6 @@ const CartHeader = ({
   //   setSelected: React.Dispatch<React.SetStateAction<never[]>>;
 }) => {
   //   const [active, setActive] = useState(false);
-
   //   useEffect(() => {
   //     const check = compareArrays(cartItems, selected);
   //     console.log("check : ", check);

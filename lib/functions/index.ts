@@ -5,7 +5,6 @@ import {
   createPwdResetToken,
   verifyResetPwdJwtToken,
 } from "./token";
-
 export {
   sendEmail,
   createActivationToken,

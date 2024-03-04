@@ -32,7 +32,7 @@ const ItemsCart = ({ cartItems }: { cartItems: ICartProduct[] }) => {
   const dispatch = useDispatch();
   // const [total, setTotal] = useState(0);
   console.log("itemscart session : ", session);
-  console.log("itemscart status : ", status);
+  // console.log("itemscart status : ", status);
   useEffect(() => {
     console.log("in useeefect22 : cartItems.length : ", cartItems.length);
     console.log("in useeefect : cartItems:ICart : ", cartItems);

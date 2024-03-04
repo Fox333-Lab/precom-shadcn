@@ -13,7 +13,6 @@ export interface IAddress {
   country: String;
   active: Boolean;
 }
-
 export default interface IUser {
   _id: Types.ObjectId;
   name: String;

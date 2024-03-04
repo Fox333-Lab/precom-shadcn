@@ -130,7 +130,6 @@ const productSchema = new Schema<IProduct>(
   },
   { timestamps: true }
 );
-
 const Product = models.Product || model<IProduct>("Product", productSchema);
 
 export default Product;

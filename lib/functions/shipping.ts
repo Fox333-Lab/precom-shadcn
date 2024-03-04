@@ -35,7 +35,10 @@ export const changeActiveAddress = async (addressId: string) => {
 };
 
 export const deleteAddress = async (addressId: string) => {
-  console.log("In functions/shipping/deleteAddress : addressId : ", addressId);
+  console.log(
+    "Inside functions/shipping/deleteAddress : addressId : ",
+    addressId
+  );
   try {
     const { data } = await axios.delete("/api/user/shipping/manageaddress", {
       data: { addressId },

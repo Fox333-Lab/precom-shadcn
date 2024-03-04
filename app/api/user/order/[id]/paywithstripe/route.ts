@@ -9,6 +9,7 @@ export const POST = async (
   req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
+  console.log("In the api/user/order/[id]/paywithstripe/route.ts file");
   try {
     await db.ConnectDB();
     console.log("api/user/order/[id]/paywithstripe params.id : ", params.id);

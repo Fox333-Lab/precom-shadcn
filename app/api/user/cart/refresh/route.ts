@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   try {
     console.log("in api/user/cart request");
-    db.ConnectDB();
+    await db.ConnectDB();
     const { products } = await req.json();
     let cartItemsState = products;
     console.log(
@@ -33,6 +33,7 @@ export const POST = async (req: NextRequest) => {
       // console.log("p dbProduct: ", dbProduct);
 
       if (!dbProduct) {
+        await db.DisconnectDB();
         return NextResponse.json(
           { message: "products not found" },
           { status: 404 }
@@ -68,7 +69,7 @@ export const POST = async (req: NextRequest) => {
     //     ? (priceBefore - priceBefore / discount).toFixed(2)
     //     : priceBefore;
     const data = await Promise.all(promises);
-    db.DisconnectDB();
+    await db.DisconnectDB();
     console.log("in api/user/cart/refresh data : ", data);
     // return NextResponse.json({
     //   _id: product._id,
@@ -89,6 +90,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json(data);
   } catch (err: any) {
     console.log("catch : api/user/cart failed : ", err.message);
+    await db.DisconnectDB();
     return NextResponse.json({ message: err.message }, { status: 500 });
   }
 };

@@ -84,6 +84,12 @@ const orderSchema = new Schema<IOrder>(
       type: Number,
       required: true,
     },
+    totalBeforeDiscount: {
+      type: Number,
+    },
+    couponApplied: {
+      type: String,
+    },
     shippingPrice: {
       type: Number,
       required: true,

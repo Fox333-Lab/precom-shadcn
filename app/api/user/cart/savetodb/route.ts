@@ -99,6 +99,7 @@ export const POST = async (req: NextRequest) => {
       }
     );
   } catch (err: any) {
+    await db.DisconnectDB();
     return new NextResponse(
       JSON.stringify({ message: err.message, isAddedToCart: false }),
       {

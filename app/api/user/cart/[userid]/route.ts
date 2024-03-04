@@ -10,7 +10,7 @@ export const GET = async (
   { params }: { params: { userid: string } }
 ) => {
   try {
-    db.ConnectDB();
+    await db.ConnectDB();
 
     console.log("api/user/cart/[userid] params.userid : ", params.userid);
     const uid = params.userid;
@@ -22,14 +22,16 @@ export const GET = async (
       const cart = (await Cart.findOne({ user: user._id })) as ICart;
       console.log("api/user/cart/[userid] cart : ", cart);
 
-      db.DisconnectDB();
+      await db.DisconnectDB();
       console.log("api/user/cart/[userid] disconnected ");
       return NextResponse.json({ cart, user }, { status: 200 });
     } else {
+      await db.DisconnectDB();
       throw new Error("User id is required");
     }
   } catch (err: any) {
     console.log("catch : api/user/cart/[userid] failed : ", err.message);
+    await db.DisconnectDB();
     return NextResponse.json({ message: err.message }, { status: 500 });
   }
 };

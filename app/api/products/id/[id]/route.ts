@@ -12,7 +12,7 @@ export const GET = async (
   const style: number = (searchParams.get("style") || 0) as number;
   const size = (searchParams.get("size") || 0) as number;
   try {
-    db.ConnectDB();
+    await db.ConnectDB();
     const product: IProduct | null = await Product.findById(pid).lean();
     if (!product) {
       await db.DisconnectDB();
@@ -28,7 +28,7 @@ export const GET = async (
         ? (priceBefore - priceBefore / discount).toFixed(2)
         : priceBefore;
 
-    db.DisconnectDB();
+    await db.DisconnectDB();
     return NextResponse.json({
       _id: product._id,
       style: Number(style),
@@ -47,6 +47,7 @@ export const GET = async (
     });
   } catch (err: any) {
     console.log("catch : api/products/id failed : ", err.message);
+    await db.DisconnectDB();
     return NextResponse.json({ message: err.message }, { status: 500 });
   }
 };

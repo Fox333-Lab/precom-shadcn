@@ -1,11 +1,10 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import thunk from "redux-thunk";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import { persistReducer } from "redux-persist";
 import cart from "./features/cart/cartslice";
-import { get } from "http";
+import sidebar from "./features/admin/dashboard/sidebarslice";
 
 const createNoopStorage = () => {
   return {
@@ -26,7 +25,7 @@ const storage =
     ? createWebStorage("local")
     : createNoopStorage();
 
-const reducers = combineReducers({ cart });
+const reducers = combineReducers({ cart, sidebar });
 
 const config = {
   key: "root",
@@ -37,10 +36,10 @@ const reducer = persistReducer(config, reducers);
 
 const store = configureStore({
   reducer: reducer,
-  // middleware: [thunk],
+  // middleware: [thunk],           // this is now done default by redux toolkit
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
+      serializableCheck: false, // to avoid serializable check
     }),
   devTools: process.env.NODE_ENV !== "production",
 });

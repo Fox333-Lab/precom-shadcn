@@ -4,9 +4,9 @@ import { IStyle } from "./product";
 export interface IOrderProduct {
   product: Types.ObjectId;
   name: String;
-  qty: Number;
   image: String;
   size: String;
+  qty: Number;
   color: IStyle;
   price: Number;
 }
@@ -38,6 +38,8 @@ export default interface IOrder {
   paymentMethod: String;
   paymentResult: IPaymentResult;
   total: Number;
+  totalBeforeDiscount: Number;
+  couponApplied: String;
   shippingPrice: Number;
   taxPrice: Number;
   isPaid: Boolean;

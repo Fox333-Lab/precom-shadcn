@@ -19,6 +19,7 @@ export const POST = async (req: NextRequest) => {
     console.log("in forgot password after email null check");
     if (email && !validateEmail(email)) {
       console.log("in email check");
+      await db.DisconnectDB();
       return new NextResponse(JSON.stringify({ message: "Invalid Email" }), {
         status: 400,
       });
@@ -27,6 +28,7 @@ export const POST = async (req: NextRequest) => {
     const user = await User.findOne({ email });
     if (!user) {
       console.log("forget password : found no user");
+      await db.DisconnectDB();
       return new NextResponse(
         JSON.stringify({ message: "This email doesn't exists" }),
         {
@@ -59,6 +61,7 @@ export const POST = async (req: NextRequest) => {
       }
     );
   } catch (err: any) {
+    await db.DisconnectDB();
     return new NextResponse(JSON.stringify({ message: err.message }), {
       status: 500,
     });

@@ -20,6 +20,7 @@ export const POST = async (req: NextRequest) => {
     }
     if (email && !validateEmail(email)) {
       console.log("in email check");
+      await db.DisconnectDB();
       return new NextResponse(JSON.stringify({ message: "Invalid email" }), {
         status: 400,
       });
@@ -35,6 +36,7 @@ export const POST = async (req: NextRequest) => {
     const user = await User.findOne({ email });
     if (user) {
       console.log("found user");
+      await db.DisconnectDB();
       return new NextResponse(
         JSON.stringify({ message: "This email already exists" }),
         {
@@ -75,6 +77,7 @@ export const POST = async (req: NextRequest) => {
     // );
   } catch (err: any) {
     console.log("err.message : ", err.message);
+    await db.DisconnectDB();
     return new NextResponse(JSON.stringify({ message: err.message }), {
       status: 500,
     });

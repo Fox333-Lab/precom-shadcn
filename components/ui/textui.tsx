@@ -81,7 +81,10 @@ export const H6 = ({ className, ...props }: HeadingProps) => {
 export const Para = ({ className, ...props }: ParagraphProps) => {
   return (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mt-0", className)}
+      className={cn(
+        "leading-7 [&:not(:first-child)]:mt-0 text-muted-foreground",
+        className
+      )}
       {...props}
     />
   );

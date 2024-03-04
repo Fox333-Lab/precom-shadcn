@@ -1,4 +1,4 @@
-import ICart from "@/types/db/cart";
+import ICart, { ICartProduct } from "@/types/db/cart";
 import IUser, { IAddress } from "@/types/db/user";
 import { Form, Formik, FormikProps } from "formik";
 import React, { useState } from "react";
@@ -7,6 +7,9 @@ import { TextBox } from "../inputs";
 import { CouponInputTypes } from "@/types/validation/coupon";
 import { Button } from "../ui/button";
 import { applyCoupon } from "@/lib/functions/shipping";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { createOrder } from "@/lib/functions/order";
 
 type SummaryPropsTypes = {
   totalAfterDiscount: string;
@@ -28,22 +31,52 @@ const Summary = ({
   const [coupon, setCoupon] = useState<string>("");
   const [discount, setDiscount] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [orderError, setOrderError] = useState<string>("");
+  const router = useRouter();
   const validateCoupon = Yup.object({
     coupon: Yup.string().required("Coupon is required"),
   });
   const applyCouponHandler = async () => {
-    console.log("Coupon Applied");
+    console.log("summary.tsx applyCouponHandler");
+    if (coupon == "") {
+      setDiscount("");
+      setTotalAfterDiscount("");
+      return;
+    }
     const res = await applyCoupon(coupon);
     if (res.message) {
-      setError(res.error);
+      console.log("res.message : ", res.message);
+      setError(res.message);
     } else {
+      console.log("res.discount : ", res.discount);
       setDiscount(res.discount);
       setTotalAfterDiscount(res.totalAfterDiscount);
       setError("");
     }
   };
-  const placeHolderHandler = async () => {
-    console.log("Place Order");
+  const placeOrderHandler = async () => {
+    console.log("summary.tsx placeOrderHandler");
+    if (paymentMethod == "") {
+      setOrderError("Please select a payment method");
+      return;
+    } else if (!selectedAddress) {
+      setOrderError("Please select a shipping address");
+      return;
+    }
+    try {
+      const res = await createOrder(
+        cart,
+        selectedAddress,
+        paymentMethod,
+        totalAfterDiscount,
+        coupon
+      );
+      console.log("placeOrderHandler : ", res);
+      router.push(`/order/${res.order_id}`);
+    } catch (error: any) {
+      console.log("placeOrderHandler : error : ", error.response.data.message);
+      setOrderError(error.response.data.message);
+    }
   };
   return (
     <div>
@@ -55,41 +88,58 @@ const Summary = ({
       >
         {(props: FormikProps<CouponInputTypes>) => (
           <Form>
-            <div className="flex flex-col gap-5">
-              <TextBox
-                type="text"
-                label="Coupon"
-                name="coupon"
-                placeholder="Coupon Code"
-                onChange={(e: any) => setCoupon(e.target.value)}
-                iconName="this icon currently not used"
-              />
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-1">
+                <TextBox
+                  type="text"
+                  label="Coupon"
+                  name="coupon"
+                  placeholder="Coupon Code"
+                  onChange={(e: any) => setCoupon(e.target.value)}
+                  iconName="this property currently not used"
+                  className={cn("", { "border border-red-400": error != "" })}
+                />
+                <span className={cn("hidden text-sm", { block: error != "" })}>
+                  {error && <span className="text-red-500">*{error}</span>}
+                </span>
+              </div>
+
               <Button type="submit" className="">
                 Apply
               </Button>
             </div>
 
-            <div>
-              <span>Total :</span>
-              <span>{cart.cartTotal.toFixed()}</span>
+            <div className="flex flex-col mt-2">
+              <div className="flex gap-2">
+                <span>Total :</span>
+                <span>{cart.cartTotal.toFixed(2)}</span>
+              </div>
               {Number(discount) > 0 && (
-                <span>Coupon Applied : -{discount}%</span>
+                <div className="flex gap-2">
+                  <span>Coupon Applied :</span>
+                  <span className="text-green-500 font-semibold">
+                    -{discount}%
+                  </span>
+                </div>
               )}
               {totalAfterDiscount != "" &&
                 Number(totalAfterDiscount) < Number(cart.cartTotal) && (
-                  <span>Total After Discount : {totalAfterDiscount}</span>
+                  <div className="flex gap-2">
+                    <span>Total After Discount :</span>
+                    <span>{totalAfterDiscount}</span>
+                  </div>
                 )}
             </div>
-            <Button
-              type="submit"
-              className=""
-              onClick={() => placeHolderHandler()}
-            >
-              Place Order
-            </Button>
           </Form>
         )}
       </Formik>
+
+      <div className="mt-2">
+        <Button type="submit" className="" onClick={() => placeOrderHandler()}>
+          Place Order
+        </Button>
+      </div>
+      {orderError && <span className="text-red-500">*{orderError}</span>}
     </div>
   );
 };

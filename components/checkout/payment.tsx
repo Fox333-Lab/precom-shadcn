@@ -13,14 +13,22 @@ type PaymentPropsTypes = {
 };
 
 const Payment = ({ paymentMethod, setPaymentMethod }: PaymentPropsTypes) => {
+  const changePaymentMethod = async (name: string) => {
+    console.log("changePaymentMethod : ", name);
+    setPaymentMethod(name);
+  };
+
   return (
     <div>
-      <RadioGroup defaultValue="">
+      <RadioGroup
+        defaultValue={paymentMethod}
+        onValueChange={changePaymentMethod}
+      >
         {paymentMethods.map((method) => (
           <Card key={method.id} className={cn("shadow-none p-2")}>
             <div className="flex gap-2 items-center">
               <RadioGroupItem
-                value={method.id.toString()}
+                value={method.name.toString()}
                 id={method.id.toString()}
               />
               <LIcon

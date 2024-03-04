@@ -14,7 +14,7 @@ export const saveAddressToDB = async (
     return data;
   } catch (err: any) {
     console.log("** saveAddressToDB : err.message : ", err.message);
-    return null;
+    return err.response.data.message;
   }
 };
 
@@ -30,7 +30,7 @@ export const changeActiveAddress = async (addressId: string) => {
     return data;
   } catch (err: any) {
     console.log("** changeActiveAddress : err.message : ", err.message);
-    return null;
+    return err.response.data.message;
   }
 };
 
@@ -43,19 +43,19 @@ export const deleteAddress = async (addressId: string) => {
     return data;
   } catch (err: any) {
     console.log("** deleteAddress : err.message : ", err.message);
-    return null;
+    return err.response.data.message;
   }
 };
 
 export const applyCoupon = async (coupon: string) => {
   console.log("In functions/shipping/applycoupon : coupon : ", coupon);
-  try {
-    const { data } = await axios.post("/api/user/shipping/applycoupon", {
-      coupon,
-    });
-    return data;
-  } catch (err: any) {
-    console.log("** deleteAddress : err.message : ", err.message);
-    return null;
-  }
+  // try {
+  const { data } = await axios.post("/api/user/shipping/applycoupon", {
+    coupon,
+  });
+  return data;
+  // } catch (err: any) {
+  //   console.log("** applyCoupon : err.message : ", err.message);
+  //   return null;
+  // }
 };

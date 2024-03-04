@@ -29,6 +29,7 @@ export const POST = async (req: NextRequest) => {
     );
   } catch (err: any) {
     console.log("catch : api/product failed : ", err.message);
+    await db.DisconnectDB();
     return NextResponse.json({ message: err.message }, { status: 500 });
   }
 };

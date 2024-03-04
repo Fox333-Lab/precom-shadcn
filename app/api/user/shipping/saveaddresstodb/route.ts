@@ -54,6 +54,7 @@ export const PUT = async (req: NextRequest) => {
       status: 200,
     });
   } catch (err: any) {
+    await db.DisconnectDB();
     return new NextResponse(JSON.stringify({ message: err.message }), {
       status: 500,
     });

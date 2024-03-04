@@ -36,6 +36,7 @@ export const PUT = async (req: NextRequest) => {
     const user = await User.findByIdAndUpdate(token.id, { password });
     console.log("updated user : ", user);
     if (!user) {
+      await db.DisconnectDB();
       return NextResponse.json(
         { message: "Reset link expired, request a new link" },
         { status: 404 }
@@ -46,6 +47,7 @@ export const PUT = async (req: NextRequest) => {
       status: 200,
     });
   } catch (err: any) {
+    await db.DisconnectDB();
     return new NextResponse(JSON.stringify({ message: err.message }), {
       status: 500,
     });

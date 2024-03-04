@@ -41,13 +41,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, token }) {
       const iid = token.sub;
-      console.log("iid : ", iid);
+      // console.log("iid : ", iid);
       let _id = new ObjectId(iid);
       let user = await User.findById({ _id });
-      console.log("find one complete : ", user);
-      session.user.uid = token.sub || user._id.toString();
-      //session.user.role = user.role || "user";
-      session.user.role = "user";
+      // console.log("find one complete : ", user);
+      session.user.uid = token.sub || user?._id.toString();
+      session.user.role = user?.role || "user";
+      //session.user.role = "user";
+      token.role = user?.role || "user";
       return session;
       // ---- the below code was used to add custom fields to the session when not using module augmentation - starts ---
       // const sess = {

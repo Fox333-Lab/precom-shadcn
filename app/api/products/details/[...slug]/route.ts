@@ -113,6 +113,7 @@ export const GET = async (
     return NextResponse.json({ product: newProduct }, { status: 200 });
   } catch (err: any) {
     console.log("catch : api/products/details failed : ", err.message);
+    await db.DisconnectDB();
     return NextResponse.json({ message: err.message }, { status: 500 });
   }
 };

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useLocalStorage from "./uselocalstorage";
-
+// added as a part of admin dashboard
 const useColorMode = () => {
   const [colorMode, setColorMode] = useLocalStorage("color-theme", "light");
 

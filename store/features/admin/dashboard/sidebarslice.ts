@@ -18,7 +18,7 @@ export const sidebarSlice = createSlice({
   },
 });
 
-// selector to get all cart items
+// selector to get all sidebar status
 export const getSidebarState = (state: any) => state.sidebar.expandSidebar;
 
 export const { toggleSideBar } = sidebarSlice.actions;

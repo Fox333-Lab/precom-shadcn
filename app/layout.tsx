@@ -39,7 +39,8 @@ export default function RootLayout({
                   style={{ minHeight: "-webkit-fill-available" }}
                 >
                   <div className="">{children}</div>
-                  {/* <div className="container md:px-8 2xl:px-16">{children}</div> */}
+                  {/* <div className="container md:px-8 2xl:px-16">{children}</div>    */}
+                  {/* commented above */}
                 </main>
               </div>
               {/* </div> */}

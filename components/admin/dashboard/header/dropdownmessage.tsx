@@ -5,7 +5,6 @@ import Image from "next/image";
 const DropdownMessage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
-
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
 

@@ -25,7 +25,7 @@ const storage =
     ? createWebStorage("local")
     : createNoopStorage();
 
-const reducers = combineReducers({ cart, sidebar });
+const reducers = combineReducers({ cart, sidebar }); // added sidebar
 
 const config = {
   key: "root",

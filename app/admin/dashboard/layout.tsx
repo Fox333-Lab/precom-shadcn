@@ -17,6 +17,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <>
       <div className="dark:bg-boxdark-2 dark:text-bodydark bg-whiten text-body text-base">

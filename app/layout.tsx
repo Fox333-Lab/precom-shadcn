@@ -38,7 +38,8 @@ export default function RootLayout({
                   className="relative grow"
                   style={{ minHeight: "-webkit-fill-available" }}
                 >
-                  <div className="container md:px-8 2xl:px-16">{children}</div>
+                  <div className="">{children}</div>
+                  {/* <div className="container md:px-8 2xl:px-16">{children}</div> */}
                 </main>
               </div>
               {/* </div> */}

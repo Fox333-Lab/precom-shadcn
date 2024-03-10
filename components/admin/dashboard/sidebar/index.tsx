@@ -5,6 +5,20 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import SidebarLinkGroup from "./sidebarlinkgroup";
+import {
+  ArrowLeft,
+  Boxes,
+  ChevronLeft,
+  IndianRupee,
+  Network,
+  Notebook,
+  NotebookText,
+  PackagePlus,
+  Square,
+  Ticket,
+  User,
+  Users,
+} from "lucide-react";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -17,7 +31,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const sidebar = useRef<any>(null);
 
   let storedSidebarExpanded = "true";
-
+  console.log("pathname : ", pathname);
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
@@ -83,7 +97,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           aria-expanded={sidebarOpen}
           className="block lg:hidden"
         >
-          <svg
+          {/* <svg
             className="fill-current"
             width="20"
             height="18"
@@ -95,7 +109,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z"
               fill=""
             />
-          </svg>
+          </svg> */}
+          <ArrowLeft size={20} />
         </button>
       </div>
       {/* <!-- SIDEBAR HEADER --> */}
@@ -113,8 +128,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Dashboard --> */}
               <SidebarLinkGroup
                 activeCondition={
-                  // pathname === "/" || pathname.includes("dashboard")
-                  pathname === "/"
+                  pathname === "/admin/dashboard" ||
+                  pathname.includes("dashboard")
+                  //pathname === "/"
                 }
               >
                 {(handleClick, open) => {
@@ -123,8 +139,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       <Link
                         href="#"
                         className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                          (pathname === "/" ||
-                            pathname.includes("dashboard")) &&
+                          pathname === "/admin/dashboard" &&
+                          // ||
+                          //   pathname.includes("dashboard")) &&
                           "bg-graydark dark:bg-meta-4"
                         }`}
                         // onClick={(e) => {
@@ -211,11 +228,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <Link
                   href="/calendar"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("calendar") &&
-                    "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/sales") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="18"
@@ -227,7 +243,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       d="M15.7499 2.9812H14.2874V2.36245C14.2874 2.02495 14.0062 1.71558 13.6405 1.71558C13.2749 1.71558 12.9937 1.99683 12.9937 2.36245V2.9812H4.97803V2.36245C4.97803 2.02495 4.69678 1.71558 4.33115 1.71558C3.96553 1.71558 3.68428 1.99683 3.68428 2.36245V2.9812H2.2499C1.29365 2.9812 0.478027 3.7687 0.478027 4.75308V14.5406C0.478027 15.4968 1.26553 16.3125 2.2499 16.3125H15.7499C16.7062 16.3125 17.5218 15.525 17.5218 14.5406V4.72495C17.5218 3.7687 16.7062 2.9812 15.7499 2.9812ZM1.77178 8.21245H4.1624V10.9968H1.77178V8.21245ZM5.42803 8.21245H8.38115V10.9968H5.42803V8.21245ZM8.38115 12.2625V15.0187H5.42803V12.2625H8.38115ZM9.64678 12.2625H12.5999V15.0187H9.64678V12.2625ZM9.64678 10.9968V8.21245H12.5999V10.9968H9.64678ZM13.8374 8.21245H16.228V10.9968H13.8374V8.21245ZM2.2499 4.24683H3.7124V4.83745C3.7124 5.17495 3.99365 5.48433 4.35928 5.48433C4.7249 5.48433 5.00615 5.20308 5.00615 4.83745V4.24683H13.0499V4.83745C13.0499 5.17495 13.3312 5.48433 13.6968 5.48433C14.0624 5.48433 14.3437 5.20308 14.3437 4.83745V4.24683H15.7499C16.0312 4.24683 16.2562 4.47183 16.2562 4.75308V6.94683H1.77178V4.75308C1.77178 4.47183 1.96865 4.24683 2.2499 4.24683ZM1.77178 14.5125V12.2343H4.1624V14.9906H2.2499C1.96865 15.0187 1.77178 14.7937 1.77178 14.5125ZM15.7499 15.0187H13.8374V12.2625H16.228V14.5406C16.2562 14.7937 16.0312 15.0187 15.7499 15.0187Z"
                       fill=""
                     />
-                  </svg>
+                  </svg> */}
+                  <IndianRupee size={18} />
                   Sales
                 </Link>
               </li>
@@ -238,10 +255,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <Link
                   href="/profile"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("profile") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/users") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="18"
@@ -257,7 +274,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       d="M10.8283 9.05627H7.17207C4.16269 9.05627 1.71582 11.5313 1.71582 14.5406V16.875C1.71582 17.2125 1.99707 17.5219 2.3627 17.5219C2.72832 17.5219 3.00957 17.2407 3.00957 16.875V14.5406C3.00957 12.2344 4.89394 10.3219 7.22832 10.3219H10.8564C13.1627 10.3219 15.0752 12.2063 15.0752 14.5406V16.875C15.0752 17.2125 15.3564 17.5219 15.7221 17.5219C16.0877 17.5219 16.3689 17.2407 16.3689 16.875V14.5406C16.2846 11.5313 13.8377 9.05627 10.8283 9.05627Z"
                       fill=""
                     />
-                  </svg>
+                  </svg> */}
+                  <Users size={18} />
                   Users
                 </Link>
               </li>
@@ -377,10 +395,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <Link
                   href="/tables"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("tables") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/orders") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -404,7 +422,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
+                  <NotebookText size={18} />
                   Orders
                 </Link>
               </li>
@@ -467,10 +486,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <Link
                   href="/chart"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/products") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -498,7 +518,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
+                  <Boxes size={18} />
                   All Products
                 </Link>
               </li>
@@ -509,10 +530,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <Link
                   href="/chart"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/product/create") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -540,7 +562,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
+                  <PackagePlus size={18} />
                   Add Product
                 </Link>
               </li>
@@ -772,12 +795,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item All Categories --> */}
               <li>
                 <Link
-                  href="/chart"
+                  href="/admin/dashboard/categories"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/categories") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -805,7 +829,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
+                  <Square size={18} />
                   Categories
                 </Link>
               </li>
@@ -816,10 +841,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <Link
                   href="/chart"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/sub-categories") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -847,7 +873,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
+                  <Network size={18} />
                   Sub-Categories
                 </Link>
               </li>
@@ -868,10 +895,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <Link
                   href="/chart"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("/coupons") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <svg
+                  {/* <svg
                     className="fill-current"
                     width="18"
                     height="19"
@@ -899,7 +927,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
+                  <Ticket size={18} />
                   Coupons
                 </Link>
               </li>

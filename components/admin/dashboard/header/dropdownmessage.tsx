@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { MessageCircleMore } from "lucide-react";
 
 const DropdownMessage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -54,7 +55,7 @@ const DropdownMessage = () => {
           <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
         </span>
 
-        <svg
+        {/* <svg
           className="fill-current duration-300 ease-in-out"
           width="18"
           height="18"
@@ -78,7 +79,8 @@ const DropdownMessage = () => {
             d="M12.5719 7.28442C12.2063 7.28442 11.925 7.56567 11.925 7.9313C11.925 8.29692 12.2063 8.57817 12.5719 8.57817C12.9375 8.57817 13.2188 8.29692 13.2188 7.9313C13.2188 7.56567 12.9094 7.28442 12.5719 7.28442Z"
             fill=""
           />
-        </svg>
+        </svg> */}
+        <MessageCircleMore size={18} />
       </Link>
 
       {/* <!-- Dropdown Start --> */}

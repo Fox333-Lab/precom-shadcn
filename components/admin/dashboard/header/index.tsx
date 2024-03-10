@@ -4,6 +4,7 @@ import DarkModeSwitcher from "./darkmodeswitcher";
 import DropdownNotification from "./dropdownnotification";
 import DropdownMessage from "./dropdownmessage";
 import DropdownUser from "./dropdownuser";
+import { Search } from "lucide-react";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -65,7 +66,7 @@ const Header = (props: {
           <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="relative">
               <button className="absolute left-0 top-1/2 -translate-y-1/2">
-                <svg
+                {/* <svg
                   className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
                   width="20"
                   height="20"
@@ -85,7 +86,8 @@ const Header = (props: {
                     d="M13.2857 13.2857C13.6112 12.9603 14.1388 12.9603 14.4642 13.2857L18.0892 16.9107C18.4147 17.2362 18.4147 17.7638 18.0892 18.0892C17.7638 18.4147 17.2362 18.4147 16.9107 18.0892L13.2857 14.4642C12.9603 14.1388 12.9603 13.6112 13.2857 13.2857Z"
                     fill=""
                   />
-                </svg>
+                </svg> */}
+                <Search size={20} />
               </button>
 
               <input

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ChevronDown, LogOut, Settings, User } from "lucide-react";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -61,7 +62,7 @@ const DropdownUser = () => {
           />
         </span>
 
-        <svg
+        {/* <svg
           className="hidden fill-current sm:block"
           width="12"
           height="8"
@@ -75,7 +76,8 @@ const DropdownUser = () => {
             d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z"
             fill=""
           />
-        </svg>
+        </svg> */}
+        <ChevronDown size={14} />
       </Link>
 
       {/* <!-- Dropdown Start --> */}
@@ -93,7 +95,7 @@ const DropdownUser = () => {
               href="/profile"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary-1 lg:text-base"
             >
-              <svg
+              {/* <svg
                 className="fill-current"
                 width="22"
                 height="22"
@@ -109,7 +111,8 @@ const DropdownUser = () => {
                   d="M17.7719 21.4156H4.2281C3.5406 21.4156 2.9906 20.8656 2.9906 20.1781V17.0844C2.9906 13.7156 5.7406 10.9656 9.10935 10.9656H12.925C16.2937 10.9656 19.0437 13.7156 19.0437 17.0844V20.1781C19.0094 20.8312 18.4594 21.4156 17.7719 21.4156ZM4.53748 19.8687H17.4969V17.0844C17.4969 14.575 15.4344 12.5125 12.925 12.5125H9.07498C6.5656 12.5125 4.5031 14.575 4.5031 17.0844V19.8687H4.53748Z"
                   fill=""
                 />
-              </svg>
+              </svg> */}
+              <User size={22} />
               My Profile
             </Link>
           </li>
@@ -139,7 +142,7 @@ const DropdownUser = () => {
               href="/settings"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary-1 lg:text-base"
             >
-              <svg
+              {/* <svg
                 className="fill-current"
                 width="22"
                 height="22"
@@ -155,13 +158,14 @@ const DropdownUser = () => {
                   d="M11 6.32498C8.42189 6.32498 6.32501 8.42186 6.32501 11C6.32501 13.5781 8.42189 15.675 11 15.675C13.5781 15.675 15.675 13.5781 15.675 11C15.675 8.42186 13.5781 6.32498 11 6.32498ZM11 14.1281C9.28126 14.1281 7.87189 12.7187 7.87189 11C7.87189 9.28123 9.28126 7.87186 11 7.87186C12.7188 7.87186 14.1281 9.28123 14.1281 11C14.1281 12.7187 12.7188 14.1281 11 14.1281Z"
                   fill=""
                 />
-              </svg>
+              </svg> */}
+              <Settings size={22} />
               Account Settings
             </Link>
           </li>
         </ul>
         <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary-1 lg:text-base">
-          <svg
+          {/* <svg
             className="fill-current"
             width="22"
             height="22"
@@ -177,7 +181,8 @@ const DropdownUser = () => {
               d="M6.05001 11.7563H12.2031C12.6156 11.7563 12.9594 11.4125 12.9594 11C12.9594 10.5875 12.6156 10.2438 12.2031 10.2438H6.08439L8.21564 8.07813C8.52501 7.76875 8.52501 7.2875 8.21564 6.97812C7.90626 6.66875 7.42501 6.66875 7.11564 6.97812L3.67814 10.4844C3.36876 10.7938 3.36876 11.275 3.67814 11.5844L7.11564 15.0906C7.25314 15.2281 7.45939 15.3312 7.66564 15.3312C7.87189 15.3312 8.04376 15.2625 8.21564 15.125C8.52501 14.8156 8.52501 14.3344 8.21564 14.025L6.05001 11.7563Z"
               fill=""
             />
-          </svg>
+          </svg> */}
+          <LogOut size={22} />
           Log Out
         </button>
       </div>

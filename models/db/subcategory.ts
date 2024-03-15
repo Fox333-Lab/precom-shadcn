@@ -8,7 +8,7 @@ const subCategorySchema = new Schema<ISubCategory>({
     type: String,
     required: true,
     minLength: [2, "must be atleast 2 chars"],
-    maxLength: [2, "cannot exceed 32 chars"],
+    maxLength: [32, "cannot exceed 32 chars"],
   },
   slug: {
     type: String,

@@ -41,7 +41,7 @@ const SingularSelect = ({ data, handleChange, placeholder, ...props }: any) => {
           // value={field.value}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select a country" />
+            <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>
             {/* <SelectGroup>

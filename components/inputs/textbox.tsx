@@ -1,6 +1,7 @@
 import { ErrorMessage, useField } from "formik";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { cn } from "@/lib/utils";
 
 const TextBox = ({ iconName, label, ...props }: any) => {
   const [field, meta] = useField(props);
@@ -14,7 +15,15 @@ const TextBox = ({ iconName, label, ...props }: any) => {
               <FormIcon name={iconName} />
             </TextField.Slot> */}
         <Label htmlFor={field.name}>{label}</Label>
-        <Input id={field.name} autoComplete="off" {...field} {...props} />
+        <Input
+          id={field.name}
+          autoComplete="off"
+          {...field}
+          {...props}
+          className={cn("", {
+            "outline outline-1 outline-red-600": meta.error,
+          })}
+        />
         {/* </TextField.Root>
         </Text> */}
       </div>

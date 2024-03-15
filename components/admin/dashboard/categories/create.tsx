@@ -4,9 +4,9 @@ import { TextBox } from "@/components/inputs";
 import { Button } from "@/components/ui/button";
 import { createCategory } from "@/lib/functions/admin/categories";
 import ICategory from "@/types/db/category";
-import { AddCategoryInputTypes } from "@/types/validation/admin/dashboard/addcategory";
+import { AddCategoryInputTypes } from "@/types/validation/admin/dashboard/category";
 import { Form, Formik, FormikProps } from "formik";
-import { Plus } from "lucide-react";
+import { Plus, RefreshCcw } from "lucide-react";
 import { useState } from "react";
 import * as Yup from "yup";
 
@@ -14,7 +14,7 @@ type CreateCategoryPropsTypes = {
   setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>;
 };
 
-const Create = ({ setCategories }: { setCategories: any }) => {
+const Create = ({ setCategories }: CreateCategoryPropsTypes) => {
   const [name, setName] = useState("");
   const categoryValidation = Yup.object({
     name: Yup.string()
@@ -63,15 +63,16 @@ const Create = ({ setCategories }: { setCategories: any }) => {
               />
               <div className="flex flex-1 gap-2">
                 <Button type="submit" className="cursor-pointer flex gap-2">
-                  <Plus />
+                  <Plus size={18} />
                   <span>Add Category</span>
                 </Button>
                 <Button
                   type="button"
-                  className="cursor-pointer"
+                  className="cursor-pointer flex gap-2"
                   onClick={() => setName("")}
                 >
-                  Reset
+                  <RefreshCcw size={18} />
+                  <span>Reset</span>
                 </Button>
               </div>
 

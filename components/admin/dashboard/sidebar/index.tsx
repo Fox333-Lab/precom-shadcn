@@ -9,6 +9,7 @@ import {
   ArrowLeft,
   Boxes,
   ChevronLeft,
+  Gitlab,
   IndianRupee,
   Network,
   Notebook,
@@ -19,6 +20,7 @@ import {
   User,
   Users,
 } from "lucide-react";
+import { H3 } from "@/components/ui/textui";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -79,15 +81,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <Link href="/">
-          <Image
+      <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5">
+        <Link href="/" className="flex gap-2 items-center justify-center">
+          {/* <Image
             width={176}
             height={32}
-            src={"/vercel.svg"}
+            src={"/images/user-03.png"}
             alt="Logo"
             priority
-          />
+          /> */}
+          <Gitlab size={48} strokeWidth={1} />
+          <H3 className="font-medium">Logo</H3>
         </Link>
 
         <button
@@ -839,7 +843,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Sub-Categories --> */}
               <li>
                 <Link
-                  href="/chart"
+                  href="/admin/dashboard/subcategories"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes("/sub-categories") &&
                     "bg-graydark dark:bg-meta-4"

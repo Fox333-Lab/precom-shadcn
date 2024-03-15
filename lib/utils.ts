@@ -14,6 +14,18 @@ export const validateEmail = async (email: string) => {
   return { isEmailValid: true, message: "" };
   //return emailRegEx.test(email);
 };
+
+export const validateAlphabetsOnly = async (input: string, errMsg: string) => {
+  console.log("input : ", input);
+  const regex = /^[a-zA-Z\s]*$/;
+  if (!regex.test(input)) {
+    return { isInputValid: false, message: errMsg };
+  }
+
+  return { isInputValid: true, message: "" };
+  //return regex.test(input);
+};
+
 export const compareArrays = (array1: any, array2: any) => {
   if (array1.length !== array2.length) return false;
   const neww = (object: any) =>

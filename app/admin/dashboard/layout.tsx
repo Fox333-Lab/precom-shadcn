@@ -1,6 +1,5 @@
 "use client";
-import { Sidebar } from "@/components/admin";
-import Header from "@/components/admin/dashboard/header";
+import { Header, Sidebar } from "@/components/admin";
 // import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { useState } from "react";

@@ -1,2 +1,3 @@
 import Sidebar from "./dashboard/sidebar";
-export { Sidebar };
+import Header from "./dashboard/header";
+export { Sidebar, Header };

@@ -10,6 +10,7 @@ import { cn, validateAlphabetsOnly } from "@/lib/utils";
 import ICategory from "@/types/db/category";
 import { CircleOff, Edit, Save, Trash2 } from "lucide-react";
 import React, { useRef, useState } from "react";
+import { toast } from "sonner";
 
 type CategoryListItemPropsTYpes = {
   category: ICategory;
@@ -57,6 +58,7 @@ const CategoryListItem = ({
         );
         origCategoryVal = name;
         setError("");
+        toast.success(res?.message);
       } else {
         console.log("category saveHandler res : ", res);
       }
@@ -74,6 +76,7 @@ const CategoryListItem = ({
         setCategories((prev) =>
           prev.filter((item) => item._id !== category._id)
         );
+        toast.success(res?.message);
       }
       setError("");
     } catch (error: any) {

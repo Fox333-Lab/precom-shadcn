@@ -42,6 +42,9 @@ const Create = ({ setCategories }: CreateCategoryPropsTypes) => {
       console.log("22 error : ", error.response.data.message);
     }
   };
+  const resetHandler = () => {
+    setName("");
+  };
   return (
     <div>
       <Formik
@@ -52,7 +55,7 @@ const Create = ({ setCategories }: CreateCategoryPropsTypes) => {
       >
         {(props: FormikProps<AddCategoryInputTypes>) => (
           <Form>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
               <TextBox
                 type="text"
                 // label="New Password"
@@ -69,7 +72,7 @@ const Create = ({ setCategories }: CreateCategoryPropsTypes) => {
                 <Button
                   type="button"
                   className="cursor-pointer flex gap-2"
-                  onClick={() => setName("")}
+                  onClick={resetHandler}
                 >
                   <RefreshCcw size={18} />
                   <span>Reset</span>

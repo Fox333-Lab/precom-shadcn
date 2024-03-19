@@ -17,6 +17,7 @@ import ICategory from "@/types/db/category";
 import ISubCategory from "@/types/db/subcategory";
 import { CircleOff, Edit, Save, Trash2 } from "lucide-react";
 import React, { useRef, useState } from "react";
+import { toast } from "sonner";
 
 type CategoryListItemPropsTYpes = {
   subCategory: ISubCategory;
@@ -90,6 +91,7 @@ const SubCategoryListItem = ({
         origCategoryVal = subCategoryParent;
         origSubCatVal = subCategoryName;
         setError("");
+        toast.success(res?.message);
       } else {
         console.log("sub-category saveHandler res : ", res);
       }
@@ -107,6 +109,7 @@ const SubCategoryListItem = ({
         setSubCategories((prev) =>
           prev.filter((item) => item._id !== subCategory._id)
         );
+        toast.success(res?.message);
       }
       setError("");
     } catch (error: any) {

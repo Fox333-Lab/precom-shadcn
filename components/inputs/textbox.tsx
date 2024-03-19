@@ -3,10 +3,10 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { cn } from "@/lib/utils";
 
-const TextBox = ({ iconName, label, ...props }: any) => {
+const TextBox = ({ iconName, label, dstyles, ...props }: any) => {
   const [field, meta] = useField(props);
   return (
-    <div>
+    <div className={cn(dstyles)}>
       <div className="relative">
         {/* <Text as="label">
           {label}

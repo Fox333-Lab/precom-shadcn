@@ -1,26 +1,26 @@
 "use client";
-import { Categories } from "@/components/admin/dashboard/categories";
+import { Coupons } from "@/components/admin/dashboard/coupons";
 import { Separator } from "@/components/ui/separator";
 import { H3 } from "@/components/ui/textui";
 import { useSWRFetch } from "@/lib/hooks/usefetch";
 import React from "react";
 
-const CategoriesPage = () => {
+const CouponsPage = () => {
   const { data, error, isLoading } = useSWRFetch(
-    `/api/admin/dashboard/categories`
+    `/api/admin/dashboard/coupons`
   );
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>error</div>;
-  console.log("categories page : ", data.categories);
+  console.log("coupons page : ", data.coupons);
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-3">
-        <H3>Create a category</H3>
+        <H3>Create a coupon</H3>
         <Separator />
       </div>
-      <Categories categories={data.categories} />
+      <Coupons coupons={data.coupons} />
     </div>
   );
 };
 
-export default CategoriesPage;
+export default CouponsPage;

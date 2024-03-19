@@ -38,7 +38,7 @@ const Create = ({
     parent: Yup.string().required("Select a category"),
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     setName(value);
   };
   const handleSelectChange = (value: string) => {
@@ -62,6 +62,10 @@ const Create = ({
       console.log("22 error : ", error.response.data.message);
     }
   };
+  const resetHandler = () => {
+    setName("");
+    setParent("");
+  };
   return (
     <div>
       <Formik
@@ -72,22 +76,24 @@ const Create = ({
       >
         {(props: FormikProps<AddSubCategoryInputTypes>) => (
           <Form>
-            <div className="flex flex-col gap-5">
-              <TextBox
-                type="text"
-                // label="New Password"
-                placeholder="Sub-Category Name"
-                iconName=""
-                name="name"
-                onChange={handleChange}
-              />
-              <SingularSelect
-                name="parent"
-                // value={country}
-                placeholder="category"
-                handleChange={handleSelectChange}
-                data={categories}
-              />
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <TextBox
+                  type="text"
+                  // label="New Password"
+                  placeholder="Sub-Category Name"
+                  iconName=""
+                  name="name"
+                  onChange={handleChange}
+                />
+                <SingularSelect
+                  name="parent"
+                  value={name}
+                  placeholder="category"
+                  handleChange={handleSelectChange}
+                  data={categories}
+                />
+              </div>
               <div className="flex flex-1 gap-2">
                 <Button type="submit" className="cursor-pointer flex gap-2">
                   <Plus size={18} />
@@ -96,17 +102,17 @@ const Create = ({
                 <Button
                   type="button"
                   className="cursor-pointer flex gap-2"
-                  onClick={() => setName("")}
+                  onClick={resetHandler}
                 >
                   <RefreshCcw size={18} />
                   <span>Reset</span>
                 </Button>
               </div>
 
-              <div>
-                {/* {error && <span className="text-red-600">{error}</span>}
-                {success && <span className="text-green-600">{success}</span>} */}
-              </div>
+              {/* <div>
+                {error && <span className="text-red-600">{error}</span>}
+                {success && <span className="text-green-600">{success}</span>}
+              </div> */}
             </div>
           </Form>
         )}

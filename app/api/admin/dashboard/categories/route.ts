@@ -8,6 +8,13 @@ export const GET = async (req: NextRequest) => {
   try {
     await db.ConnectDB();
     const categories = await Category.find({}).sort({ updatedAt: -1 }).lean();
+    if (!categories) {
+      await db.DisconnectDB();
+      return NextResponse.json(
+        { message: "No categories found" },
+        { status: 404 }
+      );
+    }
     await db.DisconnectDB();
     console.log("api/admin/dashboard/categories/GET disconnected");
     return NextResponse.json({ categories }, { status: 200 });
@@ -28,6 +35,7 @@ export const POST = async (req: NextRequest) => {
     await db.ConnectDB();
     const category = await Category.findOne({ name });
     if (category) {
+      await db.DisconnectDB();
       return NextResponse.json(
         { message: "Category already exist" },
         { status: 400 }

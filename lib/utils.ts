@@ -26,6 +26,20 @@ export const validateAlphabetsOnly = async (input: string, errMsg: string) => {
   //return regex.test(input);
 };
 
+export const validateAlphabetsAndNumbers = async (
+  input: string,
+  errMsg: string
+) => {
+  console.log("input : ", input);
+  const regex = /^[a-z0-9]+$/i;
+  if (!regex.test(input)) {
+    return { isInputValid: false, message: errMsg };
+  }
+
+  return { isInputValid: true, message: "" };
+  //return regex.test(input);
+};
+
 export const compareArrays = (array1: any, array2: any) => {
   if (array1.length !== array2.length) return false;
   const neww = (object: any) =>

@@ -1,3 +1,5 @@
 import Users from "./users";
+import UserDetails from "./userdetails";
+import RecentUsers from "./recentusers";
 
-export { Users };
+export { Users, UserDetails, RecentUsers };

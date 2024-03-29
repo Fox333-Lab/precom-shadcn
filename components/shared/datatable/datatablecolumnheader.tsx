@@ -2,13 +2,13 @@ import { Column } from "@tanstack/react-table";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuSeparator,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from "lucide-react";
 
 interface DataTableColumnHeaderProps<TData, TValue>
@@ -28,7 +28,7 @@ export function DataTableColumnHeader<TData, TValue>({
 
   return (
     <div className={cn("flex items-center space-x-2", className)}>
-      {/* <DropdownMenu>
+      <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
@@ -60,7 +60,7 @@ export function DataTableColumnHeader<TData, TValue>({
             Hide
           </DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu> */}
+      </DropdownMenu>
     </div>
   );
 }

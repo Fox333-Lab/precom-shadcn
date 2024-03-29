@@ -1,3 +1,4 @@
 import Sidebar from "./dashboard/sidebar";
 import Header from "./dashboard/header";
-export { Sidebar, Header };
+import ViewAllLink from "./shared/viewalllink";
+export { Sidebar, Header, ViewAllLink };

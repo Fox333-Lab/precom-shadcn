@@ -66,3 +66,26 @@ export default interface IProduct {
   shipping: Number;
   subProducts: Types.DocumentArray<ISubProduct>;
 }
+
+export type TProduct = IProduct & {
+  product: string;
+  createdAt: string;
+  updatedAt: string;
+  actions: string;
+};
+
+export type TAdminAllProduct = {
+  _id: Types.ObjectId;
+  subProductId: string;
+  name: string;
+  image: string;
+  brand: string;
+  sku: string;
+  size: ISize[];
+  category: string;
+  shipping: number;
+  inStock: boolean;
+  createdAt: string;
+  updatedAt: string;
+  actions: string;
+};

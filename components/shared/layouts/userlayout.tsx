@@ -1,5 +1,6 @@
 // import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Footer } from "../users";
 // const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata: Metadata = {
@@ -12,7 +13,12 @@ export default function UserLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="container md:px-8 2xl:px-16">{children}</div>;
+  return (
+    <div className="container md:px-8 2xl:px-16">
+      {children}
+      <Footer />
+    </div>
+  );
 }
 
 // export default function DashboardLayout({

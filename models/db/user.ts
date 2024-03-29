@@ -32,6 +32,10 @@ const userSchema: Schema = new Schema<IUser>(
       type: Boolean,
       default: false,
     },
+    active: {
+      type: Boolean,
+      default: true,
+    },
     defaultPaymentMethod: {
       type: String,
       default: "",

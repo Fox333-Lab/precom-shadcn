@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { customAlphabet } from "nanoid";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -51,3 +52,24 @@ export const compareArrays = (array1: any, array2: any) => {
   array1 = new Set(array1.map(neww));
   return array2.every((object: any) => array1.has(neww(object)));
 };
+
+export const generateUniqueIdFor = (type: string) => {
+  let alphabet: string = "";
+  let length: number = 0;
+  if (type === "order") {
+    alphabet = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz-";
+    length = 12;
+  } else if (type === "user") {
+    alphabet = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz_";
+    length = 14;
+  } else if (type === "notification") {
+    alphabet = "123456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz";
+    length = 10;
+  }
+  const nanoid = customAlphabet(alphabet, length);
+  const id = nanoid();
+  return id;
+};
+
+export const delayExec = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));

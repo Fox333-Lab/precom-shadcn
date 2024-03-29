@@ -5,6 +5,7 @@ import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import { persistReducer } from "redux-persist";
 import cart from "./features/cart/cartslice";
 import sidebar from "./features/admin/dashboard/sidebarslice";
+import users from "./features/admin/dashboard/overview/userslice";
 
 const createNoopStorage = () => {
   return {
@@ -25,7 +26,7 @@ const storage =
     ? createWebStorage("local")
     : createNoopStorage();
 
-const reducers = combineReducers({ cart, sidebar }); // added sidebar
+const reducers = combineReducers({ cart, sidebar, users }); // added sidebar
 
 const config = {
   key: "root",

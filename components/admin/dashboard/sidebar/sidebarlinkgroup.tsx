@@ -12,7 +12,7 @@ const SidebarLinkGroup = ({
 }: SidebarLinkGroupProps) => {
   const [open, setOpen] = useState<boolean>(activeCondition);
   // sidebar linnks active status handler
-  console.log("open : ", open);
+  // console.log("open : ", open);
   const handleClick = () => {
     setOpen(!open);
   };

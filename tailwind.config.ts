@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme"; // added as a part of admin dashboard
+import colors from "tailwindcss/colors";
 
 const config = {
   darkMode: ["class"],
@@ -63,6 +64,7 @@ const config = {
         "transparent-1": "transparent",
         "white-1": "#FFFFFF",
         "black-1": "#1C2434",
+        "admin-logo-back": "#1b2232",
         "red-1": "#FB5454",
         "black-2": "#010101",
         body: "#64748B",
@@ -96,6 +98,21 @@ const config = {
         success: "#219653",
         danger: "#D34053",
         warning: "#FFA70B",
+        pending: colors.orange[500],
+        processing: colors.yellow[500],
+        cancelled: colors.red[500],
+        delivered: colors.green[400],
+        shipped: colors.blue[500],
+        "pending-light": colors.orange[50],
+        "processing-light": colors.yellow[50],
+        "cancelled-light": colors.red[50],
+        "delivered-light": colors.green[50],
+        "shipped-light": colors.blue[50],
+        "border-delivered": colors.green[300],
+        "border-processing": colors.yellow[300],
+        "border-cancelled": colors.red[300],
+        "border-shipped": colors.blue[300],
+        "border-pending": colors.orange[300],
       },
       fontSize: {
         "title-xxl": ["44px", "55px"],

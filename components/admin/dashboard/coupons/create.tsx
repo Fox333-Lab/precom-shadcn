@@ -1,6 +1,5 @@
 "use client";
-import { TextBox } from "@/components/inputs";
-import DatePicker from "@/components/inputs/datepicker";
+import { DatePicker, TextBox } from "@/components/inputs";
 import { Button } from "@/components/ui/button";
 import { DATE_FORMAT_DDMMYYYY } from "@/lib/constants/date";
 import { createCoupon } from "@/lib/functions/admin/coupons";

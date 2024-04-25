@@ -1,5 +1,3 @@
-import { type } from "os";
-
 export type ResetPasswordInitialValueTypes = {
   new_password: string;
   conf_password: string;

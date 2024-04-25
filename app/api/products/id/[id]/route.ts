@@ -1,5 +1,6 @@
 import db from "@/lib/db";
 import Product from "@/models/db/product";
+import SubCategory from "@/models/db/subcategory";
 import IProduct from "@/types/db/product";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,10 +11,14 @@ export const GET = async (
   const pid = params.id;
   const searchParams = req.nextUrl.searchParams;
   const style: number = (searchParams.get("style") || 0) as number;
-  const size = (searchParams.get("size") || 0) as number;
+  const size: number = (searchParams.get("size") || 0) as number;
   try {
+    console.log("id : ", pid);
     await db.ConnectDB();
-    const product: IProduct | null = await Product.findById(pid).lean();
+    const product: IProduct | null = await Product.findById(pid)
+      .populate({ path: "subCategories", model: SubCategory }) // added during admin create product code
+      .lean();
+    console.log("product : ", product);
     if (!product) {
       await db.DisconnectDB();
       return NextResponse.json(
@@ -38,6 +43,8 @@ export const GET = async (
       sku: product.subProducts[style].sku,
       brand: product.brand,
       shipping: product.shipping,
+      category: product.category, // added during admin create product code
+      subCategories: product.subCategories, // added during admin create product code
       images: product.subProducts[style].images,
       color: product.subProducts[style].color,
       size: product.subProducts[style].sizes[size].size,

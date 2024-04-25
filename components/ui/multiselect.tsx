@@ -6,6 +6,8 @@ import { X } from "lucide-react";
 import { Command, CommandGroup, CommandItem, CommandList } from "./command";
 import { Command as CommandPrimitive, useCommandState } from "cmdk";
 import { useEffect, forwardRef } from "react";
+import { cn } from "@/lib/utils";
+import { Badge } from "./badge";
 
 export interface Option {
   value: string;

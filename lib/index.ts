@@ -12,6 +12,7 @@ import {
   validateAlphabetsOnly,
 } from "./utils";
 import clientPromise from "./mongodb";
+import { uploadImage } from "./cloudinary";
 export {
   createActivationToken,
   createPwdResetToken,
@@ -23,4 +24,5 @@ export {
   clientPromise,
   validateAlphabetsOnly,
   validateAlphabetsAndNumbers,
+  uploadImage,
 };

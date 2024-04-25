@@ -8,12 +8,6 @@ const TextBox = ({ iconName, label, dstyles, ...props }: any) => {
   return (
     <div className={cn(dstyles)}>
       <div className="relative">
-        {/* <Text as="label">
-          {label}
-          <TextField.Root>
-            <TextField.Slot>
-              <FormIcon name={iconName} />
-            </TextField.Slot> */}
         <Label htmlFor={field.name}>{label}</Label>
         <Input
           id={field.name}
@@ -24,8 +18,6 @@ const TextBox = ({ iconName, label, dstyles, ...props }: any) => {
             "outline outline-1 outline-red-600": meta.error,
           })}
         />
-        {/* </TextField.Root>
-        </Text> */}
       </div>
       {meta.touched && meta.error && (
         <div className="text-red-600">

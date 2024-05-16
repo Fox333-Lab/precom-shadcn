@@ -41,6 +41,7 @@ export const validateAlphabetsAndNumbers = async (
   //return regex.test(input);
 };
 
+// Array functions - starts here
 export const compareArrays = (array1: any, array2: any) => {
   if (array1.length !== array2.length) return false;
   const neww = (object: any) =>
@@ -52,6 +53,21 @@ export const compareArrays = (array1: any, array2: any) => {
   array1 = new Set(array1.map(neww));
   return array2.every((object: any) => array1.has(neww(object)));
 };
+
+export const filterArray = (array: any, property: string) => {
+  return array
+    .filter((item: any) => item.name == property)
+    .map((s: any) => s.value);
+};
+
+export const removeDuplicates = (array: any) => {
+  return Array.from(new Set(array));
+};
+
+export const randomizeArray = (array: any) => {
+  return [...array].sort(() => Math.random() - 0.5);
+};
+// Array functions - ends here
 
 export const generateUniqueIdFor = (type: string) => {
   let alphabet: string = "";

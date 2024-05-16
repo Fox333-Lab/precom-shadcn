@@ -13,6 +13,10 @@ export interface IAddress {
   country: String;
   active: Boolean;
 }
+export interface IWishlist {
+  product: Types.ObjectId;
+  style: String;
+}
 
 export type TUser = IUser & {
   createdAt: string;
@@ -30,4 +34,5 @@ export default interface IUser {
   defaultPaymentMethod: String;
   active: Boolean;
   address: Types.DocumentArray<IAddress>;
+  // wishlist: Types.DocumentArray<IWishlist>;
 }

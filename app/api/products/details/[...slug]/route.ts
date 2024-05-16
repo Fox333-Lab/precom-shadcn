@@ -88,6 +88,7 @@ export const GET = async (
           percentage: 0,
         },
       ],
+      reviews: product.reviews.reverse(), // added during add review code
       allSizes: product.subProducts
         .map((p) => {
           return p.sizes;

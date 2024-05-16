@@ -13,7 +13,7 @@ export const paymentMethods = [
   },
   {
     id: 3,
-    name: "Cash",
+    name: "COD",
     description: "You can pay with cash",
     image: "coins",
   },

@@ -65,8 +65,8 @@ const LoginForm = () => {
         "In app/signin/page.js - callbackUrl : ",
         searchParams.get("callbackUrl")
       );
-      //router.push(searchParams.get("callbackUrl") || "/cart");
-      router.push("/checkout");
+      router.push(searchParams.get("callbackUrl") || "/cart");
+      //router.push("/checkout");
     }
   };
 

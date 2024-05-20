@@ -21,15 +21,22 @@ export const POST = async (req: NextRequest) => {
     console.log("imageFile : ", imageFile);
     console.log("imagePath : ", imagePath);
     let files = Object.values(formData.getAll("file")).flat();
-    let images = [];
+    let images: any[] = [];
     console.log("files : ", files);
     for (let i = 0; i < files.length; i++) {
       const file = files[i] as File;
-      const img = await uploadImage(file, imagePath);
-      images.push(img);
+      const img: any = await uploadImage(file, imagePath);
+      const uimg: any = { url: img.url, public_url: img.url };
+      images.push(uimg);
     }
+    console.log("images : ", images);
+    console.log("images : ", images.length);
+
     // await db.DisconnectDB();
-    return NextResponse.json({ message: "success" }, { status: 200 });
+    return NextResponse.json(
+      { message: "success", images: images },
+      { status: 200 }
+    );
   } catch (err: any) {
     console.log("catch : api/cloudinary/images failed : ", err.message);
     await db.DisconnectDB();

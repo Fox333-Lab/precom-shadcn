@@ -19,7 +19,7 @@ import ISubCategory from "@/types/db/subcategory";
 import { CreateProductInputTypes } from "@/types/validation/admin/dashboard/product";
 import axios from "axios";
 import { Form, Formik, FormikProps } from "formik";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { set } from "mongoose";
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
@@ -197,7 +197,7 @@ const CreateProduct = () => {
     console.log("valid");
     return "valid";
   };
-  let uploaded_images: any[] = [];
+  let uploaded_images: any = {};
   let style_img = "";
   const CreateProduct = async () => {
     setLoading(true);
@@ -211,9 +211,8 @@ const CreateProduct = () => {
       temp.forEach((image) => {
         formData.append("file", image);
       });
-      // uploaded_images = await uploadImages(formData);        // uncomment later to upload images to cloudinary
-
-      uploaded_images = images; // remove later
+      uploaded_images = await uploadImages(formData); // uncomment later to upload images to cloudinary
+      //uploaded_images = images; // remove later
       console.log("uploaded_images : ", uploaded_images);
     }
     if (product.color.image) {
@@ -222,9 +221,10 @@ const CreateProduct = () => {
       let formData = new FormData();
       formData.append("path", path);
       formData.append("file", temp);
-      // let cloud_style_img = await uploadImages(formData);    // uncomment later to upload images to cloudinary
-      // style_img = cloud_style_img[0].url;                    // uncomment later
-      style_img = product.color.image; // remove later
+      let cloud_style_img = await uploadImages(formData); // uncomment later to upload images to cloudinary
+      console.log("cloud_style_img : 1 : ", cloud_style_img);
+      style_img = cloud_style_img[0].url; // uncomment later
+      //style_img = product.color.image; // remove later
       console.log("style_img : ", style_img);
     }
     try {
@@ -238,10 +238,12 @@ const CreateProduct = () => {
       );
       setLoading(false);
     } catch (error) {
+      console.log("error2 : ", error);
       setLoading(false);
     }
   };
   const CreateProductHandler = async () => {
+    console.log("in CreateProductHandler");
     let test = validateCreateProduct(product, images);
     if (test == "valid") {
       console.log("valid");
@@ -256,7 +258,8 @@ const CreateProduct = () => {
         "Content-Type": "multipart/form-data",
       },
     });
-    return data;
+    console.log("data : ", data.images);
+    return data.images;
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -464,8 +467,17 @@ const CreateProduct = () => {
                   variant="default"
                   className="cursor-pointer flex gap-1 fixed right-12 bottom-4 shadow-lg"
                 >
-                  <Plus size={20} />
-                  <span>Create Product</span>
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      <span>Creating . . .</span>
+                    </>
+                  ) : (
+                    <>
+                      <Plus size={20} />
+                      <span>Create Product</span>
+                    </>
+                  )}
                 </Button>
               </div>
 

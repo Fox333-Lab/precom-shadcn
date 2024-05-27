@@ -13,7 +13,7 @@ export const createPwdResetToken = (payload: any) => {
   );
   console.log("token.js : createPwdResetToken : payload : ", payload);
   return jwt.sign(payload, process.env.PWD_RESET_TOKEN_SECRET as string, {
-    expiresIn: "1m",
+    expiresIn: "10m",
   });
 };
 

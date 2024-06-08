@@ -1,3 +1,4 @@
+import { ToggleGroupItem } from "@/components/ui/toggle-group";
 import React from "react";
 
 type BrandFilterItemProps = {
@@ -10,9 +11,12 @@ const BrandFilterItem = ({
   brandFilterHandler,
 }: BrandFilterItemProps) => {
   return (
-    <li className="p-2 border rounded-sm">
-      <button onClick={() => brandFilterHandler(brand)}>{brand}</button>
-    </li>
+    // <li className="p-2 border rounded-sm">
+    <ToggleGroupItem value={brand} onClick={() => brandFilterHandler(brand)}>
+      {/* <button onClick={() => brandFilterHandler(brand)}>{brand}</button> */}
+      {brand}
+    </ToggleGroupItem>
+    // </li>
   );
 };
 

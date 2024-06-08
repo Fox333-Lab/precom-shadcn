@@ -28,6 +28,7 @@ type FilterProps = {
   brandFilterHandler: (brand: string) => void;
   sizeFilterHandler: (size: string) => void;
   priceFilterHandler: (min: string, max: string) => void;
+  colorFilterHandler: (color: string) => void;
   checkChecked: (queryName: string, value: string) => boolean;
 };
 
@@ -42,6 +43,7 @@ const Filter = ({
   brandFilterHandler,
   sizeFilterHandler,
   priceFilterHandler,
+  colorFilterHandler,
   checkChecked,
 }: FilterProps) => {
   return (
@@ -75,11 +77,17 @@ const Filter = ({
               checkChecked={checkChecked}
             />
           )}
-          {colors && colors.length > 0 && <ColorsFilter colors={colors} />}
+          {colors && colors.length > 0 && (
+            <ColorsFilter
+              colors={colors}
+              colorFilterHandler={colorFilterHandler}
+            />
+          )}
           {brands && brands.length > 0 && (
             <BrandsFilter
               brands={brands}
               brandFilterHandler={brandFilterHandler}
+              checkChecked={checkChecked}
             />
           )}
           {styles && styles.length > 0 && <StylesFilter styles={styles} />}

@@ -5,6 +5,7 @@ import IProduct from "@/types/db/product";
 import Filter from "../browse/filter";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SearchProducts from "../browse/searchproducts";
+import SortFilter from "../browse/sortfilter";
 
 const Products = () => {
   // const { data, error, isLoading } = useSWRFetch("/api/products");
@@ -16,7 +17,15 @@ const Products = () => {
     `/api/products/details/browse?${searchParams.toString()}`
   );
   console.log("searchParams : ", searchParams.toString());
-  const filterHandler = ({ search, category, brand, size, price }: any) => {
+  const filterHandler = ({
+    search,
+    category,
+    brand,
+    color,
+    size,
+    price,
+    sortBy,
+  }: any) => {
     console.log("filterHandler");
     const params = new URLSearchParams(searchParams);
     const path = pathname;
@@ -25,7 +34,7 @@ const Products = () => {
     if (search) {
       console.log("first search : ", search);
       params.set("search", search);
-    } else {
+    } else if (search == "") {
       console.log("delete");
       params.delete("search");
     }
@@ -33,7 +42,7 @@ const Products = () => {
     if (category) {
       console.log("category : ", category);
       params.set("category", category);
-    } else {
+    } else if (category == "") {
       console.log("delete");
       params.delete("category");
     }
@@ -41,12 +50,23 @@ const Products = () => {
     if (brand) {
       console.log("brand : ", brand);
       params.set("brand", brand);
+    } else if (brand == "") {
+      console.log("delete");
+      params.delete("brand");
+    }
+    // color query starts here
+    if (color) {
+      console.log("color : ", color);
+      params.set("color", color);
+    } else if (color == "") {
+      console.log("delete");
+      params.delete("color");
     }
     // size query starts here
     if (size) {
       console.log("size : ", size);
       params.set("size", size);
-    } else {
+    } else if (size == "") {
       console.log("delete");
       params.delete("size");
     }
@@ -57,6 +77,18 @@ const Products = () => {
       console.log("price : ", price.max);
       params.set("min", price.min);
       params.set("max", price.max);
+    } else if (price == null) {
+      console.log("delete");
+      params.delete("min");
+      params.delete("max");
+    }
+    // sort query starts here
+    if (sortBy) {
+      console.log("sortBy : ", sortBy);
+      params.set("sort", sortBy);
+    } else if (sortBy == "") {
+      console.log("delete");
+      params.delete("sort");
     }
     console.log("params.toString() : ", params.toString());
     router.push(`${path}?${params.toString()}`, { scroll: false });
@@ -71,6 +103,9 @@ const Products = () => {
   const brandFilterHandler = (brand: string) => {
     filterHandler({ brand });
   };
+  const colorFilterHandler = (color: string) => {
+    filterHandler({ color });
+  };
   const sizeFilterHandler = (size: string) => {
     filterHandler({ size });
   };
@@ -78,9 +113,15 @@ const Products = () => {
     min = min == "" ? "0" : min;
     max = max == "" ? "0" : max;
     //let price = `${min}_${max}`;
-    let price = { min, max };
+    type Price = { min: string; max: string };
+    let price: Price | null = { min, max };
+    if (min == "0" && max == "0") price = null;
     filterHandler({ price });
   };
+  const sortFilterHandler = (sortBy: string) => {
+    filterHandler({ sortBy });
+  };
+
   const checkChecked = (queryName: string, value: string): boolean => {
     console.log("searchParams.get(queryName) : ", searchParams.get(queryName));
     console.log(
@@ -117,7 +158,11 @@ const Products = () => {
   if (data)
     return (
       <div>
-        <SearchProducts searchHandler={searchHandler} searchQuery={query} />
+        <div className="flex justify-around">
+          <SearchProducts searchHandler={searchHandler} searchQuery={query} />
+          <SortFilter sortFilterHandler={sortFilterHandler} />
+        </div>
+
         <Filter
           categories={data.categories}
           subCategories={data.subCategories}
@@ -129,6 +174,7 @@ const Products = () => {
           brandFilterHandler={brandFilterHandler}
           sizeFilterHandler={sizeFilterHandler}
           priceFilterHandler={priceFilterHandler}
+          colorFilterHandler={colorFilterHandler}
           checkChecked={checkChecked}
         />
         <div className="grid gap-x-3 md:gap-x-5 xl:gap-x-7 gap-y-3 xl:gap-y-5 2xl:gap-y-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5">

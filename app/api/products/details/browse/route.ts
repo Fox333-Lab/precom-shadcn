@@ -23,6 +23,27 @@ export const GET = async (req: NextRequest) => {
   console.log("first brandQuery : ", brandQuery);
   brandQuery = brandQuery == "null" || brandQuery == null ? "" : brandQuery;
   console.log("first brandQuery : ", brandQuery);
+  let selectedBrandsList = brandQuery != "" ? brandQuery?.split("_") : null;
+  console.log("first selectedBrandsList : ", selectedBrandsList);
+  brandQuery = "";
+  selectedBrandsList?.forEach((brand: string) => {
+    brandQuery += `^${brand}|`;
+  });
+  brandQuery = brandQuery.slice(0, -1);
+  console.log("first brandSearchRegex : ", brandQuery);
+  // color query starts here
+  let colorQuery = req.nextUrl.searchParams.get("color");
+  console.log("first colorQuery : ", colorQuery);
+  colorQuery = colorQuery == "null" || colorQuery == null ? "" : colorQuery;
+  console.log("first colorQuery : ", colorQuery);
+  let selectedColorsList = colorQuery != "" ? colorQuery?.split("_") : null;
+  console.log("first selectedColorsList : ", selectedColorsList);
+  colorQuery = "";
+  selectedColorsList?.forEach((color: string) => {
+    colorQuery += `^${color}|`;
+  });
+  colorQuery = colorQuery.slice(0, -1);
+  console.log("first colorSearchRegex : ", colorQuery);
   // size query starts here
   let sizeQuery = req.nextUrl.searchParams.get("size");
   console.log("first sizeQuery : ", sizeQuery);
@@ -53,7 +74,11 @@ export const GET = async (req: NextRequest) => {
   let maxPrice = maxPriceQuery;
   console.log("first minPrice : ", minPrice);
   console.log("first maxPrice : ", Number(maxPrice));
-
+  // sort query starts here
+  let sortQuery = req.nextUrl.searchParams.get("sort");
+  console.log("first sortQuery : ", sortQuery);
+  sortQuery = sortQuery == "null" || sortQuery == null ? "" : sortQuery;
+  console.log("first sortQuery : ", sortQuery);
   // building search criterias
   const search = searchQuery
     ? {
@@ -69,10 +94,16 @@ export const GET = async (req: NextRequest) => {
   console.log("first category : ", category);
   const brand = brandQuery
     ? {
-        brand: brandQuery,
+        brand: { $regex: brandQuery, $options: "i" },
       }
     : {};
   console.log("first brand : ", brand);
+  const color = colorQuery
+    ? {
+        "subProducts.color.color": { $regex: colorQuery, $options: "i" },
+      }
+    : {};
+  console.log("first color : ", color);
   const size = sizeQuery
     ? {
         "subProducts.sizes.size": { $regex: sizeQuery, $options: "i" },
@@ -89,6 +120,23 @@ export const GET = async (req: NextRequest) => {
         }
       : {};
   console.log("first price : ", price);
+  const sort: any =
+    sortQuery == ""
+      ? {}
+      : sortQuery == "popular"
+      ? { "subProducts.sold": -1, rating: -1 }
+      : sortQuery == "newest"
+      ? { createdAt: -1 }
+      : sortQuery == "topSelling"
+      ? { "subProducts.sold": -1 }
+      : sortQuery == "topReviewed"
+      ? { rating: -1 }
+      : sortQuery == "priceLowToHigh"
+      ? { "subProducts.sizes.price": 1 }
+      : sortQuery == "priceHighToLow"
+      ? { "subProducts.sizes.price": -1 }
+      : {};
+  console.log("first sort : ", sort);
   try {
     await db.ConnectDB();
     let productsDb = await Product.find({
@@ -97,8 +145,9 @@ export const GET = async (req: NextRequest) => {
       ...brand,
       ...size,
       ...price,
+      ...color,
     })
-      .sort({ createdAt: -1 })
+      .sort(sort)
       .lean();
     if (!productsDb) {
       await db.DisconnectDB();
@@ -107,7 +156,8 @@ export const GET = async (req: NextRequest) => {
         { status: 404 }
       );
     }
-    let products = randomizeArray(productsDb);
+    let products =
+      sortQuery && sortQuery != "" ? productsDb : randomizeArray(productsDb);
     let categories = await Category.find().lean();
     let subCategories = await SubCategory.find()
       .populate({ path: "parent", model: Category })

@@ -1,8 +1,6 @@
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -16,6 +14,7 @@ import ColorsFilter from "./colorsfilter";
 import BrandsFilter from "./brandsfilter";
 import StylesFilter from "./stylesfilter";
 import PriceFilter from "./pricefilter";
+import { useRouter } from "next/navigation";
 
 type FilterProps = {
   categories: any;
@@ -30,6 +29,7 @@ type FilterProps = {
   priceFilterHandler: (min: string, max: string) => void;
   colorFilterHandler: (color: string) => void;
   checkChecked: (queryName: string, value: string) => boolean;
+  params: URLSearchParams;
 };
 
 const Filter = ({
@@ -45,7 +45,9 @@ const Filter = ({
   priceFilterHandler,
   colorFilterHandler,
   checkChecked,
+  params,
 }: FilterProps) => {
+  const router = useRouter();
   return (
     <div>
       <Sheet>
@@ -56,7 +58,9 @@ const Filter = ({
         </SheetTrigger>
         <SheetContent side={"left"}>
           <SheetHeader>
-            <SheetTitle>Filter</SheetTitle>
+            <SheetTitle>
+              Filter {params.size == 0 ? "" : `(${params.size.toString()})`}
+            </SheetTitle>
             {/* <SheetDescription>
                 This action cannot be undone. This will permanently delete your
                 account and remove your data from our servers.
@@ -92,6 +96,17 @@ const Filter = ({
           )}
           {styles && styles.length > 0 && <StylesFilter styles={styles} />}
           <PriceFilter priceFilterHandler={priceFilterHandler} />
+          <SheetFooter>
+            <div className="flex justify-between w-full mt-8 gap-2">
+              <Button className="flex-1">Apply</Button>
+              <Button
+                className="flex-1"
+                onClick={() => router.push("/products")}
+              >
+                Clear
+              </Button>
+            </div>
+          </SheetFooter>
         </SheetContent>
       </Sheet>
     </div>

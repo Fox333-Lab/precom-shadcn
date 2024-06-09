@@ -6,6 +6,7 @@ import Filter from "../browse/filter";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SearchProducts from "../browse/searchproducts";
 import SortFilter from "../browse/sortfilter";
+import NewsLetter from "@/components/shared/newsletter";
 
 const Products = () => {
   // const { data, error, isLoading } = useSWRFetch("/api/products");
@@ -176,6 +177,7 @@ const Products = () => {
           priceFilterHandler={priceFilterHandler}
           colorFilterHandler={colorFilterHandler}
           checkChecked={checkChecked}
+          params={searchParams}
         />
         <div className="grid gap-x-3 md:gap-x-5 xl:gap-x-7 gap-y-3 xl:gap-y-5 2xl:gap-y-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5">
           {/* <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"> */}
@@ -185,6 +187,7 @@ const Products = () => {
             //   </div>
           ))}
         </div>
+        <NewsLetter />
       </div>
     );
 };

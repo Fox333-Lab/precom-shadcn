@@ -5,10 +5,12 @@ import {
   createPwdResetToken,
   verifyResetPwdJwtToken,
 } from "./token";
+import { MailChimpHandler } from "./mailchimp";
 export {
   sendEmail,
   createActivationToken,
   createPwdResetToken,
   verifyResetPwdJwtToken,
   getCartByUserId,
+  MailChimpHandler,
 };

@@ -124,7 +124,7 @@ export const GET = async (req: NextRequest) => {
     sortQuery == ""
       ? {}
       : sortQuery == "popular"
-      ? { "subProducts.sold": -1, rating: -1 }
+      ? { rating: -1, "subProducts.sold": -1 }
       : sortQuery == "newest"
       ? { createdAt: -1 }
       : sortQuery == "topSelling"

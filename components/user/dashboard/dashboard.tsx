@@ -28,7 +28,7 @@ const UserDashboard = () => {
       <div className="flex flex-col items-center gap-4">
         <Para className="font-semibold">PROFILE</Para>
         <H2 className="font-bold">Welcome, {user?.name?.toString()}</H2>
-        <Para className="text-lg text-center">
+        <Para className="text-center text-lg">
           View, update and manage order and other information
         </Para>
       </div>

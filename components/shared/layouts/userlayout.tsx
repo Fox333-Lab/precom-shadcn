@@ -1,6 +1,8 @@
 // import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "../users";
+import Navbar from "../navbar";
+import MaxWidthWrapper from "./maxwidthwrapper";
 // const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata: Metadata = {
@@ -14,10 +16,16 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="container md:px-8 2xl:px-16">
-      {children}
+    <>
+      <Navbar />
+      {/* <div className="container mt-8 md:px-8 2xl:px-16"> */}
+      <MaxWidthWrapper className="mt-8">
+        {children}
+        {/* <Footer /> */}
+      </MaxWidthWrapper>
+      {/* </div> */}
       <Footer />
-    </div>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Footer } from "../users";
 import Navbar from "../navbar";
 import MaxWidthWrapper from "./maxwidthwrapper";
+import Navbar1 from "../navbar/navbar1";
 // const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata: Metadata = {

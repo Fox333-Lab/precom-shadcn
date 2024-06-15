@@ -29,7 +29,7 @@ export const validateAlphabetsOnly = async (input: string, errMsg: string) => {
 
 export const validateAlphabetsAndNumbers = async (
   input: string,
-  errMsg: string
+  errMsg: string,
 ) => {
   console.log("input : ", input);
   const regex = /^[a-z0-9]+$/i;
@@ -48,7 +48,7 @@ export const compareArrays = (array1: any, array2: any) => {
     JSON.stringify(
       Object.keys(object)
         .sort()
-        .map((key) => [key, object[key]])
+        .map((key) => [key, object[key]]),
     );
   array1 = new Set(array1.map(neww));
   return array2.every((object: any) => array1.has(neww(object)));
@@ -90,6 +90,7 @@ export const generateUniqueIdFor = (type: string) => {
 export const delayExec = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
+// image/blob functions - starts here
 export const dataURLtoBlob = (dataurl: string) => {
   var arr = dataurl.split(","),
     mime = arr[0].match(/:(.*?);/)?.[1],
@@ -105,3 +106,22 @@ export const dataURLtoBlob = (dataurl: string) => {
 export const blobToObjectURL = (blob: Blob) => {
   return URL.createObjectURL(blob);
 };
+// image/blob functions - ends here
+
+export function formatPrice(
+  price: number | string,
+  options: {
+    currency?: "INR" | "USD" | "EUR" | "GBP" | "BDT";
+    notation?: Intl.NumberFormatOptions["notation"];
+  } = {},
+) {
+  const { currency = "INR", notation = "compact" } = options;
+  const numbericPrice = typeof price === "string" ? parseFloat(price) : price;
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency,
+    notation,
+    maximumFractionDigits: 2,
+  }).format(Number(numbericPrice));
+  // .format(numbericPrice);
+}

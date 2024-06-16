@@ -1,5 +1,7 @@
 import { Card } from "../ui/card";
+import winter1 from "@/public/images/winter1.jpg";
 import winter2 from "@/public/images/winter2.jpg";
+import winter3 from "@/public/images/winter3.jpg";
 import "./style.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,7 +37,7 @@ const Hero = () => {
       <div className="grid gap-8 xl:grid-cols-3 xl:grid-rows-2">
         <div className="relative xl:col-span-2 xl:row-start-1 xl:row-end-[-1]">
           <Image
-            src={winter2}
+            src={winter1}
             className="h-full w-full rounded-lg object-cover"
             alt=""
           />
@@ -85,7 +87,7 @@ const Hero = () => {
         </div>
         <div className="relative">
           <Image
-            src={winter2}
+            src={winter3}
             className="h-full w-full rounded-lg object-cover"
             alt=""
           />

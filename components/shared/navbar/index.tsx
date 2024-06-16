@@ -20,7 +20,7 @@ const Navbar = () => {
             <MobileNav />
           </div>
           <div className="flex items-center">
-            <Link href="#" className="ml-4 text-2xl font-bold lg:ml-auto">
+            <Link href="/" className="ml-4 text-2xl font-bold lg:ml-auto">
               PremX
             </Link>
           </div>

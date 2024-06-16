@@ -33,7 +33,7 @@ export default function RootLayout({
             >
               {/* <ThemeToggle /> */}
               {/* <div className="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16"> */}
-              <div className="flex flex-col min-h-screen">
+              <div className="flex min-h-screen flex-col">
                 <main
                   className="relative grow"
                   style={{ minHeight: "-webkit-fill-available" }}

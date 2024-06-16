@@ -27,7 +27,7 @@ const Categories = () => {
                 className="sm:basis-1/2 lg:basis-1/3 xl:basis-1/5"
               >
                 <div className="p-1">
-                  <Card className="border-none bg-gray-100 shadow-none">
+                  <Card className="border-gray-150 border bg-gray-100/60 shadow-none">
                     <CardContent className="flex items-center justify-between gap-2 px-4 py-4">
                       <span className="text-base font-semibold md:text-lg">
                         Category {index + 1}

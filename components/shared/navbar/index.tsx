@@ -13,7 +13,8 @@ const Navbar = () => {
   const user = null;
   const cartCount = 0;
   return (
-    <nav className="sticky inset-x-0 top-0 z-50 h-18 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
+    // add border-b border-gray-200 to the below line to add a border bottom
+    <nav className="sticky inset-x-0 top-0 z-50 h-18 w-full bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-full items-center justify-between">
           <div className="flex items-center lg:hidden">

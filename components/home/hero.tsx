@@ -38,15 +38,16 @@ const Hero = () => {
         <div className="relative xl:col-span-2 xl:row-start-1 xl:row-end-[-1]">
           <Image
             src={winter1}
-            className="h-full w-full rounded-lg object-cover"
+            className="h-full w-full rounded-lg object-cover saturate-100 filter"
             alt=""
           />
-          <div className="absolute top-[50%] ml-8 max-w-[470px] -translate-y-[50%] sm:ml-16 sm:space-y-4">
+          {/* max-w-[470px] removed from below line as it was causing text to wrap */}
+          <div className="absolute top-[50%] ml-8 -translate-y-[50%] sm:ml-16 sm:space-y-4">
             <p className="hidden text-2xl sm:block">100% original product</p>
             <p className="text-2xl font-bold sm:text-4xl md:text-6xl">
-              Dried products
+              Our Product One
             </p>
-            <p className="pt-4 text-xl text-gray-200 sm:pt-8">Start At</p>
+            <p className="pt-4 text-xl sm:pt-8">Start At</p>
             <div className="pb-3 text-2xl font-medium text-red-600 sm:pb-8 sm:text-4xl">
               20.23
             </div>
@@ -69,8 +70,8 @@ const Hero = () => {
           />
           <div className="absolute top-[50%] ml-8 max-w-[470px] -translate-y-[50%] sm:ml-16 sm:space-y-2">
             {/* <p className="hidden text-2xl sm:block">100% original product</p> */}
-            <h2 className="text-2xl font-bold sm:text-3xl">Dried products</h2>
-            <p className="pt-4 text-xl text-gray-200">Start At</p>
+            <h2 className="text-2xl font-bold sm:text-3xl">Our Product Two</h2>
+            <p className="pt-4 text-xl">Start At</p>
             <div className="pb-3 text-2xl font-medium text-red-600 sm:text-4xl">
               20.23
             </div>
@@ -93,8 +94,10 @@ const Hero = () => {
           />
           <div className="absolute top-[50%] ml-8 max-w-[470px] -translate-y-[50%] sm:ml-16 sm:space-y-2">
             {/* <p className="hidden text-2xl sm:block">100% original product</p> */}
-            <h2 className="text-2xl font-bold sm:text-3xl">Dried products</h2>
-            <p className="pt-4 text-xl text-gray-200">Start At</p>
+            <h2 className="text-2xl font-bold sm:text-3xl">
+              Our Product Three
+            </h2>
+            <p className="pt-4 text-xl">Start At</p>
             <div className="pb-3 text-2xl font-medium text-red-600 sm:text-4xl">
               20.23
             </div>

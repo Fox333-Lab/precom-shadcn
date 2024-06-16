@@ -7,14 +7,14 @@ export default function Home() {
     //     className="relative grow"
     //     style={{ minHeight: "-webkit-fill-available" }}
     //   >
-    <UserLayout>
-      <div className="flex flex-col gap-12">
-        <Hero />
-        <Categories />
-        <NewArrivals />
-        <BestSellers />
-      </div>
-    </UserLayout>
+    // <UserLayout>
+    <div className="flex flex-col gap-12">
+      <Hero />
+      <Categories />
+      <NewArrivals />
+      <BestSellers />
+    </div>
+    // </UserLayout>
     //   </main>
     // </div>
   );

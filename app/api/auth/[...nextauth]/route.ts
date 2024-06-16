@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
         await db.ConnectDB();
         const email = credentials?.email;
         const password = credentials?.password;
-        console.log("credentials : email - ", email, "password - ", password);
+        // console.log("credentials : email - ", email, "password - ", password);
         const user = await User.findOne({ email });
         if (user) {
           // console.log("user : ", user);
@@ -86,13 +86,13 @@ const SignInUser = async ({
   if (!user?.password) {
     throw new Error("Please enter your password");
   }
-  console.log("[nextauth] password : ", password);
-  console.log("[nextauth] user?.password : ", user?.password);
+  // console.log("[nextauth] password : ", password);
+  // console.log("[nextauth] user?.password : ", user?.password);
   const testPassword = await bcrypt.compare(
     password as string,
     user.password as string
   );
-  console.log("[nextauth] testPassword : ", testPassword);
+  // console.log("[nextauth] testPassword : ", testPassword);
   if (!testPassword) {
     throw new Error("Email or password is wrong");
   }

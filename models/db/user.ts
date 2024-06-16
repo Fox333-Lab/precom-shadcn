@@ -1,5 +1,6 @@
 import IUser from "@/types/db/user";
 import mongoose, { Schema, model, models } from "mongoose";
+import { ref } from "yup";
 
 const userSchema: Schema = new Schema<IUser>(
   {
@@ -31,6 +32,10 @@ const userSchema: Schema = new Schema<IUser>(
     emailVerified: {
       type: Boolean,
       default: false,
+    },
+    active: {
+      type: Boolean,
+      default: true,
     },
     defaultPaymentMethod: {
       type: String,
@@ -74,10 +79,20 @@ const userSchema: Schema = new Schema<IUser>(
         },
       },
     ],
+    // wishlist: [
+    //   {
+    //     product: {
+    //       type: mongoose.Schema.ObjectId,
+    //       ref: "Product",
+    //     },
+    //     style: {
+    //       type: String,
+    //     },
+    //   },
+    // ],
   },
   { timestamps: true }
 );
 const User = models.User || model<IUser>("User", userSchema);
-//const User = model<IUser>("User", userSchema);
 
 export default User;

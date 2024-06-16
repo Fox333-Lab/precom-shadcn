@@ -4,8 +4,15 @@ import {
   verifyResetPwdJwtToken,
   sendEmail,
 } from "./functions";
-import { cn, validateEmail, compareArrays } from "./utils";
+import {
+  cn,
+  validateEmail,
+  compareArrays,
+  validateAlphabetsAndNumbers,
+  validateAlphabetsOnly,
+} from "./utils";
 import clientPromise from "./mongodb";
+import { uploadImage } from "./cloudinary";
 export {
   createActivationToken,
   createPwdResetToken,
@@ -15,4 +22,7 @@ export {
   validateEmail,
   compareArrays,
   clientPromise,
+  validateAlphabetsOnly,
+  validateAlphabetsAndNumbers,
+  uploadImage,
 };

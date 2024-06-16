@@ -4,9 +4,9 @@ import { TextBox } from "@/components/inputs";
 import { Button } from "@/components/ui/button";
 import { createCategory } from "@/lib/functions/admin/categories";
 import ICategory from "@/types/db/category";
-import { AddCategoryInputTypes } from "@/types/validation/admin/dashboard/addcategory";
+import { AddCategoryInputTypes } from "@/types/validation/admin/dashboard/category";
 import { Form, Formik, FormikProps } from "formik";
-import { Plus } from "lucide-react";
+import { Plus, RefreshCcw } from "lucide-react";
 import { useState } from "react";
 import * as Yup from "yup";
 
@@ -14,7 +14,7 @@ type CreateCategoryPropsTypes = {
   setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>;
 };
 
-const Create = ({ setCategories }: { setCategories: any }) => {
+const Create = ({ setCategories }: CreateCategoryPropsTypes) => {
   const [name, setName] = useState("");
   const categoryValidation = Yup.object({
     name: Yup.string()
@@ -42,6 +42,9 @@ const Create = ({ setCategories }: { setCategories: any }) => {
       console.log("22 error : ", error.response.data.message);
     }
   };
+  const resetHandler = () => {
+    setName("");
+  };
   return (
     <div>
       <Formik
@@ -52,7 +55,7 @@ const Create = ({ setCategories }: { setCategories: any }) => {
       >
         {(props: FormikProps<AddCategoryInputTypes>) => (
           <Form>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
               <TextBox
                 type="text"
                 // label="New Password"
@@ -63,15 +66,16 @@ const Create = ({ setCategories }: { setCategories: any }) => {
               />
               <div className="flex flex-1 gap-2">
                 <Button type="submit" className="cursor-pointer flex gap-2">
-                  <Plus />
+                  <Plus size={18} />
                   <span>Add Category</span>
                 </Button>
                 <Button
                   type="button"
-                  className="cursor-pointer"
-                  onClick={() => setName("")}
+                  className="cursor-pointer flex gap-2"
+                  onClick={resetHandler}
                 >
-                  Reset
+                  <RefreshCcw size={18} />
+                  <span>Reset</span>
                 </Button>
               </div>
 

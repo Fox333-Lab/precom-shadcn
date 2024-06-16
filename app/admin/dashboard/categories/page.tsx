@@ -14,7 +14,7 @@ const CategoriesPage = () => {
   console.log("categories page : ", data.categories);
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         <H3>Create a category</H3>
         <Separator />
       </div>

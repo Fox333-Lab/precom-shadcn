@@ -65,8 +65,8 @@ const LoginForm = () => {
         "In app/signin/page.js - callbackUrl : ",
         searchParams.get("callbackUrl")
       );
-      //router.push(searchParams.get("callbackUrl") || "/cart");
-      router.push("/checkout");
+      router.push(searchParams.get("callbackUrl") || "/cart");
+      //router.push("/checkout");
     }
   };
 
@@ -106,7 +106,7 @@ const LoginForm = () => {
               />
               {/* <!-- Forgot Password Link --> */}
               <div className=" text-blue-500">
-                <Link href="/">Forgot Password</Link>
+                <Link href="/forgetpassword">Forgot Password</Link>
               </div>
               {/* <!-- Login Button --> */}
               <Button type="submit" className="w-full cursor-pointer">

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MessageCircleMore } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const DropdownMessage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -96,143 +97,146 @@ const DropdownMessage = () => {
           <h5 className="text-sm font-medium text-bodydark2">Messages</h5>
         </div>
 
-        <ul className="flex h-auto flex-col overflow-y-auto">
-          <li>
-            <Link
-              className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="/messages"
-            >
-              <div className="h-12.5 w-12.5 rounded-full">
-                <Image
-                  width={112}
-                  height={112}
-                  src={"/images/user-02.png"}
-                  alt="User"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                  }}
-                />
-              </div>
+        <ScrollArea>
+          {/* <ul className="flex h-auto flex-col overflow-y-auto"> */}
+          <ul className="flex h-auto flex-col overflow-y-auto">
+            <li>
+              <Link
+                className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                href="/messages"
+              >
+                <div className="h-12.5 w-12.5 rounded-full">
+                  <Image
+                    width={112}
+                    height={112}
+                    src={"/images/user-02.png"}
+                    alt="User"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
+                  />
+                </div>
 
-              <div>
-                <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
-                  Mariya Desoja
-                </h6>
-                <p className="text-sm">I like your confidence 💪</p>
-                <p className="text-xs">2min ago</p>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="/messages"
-            >
-              <div className="h-12.5 w-12.5 rounded-full">
-                <Image
-                  width={112}
-                  height={112}
-                  src={"/images/user-01.png"}
-                  alt="User"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                  }}
-                />
-              </div>
+                <div>
+                  <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
+                    Mariya Desoja
+                  </h6>
+                  <p className="text-sm">I like your confidence 💪</p>
+                  <p className="text-xs">2min ago</p>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                href="/messages"
+              >
+                <div className="h-12.5 w-12.5 rounded-full">
+                  <Image
+                    width={112}
+                    height={112}
+                    src={"/images/user-01.png"}
+                    alt="User"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
+                  />
+                </div>
 
-              <div>
-                <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
-                  Robert Jhon
-                </h6>
-                <p className="text-sm">Can you share your offer?</p>
-                <p className="text-xs">10min ago</p>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="/messages"
-            >
-              <div className="h-12.5 w-12.5 rounded-full">
-                <Image
-                  width={112}
-                  height={112}
-                  src={"/images/user-03.png"}
-                  alt="User"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                  }}
-                />
-              </div>
+                <div>
+                  <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
+                    Robert Jhon
+                  </h6>
+                  <p className="text-sm">Can you share your offer?</p>
+                  <p className="text-xs">10min ago</p>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                href="/messages"
+              >
+                <div className="h-12.5 w-12.5 rounded-full">
+                  <Image
+                    width={112}
+                    height={112}
+                    src={"/images/user-03.png"}
+                    alt="User"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
+                  />
+                </div>
 
-              <div>
-                <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
-                  Henry Dholi
-                </h6>
-                <p className="text-sm">I cam across your profile and...</p>
-                <p className="text-xs">1day ago</p>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="/messages"
-            >
-              <div className="h-12.5 w-12.5 rounded-full">
-                <Image
-                  width={112}
-                  height={112}
-                  src={"/images/user-04.png"}
-                  alt="User"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                  }}
-                />
-              </div>
+                <div>
+                  <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
+                    Henry Dholi
+                  </h6>
+                  <p className="text-sm">I cam across your profile and...</p>
+                  <p className="text-xs">1day ago</p>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                href="/messages"
+              >
+                <div className="h-12.5 w-12.5 rounded-full">
+                  <Image
+                    width={112}
+                    height={112}
+                    src={"/images/user-04.png"}
+                    alt="User"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
+                  />
+                </div>
 
-              <div>
-                <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
-                  Cody Fisher
-                </h6>
-                <p className="text-sm">I’m waiting for you response!</p>
-                <p className="text-xs">5days ago</p>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="/messages"
-            >
-              <div className="h-12.5 w-12.5 rounded-full">
-                <Image
-                  width={112}
-                  height={112}
-                  src={"/images/user-02.png"}
-                  alt="User"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                  }}
-                />
-              </div>
+                <div>
+                  <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
+                    Cody Fisher
+                  </h6>
+                  <p className="text-sm">I’m waiting for you response!</p>
+                  <p className="text-xs">5days ago</p>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                href="/messages"
+              >
+                <div className="h-12.5 w-12.5 rounded-full">
+                  <Image
+                    width={112}
+                    height={112}
+                    src={"/images/user-02.png"}
+                    alt="User"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
+                  />
+                </div>
 
-              <div>
-                <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
-                  Mariya Desoja
-                </h6>
-                <p className="text-sm">I like your confidence 💪</p>
-                <p className="text-xs">2min ago</p>
-              </div>
-            </Link>
-          </li>
-        </ul>
+                <div>
+                  <h6 className="text-sm font-medium text-black-1 dark:text-white-1">
+                    Mariya Desoja
+                  </h6>
+                  <p className="text-sm">I like your confidence 💪</p>
+                  <p className="text-xs">2min ago</p>
+                </div>
+              </Link>
+            </li>
+          </ul>
+        </ScrollArea>
       </div>
       {/* <!-- Dropdown End --> */}
     </li>

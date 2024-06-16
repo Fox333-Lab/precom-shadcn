@@ -29,6 +29,13 @@ export interface IPaymentResult {
   status: String;
   email: String;
 }
+
+export type TOrder = IOrder & {
+  createdAt: string;
+  updatedAt: string;
+  actions: string;
+};
+
 export default interface IOrder {
   _id: Types.ObjectId;
   user: Types.ObjectId;

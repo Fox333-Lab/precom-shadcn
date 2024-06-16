@@ -17,6 +17,10 @@ const oauth2Client = new OAuth2(
   //MAILING_SERVICE_REFRESH_TOKEN,
   OAUTH_PLAYGROUND
 );
+
+oauth2Client.setCredentials({
+  refresh_token: MAILING_SERVICE_REFRESH_TOKEN,
+});
 // send email
 
 const sendEmail = async (
@@ -29,11 +33,8 @@ const sendEmail = async (
   console.log("In sendEmail");
 
   try {
-    oauth2Client.setCredentials({
-      refresh_token: MAILING_SERVICE_REFRESH_TOKEN,
-    });
-    google.options({ auth: oauth2Client });
-    console.log("geting oauth2Client access token");
+    //google.options({ auth: oauth2Client });
+    console.log("geting oauth2Client access token again");
     // const accessToken =
     //   "ya29.a0AfB_byDYG14i-5mJOOeVdjbRRlbe1KG2vN8aCjme1T5ipwA_5Isb_517Qri4GRJhQA7rsViJ-HxjAFYSfX8UQFgy5oe_hgRBTFOIKWpNdn8ReUQ_gBjz5ugV060D0pMd5wRy0iROu7lUMGMrHu5VF_zHwFG8ocskNgbmaCgYKAXcSARESFQGOcNnCZwWwiTDX989ivV1-Cn_87w0171";
 
@@ -61,7 +62,9 @@ const sendEmail = async (
       "need to check mail sending functionality in personal system having security issues here"
     );
     // need to check mail sending functionality in personal system having security issues here
-    return;
+
+    //return;
+
     // const smtpTransporter = nodemailer.createTransport({
     //   service: "gmail",
     //   auth: {
@@ -91,7 +94,8 @@ const sendEmail = async (
       from: SENDER_EMAIL_ADDRESS,
       to: to,
       subject: subject,
-      html: template(to, url),
+      // html: template(to, url),
+      html: template("sajin"),
     };
 
     console.log("before smtpTransport.sendMail");

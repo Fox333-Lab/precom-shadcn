@@ -23,6 +23,7 @@ import { ICartProduct } from "@/types/db/cart";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { H2, H3, H4, H5, Para } from "@/components/ui/textui";
+import Reviews from "@/components/product/reviews";
 
 const Details = ({ params }: { params: { slug: string } }) => {
   const [activeImg, setActiveImg] = useState("");
@@ -40,7 +41,7 @@ const Details = ({ params }: { params: { slug: string } }) => {
   const dispatch = useDispatch();
   // cart functionality - ends
 
-  console.log("app/product/details cart : ", cart);
+  // console.log("app/product/details cart : ", cart);
   // console.log("app/product/details search params : style : ", pstyle);
   // console.log("app/product/details : params.slug :", params.slug);
   // console.log("app/product/details : params.slug :", psize);
@@ -393,6 +394,7 @@ const Details = ({ params }: { params: { slug: string } }) => {
             </div>
           </div>
         </div>
+        <Reviews product={productDetails} />
       </section>
     </div>
   );

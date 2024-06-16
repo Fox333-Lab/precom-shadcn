@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/providers/themeprovider";
-import { Footer } from "@/components/shared/users";
 import AuthProvider from "@/components/providers/authprovider";
 import StateProvider from "@/components/providers/stateprovider";
+import { Toaster } from "@/components/ui/sonner";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -43,11 +43,12 @@ export default function RootLayout({
                   {/* commented above */}
                 </main>
               </div>
+
               {/* </div> */}
-              <Footer />
             </ThemeProvider>
           </AuthProvider>
         </StateProvider>
+        <Toaster richColors />
       </body>
     </html>
   );

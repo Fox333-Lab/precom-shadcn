@@ -17,13 +17,13 @@ const ProductDetailSwiper = ({ images }: { images: IImage[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
   return (
-    <div className="w-full mx-auto">
+    <div className="mx-auto w-full">
       <Swiper
         // style={{
         //   "--swiper-navigation-color": "#fff",
         //   "--swiper-pagination-color": "#fff",
         // }}
-        style={{ height: "350px" }}
+        style={{ height: "600px" }}
         spaceBetween={0}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
@@ -33,7 +33,7 @@ const ProductDetailSwiper = ({ images }: { images: IImage[] }) => {
         {images &&
           images.map((image: IImage, i: number) => (
             <SwiperSlide key={i} className="">
-              <div className="border w-full h-full bg-gray-50 rounded-lg overflow-hidden">
+              <div className="h-full w-full overflow-hidden rounded-lg border bg-gray-50">
                 <img src={image.url.toString()} alt="image" />
               </div>
             </SwiperSlide>

@@ -1,7 +1,12 @@
 "use client";
 import axios from "axios";
 import { Formik, Form, FormikProps } from "formik";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  redirect,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { useState } from "react";
 import * as Yup from "yup";
 import {
@@ -11,6 +16,16 @@ import {
 import { TextBox } from "../inputs";
 import { H3 } from "../ui/textui";
 import { Button } from "../ui/button";
+import { Gitlab } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const initialValues: SignupInitialValueTypes = {
   name: "",
@@ -22,6 +37,7 @@ const initialValues: SignupInitialValueTypes = {
 };
 
 const SignUpForm = () => {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initialValues);
@@ -72,70 +88,93 @@ const SignUpForm = () => {
       console.log("signup handler error : ", err.response.data.message);
     }
   };
-
+  if (status === "loading") return null;
+  if (session && status === "authenticated") {
+    redirect(searchParams.get("callbackUrl") || "/cart");
+  }
   return (
-    <div className="flex flex-col gap-6 lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-      <H3 className="text-center">Sign Up</H3>
-      <Formik
-        enableReinitialize
-        initialValues={{ name, email, password, conf_password }}
-        validationSchema={signUpValidation}
-        onSubmit={signUpHandler}
-      >
-        {(props: FormikProps<SignupInputTypes>) => (
-          <Form>
-            {/* <!-- Username Input --> */}
-            <div className="flex flex-col gap-5">
-              <TextBox
-                type="text"
-                label="Name"
-                placeholder="enter name"
-                iconName="AtSign"
-                name="name"
-                onChange={handleChange}
-              />
-              {/* <!-- Email Input --> */}
-              <TextBox
-                type="email"
-                label="Email"
-                placeholder="enter email"
-                iconName="AtSign"
-                name="email"
-                onChange={handleChange}
-              />
+    <div className="sm:20 flex w-full flex-col gap-6 p-8 md:p-52 lg:w-1/2 lg:p-36">
+      {/* <H3 className="text-center">Sign Up</H3> */}
+      <div className="flex items-center justify-center">
+        <Gitlab size={60} strokeWidth={0.8} />
+      </div>
+      <Card className="px-2">
+        <CardHeader>
+          <CardTitle className="text-center">Create Account</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Formik
+            enableReinitialize
+            initialValues={{ name, email, password, conf_password }}
+            validationSchema={signUpValidation}
+            onSubmit={signUpHandler}
+          >
+            {(props: FormikProps<SignupInputTypes>) => (
+              <Form>
+                {/* <!-- Username Input --> */}
+                <div className="flex flex-col gap-5">
+                  <TextBox
+                    type="text"
+                    label="Name"
+                    placeholder="enter name"
+                    iconName="AtSign"
+                    name="name"
+                    onChange={handleChange}
+                  />
+                  {/* <!-- Email Input --> */}
+                  <TextBox
+                    type="email"
+                    label="Email"
+                    placeholder="enter email"
+                    iconName="AtSign"
+                    name="email"
+                    onChange={handleChange}
+                  />
 
-              {/* <!-- Password Input --> */}
-              <TextBox
-                type="password"
-                label="Password"
-                placeholder="enter password"
-                iconName="Lock"
-                name="password"
-                onChange={handleChange}
-              />
-              {/* <!-- Confirm Password Input --> */}
-              <TextBox
-                type="password"
-                label="Confirm Password"
-                placeholder="re-enter password"
-                iconName="Lock"
-                name="conf_password"
-                onChange={handleChange}
-              />
+                  {/* <!-- Password Input --> */}
+                  <TextBox
+                    type="password"
+                    label="Password"
+                    placeholder="enter password"
+                    iconName="Lock"
+                    name="password"
+                    onChange={handleChange}
+                  />
+                  {/* <!-- Confirm Password Input --> */}
+                  <TextBox
+                    type="password"
+                    label="Confirm Password"
+                    placeholder="re-enter password"
+                    iconName="Lock"
+                    name="conf_password"
+                    onChange={handleChange}
+                  />
 
-              {/* <!-- Signup Button --> */}
-              <Button type="submit" className="w-full cursor-pointer mt-3">
-                Sign Up
-              </Button>
-              {error && (
-                <span className="text-red-600 text-center text-sm">
-                  *{error}
-                </span>
-              )}
-            </div>
-          </Form>
-        )}
-      </Formik>
+                  {/* <!-- Signup Button --> */}
+                  <Button type="submit" className="mt-3 w-full cursor-pointer">
+                    Sign Up
+                  </Button>
+                  {error && (
+                    <span className="text-center text-sm text-red-600">
+                      *{error}
+                    </span>
+                  )}
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </CardContent>
+        <CardFooter>
+          <div className="flex w-full flex-wrap items-center justify-center gap-1 md:gap-2">
+            <span className="text-muted-foreground">
+              Already have an account?
+            </span>
+            <Link href="/signin" className="font-medium text-primary">
+              Sign in Here
+            </Link>
+          </div>
+        </CardFooter>
+      </Card>
     </div>
   );
 };

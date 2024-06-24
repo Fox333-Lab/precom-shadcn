@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -37,27 +38,28 @@ const NewsLetter = () => {
   };
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
         <div className="mx-auto max-w-screen-md sm:text-center">
-          <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Sign up for our newsletter
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
+          <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 dark:text-gray-400 sm:text-xl md:mb-12">
             Stay up to date with the roadmap progress, announcements and
             exclusive deals feel free to sign up with your email.
           </p>
           <form action="#">
-            <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
+            <div className="mx-auto mb-3 max-w-screen-sm items-center space-y-4 sm:flex sm:space-y-0">
               <div className="relative w-full">
                 <Label
                   htmlFor="email"
-                  className="hidden mb-2 text-sm font-medium text-gray-900 "
+                  className="mb-2 hidden text-sm font-medium text-gray-900"
                 >
                   Email address
                 </Label>
-                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg
-                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    // className="h-5 w-5 text-gray-500 dark:text-gray-400"
+                    className="h-5 w-5 text-primary"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +71,7 @@ const NewsLetter = () => {
                 <Input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block p-3 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 pl-10 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:rounded-none sm:rounded-l-lg"
                   placeholder="Enter your email"
                   type="email"
                   id="email"
@@ -80,8 +82,8 @@ const NewsLetter = () => {
                 <Button
                   type="submit"
                   className={cn(
-                    "py-3 px-5 w-full rounded-lg cursor-pointer sm:rounded-none sm:rounded-r-lg",
-                    { "cursor-not-allowed": loading === true }
+                    "w-full cursor-pointer rounded-lg px-5 py-3 sm:rounded-none sm:rounded-r-lg",
+                    { "cursor-not-allowed": loading === true },
                   )}
                   disabled={loading === true}
                   onClick={() => subscribe()}
@@ -90,12 +92,13 @@ const NewsLetter = () => {
                 </Button>
               </div>
             </div>
-            <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
+            <div className="newsletter-form-footer mx-auto max-w-screen-sm text-center text-sm text-gray-500 dark:text-gray-300">
               We care about the protection of your data.
               <Link
                 href="#"
-                className="font-medium text-primary-600 dark:text-primary-500 hover:underline"
+                className="text-primary-600 dark:text-primary-500 font-medium hover:underline"
               >
+                {" "}
                 Read our Privacy Policy
               </Link>
               .

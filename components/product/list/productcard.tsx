@@ -20,13 +20,13 @@ const ProductCard = ({ product }: { product: IProduct }) => {
       })
       .sort((a, b) => {
         return a - b;
-      })
+      }),
   );
 
   const [styless, setStyless] = useState(
     product.subProducts.map((sp) => {
       return sp.color;
-    })
+    }),
   );
 
   console.log("product card prices : ", prices);
@@ -45,7 +45,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
         })
         .sort((a, b) => {
           return a - b;
-        })
+        }),
     );
   }, [active]);
   return (
@@ -133,7 +133,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           </div>
         </div>
       </Card> */}
-      <Card className="group box-border overflow-hidden flex cursor-pointer flex-col gap-4 border-none shadow-none">
+      <Card className="group box-border flex cursor-pointer flex-col gap-4 overflow-hidden border-none shadow-none">
         {/* <Card className="h-auto overflow-hidden bg-gray-100 border-none shadow-none"> */}
         {/* <img
             //   src="https://picsum.photos/id/1/200/300"
@@ -150,7 +150,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             <H2 className="text-sm md:text-base lg:text-lg xl:text-xl">
               {product.name}
             </H2>
-            <Para className="line-clamp-1 text-sm md:text-base text-muted-foreground">
+            <Para className="line-clamp-1 text-sm text-muted-foreground md:text-base">
               {product.description}
             </Para>
           </div>
@@ -161,14 +161,14 @@ const ProductCard = ({ product }: { product: IProduct }) => {
                   return (
                     <div
                       key={i}
-                      className={cn("rounded-full w-6 h-6 overflow-hidden", {
-                        "outline outline-2 outline-orange-400": i == active,
+                      className={cn("h-6 w-6 overflow-hidden rounded-full", {
+                        "outline outline-2 outline-primary": i == active,
                       })}
                     >
                       <img
                         id={`img${i}`}
                         src={cstyle.image}
-                        className="h-6 w-6 object-cover rounded-full"
+                        className="h-6 w-6 rounded-full object-cover"
                         onMouseOver={() => {
                           setImages(product.subProducts[i].images);
                           setActive(i);
@@ -189,15 +189,15 @@ const ProductCard = ({ product }: { product: IProduct }) => {
                         setActive(i);
                       }}
                       key={i}
-                      className={`w-6 h-6 rounded-full overflow-hidden ${
-                        i == active && `outline outline-2 outline-orange-400`
+                      className={`h-6 w-6 overflow-hidden rounded-full ${
+                        i == active && `outline outline-2 outline-primary`
                       }`}
                     ></div>
                   );
                 }
               })}
           </div>
-          <div className="flex flex-wrap gap-2 mt-1">
+          <div className="mt-1 flex flex-wrap gap-2">
             <H3 className="text-sm md:text-base">
               {prices.length === 1
                 ? `USD ${prices[0]}$`
@@ -205,17 +205,17 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             </H3>
           </div>
         </div>
-        <CardFooter className="flex justify-between items-center p-0">
+        {/* <CardFooter className="flex items-center justify-between p-0">
           <Button variant="outline" className="rounded-full">
             <ShoppingCart size={20} />
           </Button>
           <Button
-            className="transition ease-linear duration-500"
-            variant="outline"
+            className="transition duration-500 ease-linear"
+            rounded="full"
           >
             Buy
           </Button>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </>
   );

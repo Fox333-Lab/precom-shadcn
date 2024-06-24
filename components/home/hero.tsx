@@ -56,7 +56,7 @@ const Hero = () => {
             </div> */}
             <Link
               href="/"
-              className={cn(`${buttonVariants({ variant: "defround" })}`)}
+              className={cn(`${buttonVariants({ rounded: "full" })}`)}
             >
               Shop Now
             </Link>
@@ -80,7 +80,7 @@ const Hero = () => {
             </div> */}
             <Link
               href="/"
-              className={cn(`${buttonVariants({ variant: "defround" })}`)}
+              className={cn(`${buttonVariants({ rounded: "full" })}`)}
             >
               Shop Now
             </Link>
@@ -106,7 +106,7 @@ const Hero = () => {
             </div> */}
             <Link
               href="/"
-              className={cn(`${buttonVariants({ variant: "defround" })}`)}
+              className={cn(`${buttonVariants({ rounded: "full" })}`)}
             >
               Shop Now
             </Link>

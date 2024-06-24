@@ -3,7 +3,14 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { cn } from "@/lib/utils";
 
-const TextBox = ({ iconName, label, dstyles, ...props }: any) => {
+const TextBox = ({
+  iconName,
+  label,
+  dstyles,
+  className,
+  showErrorMsg = true,
+  ...props
+}: any) => {
   const [field, meta] = useField(props);
   return (
     <div className={cn(dstyles)}>
@@ -14,14 +21,16 @@ const TextBox = ({ iconName, label, dstyles, ...props }: any) => {
           autoComplete="off"
           {...field}
           {...props}
-          className={cn("", {
-            "outline outline-1 outline-red-600": meta.error,
+          className={cn("", className, {
+            "outline outline-1 outline-red-600": meta.error && showErrorMsg,
           })}
         />
       </div>
-      {meta.touched && meta.error && (
-        <div className="text-red-600">
-          {/* <svg
+      {showErrorMsg
+        ? meta.touched &&
+          meta.error && (
+            <div className="text-red-600">
+              {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             className="stroke-current shrink-0 h-6 w-6"
             fill="none"
@@ -34,11 +43,12 @@ const TextBox = ({ iconName, label, dstyles, ...props }: any) => {
               d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg> */}
-          <span className="text-sm ml-0.5">
-            <ErrorMessage name={field.name} />
-          </span>
-        </div>
-      )}
+              <span className="ml-0.5 text-sm">
+                <ErrorMessage name={field.name} />
+              </span>
+            </div>
+          )
+        : ""}
     </div>
   );
 };

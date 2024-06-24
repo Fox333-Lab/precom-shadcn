@@ -1,33 +1,23 @@
-import winter2 from "@/public/images/winter2.jpg";
-import Image from "next/image";
+// "use client";
 import LoginForm from "@/components/forms/login";
+// import { useSession } from "next-auth/react";
+// import { redirect, useRouter, useSearchParams } from "next/navigation";
 
 const SignIn = () => {
-  // const SignInHandler = async () => {
-  //   let options = {
-  //     redirect: false,
-  //     email: "sajj.dev4@gmail.com",
-  //     password: "sajin@1231",
-  //   };
-  //   console.log("In app/signin/page.js - awaiting credentials");
-  //   const res = await signIn("credentials", options);
-  //   if (res?.error) {
-  //     console.log("res?.error : ", res?.error);
-  //   } else {
-  //     console.log("res : ", res);
-  //   }
-  // };
+  // const { data: session, status } = useSession();
+  // const searchParams = useSearchParams();
+  // const router = useRouter();
+  // console.log("sign in page session : ", session);
+  // console.log("sign in page status : ", status);
+
+  // if (status === "loading") return null;
+  // if (status === "authenticated") {
+  //   redirect(searchParams.get("callbackUrl") || "/cart");
+  // }
+  // console.log("status: ", status);
+
   return (
-    <div className="bg-gray-100 flex justify-center items-center h-screen">
-      {/* <!-- Left: Image --> */}
-      {/* <div className="md:w-1/2 h-screen hidden md:block overflow-hidden">
-        <Image
-          src={winter2}
-          alt="Placeholder Image"
-          className="object-cover h-full"
-        />
-      </div> */}
-      {/* <!-- Right: Login Form --> */}
+    <div className="flex h-screen items-center justify-center bg-gray-100">
       <LoginForm />
     </div>
   );

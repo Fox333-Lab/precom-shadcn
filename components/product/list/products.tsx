@@ -6,7 +6,8 @@ import Filter from "../browse/filter";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SearchProducts from "../browse/searchproducts";
 import SortFilter from "../browse/sortfilter";
-import NewsLetter from "@/components/shared/newsletter";
+import { GridListWrapper } from "@/components/shared/layouts";
+import { H1, H2 } from "@/components/ui/textui";
 
 const Products = () => {
   // const { data, error, isLoading } = useSWRFetch("/api/products");
@@ -15,11 +16,11 @@ const Products = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("search") || "";
   const { data, error, isLoading } = useSWRFetch(
-    `/api/products/details/browse?${searchParams.toString()}`
+    `/api/products/details/browse?${searchParams.toString()}`,
   );
   console.log("searchParams : ", searchParams.toString());
   const filterHandler = ({
-    search,
+    // search,
     category,
     brand,
     color,
@@ -32,13 +33,13 @@ const Products = () => {
     const path = pathname;
     console.log("path : ", path);
     // search query starts here
-    if (search) {
-      console.log("first search : ", search);
-      params.set("search", search);
-    } else if (search == "") {
-      console.log("delete");
-      params.delete("search");
-    }
+    // if (search) {
+    //   console.log("first search : ", search);
+    //   params.set("search", search);
+    // } else if (search == "") {
+    //   console.log("delete");
+    //   params.delete("search");
+    // }
     // category query starts here
     if (category) {
       console.log("category : ", category);
@@ -94,9 +95,9 @@ const Products = () => {
     console.log("params.toString() : ", params.toString());
     router.push(`${path}?${params.toString()}`, { scroll: false });
   };
-  const searchHandler = (search: string) => {
-    filterHandler({ search });
-  };
+  // const searchHandler = (search: string) => {
+  //   filterHandler({ search });
+  // };
   const categoryFilterHandler = (category: string) => {
     console.log("categoryFilterHandler : ", category);
     filterHandler({ category });
@@ -127,7 +128,7 @@ const Products = () => {
     console.log("searchParams.get(queryName) : ", searchParams.get(queryName));
     console.log(
       "searchParams.get(queryName)?.search(value) : ",
-      searchParams.get(queryName)?.search(value)
+      searchParams.get(queryName)?.search(value),
     );
     console.log("value : ", value);
 
@@ -143,11 +144,11 @@ const Products = () => {
     console.log("components/product/products data.products : ", data.products);
     console.log(
       "components/product/products data.categories : ",
-      data.categories
+      data.categories,
     );
     console.log(
       "components/product/products data.subCategories : ",
-      data.subCategories
+      data.subCategories,
     );
     console.log("components/product/products data.sizes : ", data.sizes);
     console.log("components/product/products data.brands : ", data.brands);
@@ -158,36 +159,40 @@ const Products = () => {
   }
   if (data)
     return (
-      <div>
-        <div className="flex justify-around">
-          <SearchProducts searchHandler={searchHandler} searchQuery={query} />
+      <div className="flex flex-col gap-8">
+        <div className="flex h-59 w-full flex-col items-center justify-center rounded-md bg-slate-100">
+          <H2>Our Finest</H2>
+          <H1>Premium Collection</H1>
+        </div>
+        <div className="flex items-center justify-end gap-4">
+          {/* <SearchProducts searchQuery={query} /> */}
+          {/* <SearchProducts searchHandler={searchHandler} searchQuery={query} /> */}
+
           <SortFilter sortFilterHandler={sortFilterHandler} />
+          <Filter
+            categories={data.categories}
+            subCategories={data.subCategories}
+            sizes={data.sizes}
+            colors={data.colors}
+            brands={data.brands}
+            styles={data.styles}
+            categoryFilterHandler={categoryFilterHandler}
+            brandFilterHandler={brandFilterHandler}
+            sizeFilterHandler={sizeFilterHandler}
+            priceFilterHandler={priceFilterHandler}
+            colorFilterHandler={colorFilterHandler}
+            checkChecked={checkChecked}
+            params={searchParams}
+          />
         </div>
 
-        <Filter
-          categories={data.categories}
-          subCategories={data.subCategories}
-          sizes={data.sizes}
-          colors={data.colors}
-          brands={data.brands}
-          styles={data.styles}
-          categoryFilterHandler={categoryFilterHandler}
-          brandFilterHandler={brandFilterHandler}
-          sizeFilterHandler={sizeFilterHandler}
-          priceFilterHandler={priceFilterHandler}
-          colorFilterHandler={colorFilterHandler}
-          checkChecked={checkChecked}
-          params={searchParams}
-        />
-        <div className="grid gap-x-3 md:gap-x-5 xl:gap-x-7 gap-y-3 xl:gap-y-5 2xl:gap-y-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5">
-          {/* <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"> */}
+        {/* <div className="grid grid-cols-2 gap-x-3 gap-y-3 sm:grid-cols-3 md:gap-x-5 lg:grid-cols-4 xl:grid-cols-4 xl:gap-x-7 xl:gap-y-5 2xl:grid-cols-5 2xl:gap-y-8"> */}
+        <GridListWrapper>
           {data.products.map((product: IProduct) => (
-            //   <div className="">
             <ProductCard key={product._id.toString()} product={product} />
-            //   </div>
           ))}
-        </div>
-        <NewsLetter />
+        </GridListWrapper>
+        {/* </div> */}
       </div>
     );
 };

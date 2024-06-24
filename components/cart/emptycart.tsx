@@ -2,13 +2,15 @@
 import { Plus, ShoppingBasket } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { H2, H3, Para } from "../ui/textui";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 const EmptyCart = () => {
   // const { data: session } = useSession();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+    <div className="flex min-h-screen flex-col items-center justify-center p-4">
       <div className="flex flex-col items-center justify-center gap-10">
-        <div className="flex flex-col gap-3 justify-center items-center">
+        <div className="flex flex-col items-center justify-center gap-3">
           <ShoppingBasket size="120" strokeWidth="1" />
           <div className="flex flex-col gap-1 md:gap-2">
             <H2 className="text-center text-xl md:text-3xl">
@@ -19,7 +21,7 @@ const EmptyCart = () => {
             </Para>
           </div>
         </div>
-        <div className="flex flex-col gap-2 w-full md:w-1/2">
+        <div className="flex w-full flex-col gap-2 md:w-1/2">
           {/* {!session && (
             <Button
               size="3"
@@ -30,10 +32,16 @@ const EmptyCart = () => {
               Sign In
             </Button>
           )} */}
-          <Button variant="outline" className="w-full flex gap-1">
+          <Link
+            href="/products"
+            className={cn(
+              "flex w-full gap-1",
+              buttonVariants({ variant: "outline" }),
+            )}
+          >
             <Plus size="18" />
             <span>Shop Now</span>
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

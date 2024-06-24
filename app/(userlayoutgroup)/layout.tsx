@@ -6,8 +6,8 @@ import { Inter } from "next/font/google";
 // const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "PrecomX - Admin Dashboard",
-  description: "App management admin dashboard",
+  title: "PremX",
+  description: "Premium ecommerce experience",
 };
 
 export default function ULayout({ children }: { children: React.ReactNode }) {

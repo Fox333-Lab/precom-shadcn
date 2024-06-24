@@ -9,7 +9,7 @@ const Cart = () => {
   console.log("Cart.jsx 1 : cartItems length : ", cartItems.length);
   return (
     <div>
-      <div className="">
+      <div className="pt-5">
         {cartItems.length > 0 ? (
           <ItemsCart cartItems={cartItems} />
         ) : (

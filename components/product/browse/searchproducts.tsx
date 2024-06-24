@@ -5,15 +5,17 @@ import React, { useState } from "react";
 import { TextBox } from "@/components/inputs";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SearchInputTypes } from "@/types/validation/search";
 
 const searchValidation = Yup.object({
   query: Yup.string().required("enter product name"),
 });
 
-const SearchProducts = ({ searchHandler, searchQuery }: any) => {
+const SearchProducts = ({ searchQuery }: any) => {
+  // const SearchProducts = ({ searchHandler, searchQuery }: any) => {
   const [query, setQuery] = useState(searchQuery);
+  const searchParams = useSearchParams(); // added for making search independent
   const [success, setSuccess] = useState("");
   const [error, seterror] = useState("");
   const router = useRouter();
@@ -23,7 +25,26 @@ const SearchProducts = ({ searchHandler, searchQuery }: any) => {
     const { name, value } = e.target;
     setQuery(value);
   };
-  const SearchHandler = async () => {
+  const filterSearchHandler = ({ search }: any) => {
+    console.log("filterHandler");
+    const params = new URLSearchParams(searchParams);
+    // const path = pathname;
+    console.log("path : ", path);
+    // search query starts here
+    if (search) {
+      console.log("first search : ", search);
+      params.set("search", search);
+    } else if (search == "") {
+      console.log("delete");
+      params.delete("search");
+    }
+    console.log("params.toString() : ", params.toString());
+    router.push(`${path}?${params.toString()}`, { scroll: false });
+  };
+  const searchHandler = (search: string) => {
+    filterSearchHandler({ search });
+  };
+  const OnSubmitHandler = async () => {
     // e.preventDefault();
     try {
       if (path !== "/products") {
@@ -42,7 +63,7 @@ const SearchProducts = ({ searchHandler, searchQuery }: any) => {
         query,
       }}
       validationSchema={searchValidation}
-      onSubmit={SearchHandler}
+      onSubmit={OnSubmitHandler}
     >
       {(props: FormikProps<SearchInputTypes>) => (
         <Form>
@@ -55,15 +76,17 @@ const SearchProducts = ({ searchHandler, searchQuery }: any) => {
               name="query"
               onChange={handleChange}
               value={query}
+              showErrorMsg={false}
+              className="w-96 shrink rounded-full border-none bg-slate-100 px-5 transition-all focus:bg-transparent dark:bg-slate-600 lg:block"
             />
-            <Button type="submit" variant="outline" size="icon">
-              <SearchIcon />
+            <Button type="submit" variant="outline" size="icon" rounded="full">
+              <SearchIcon size="18" className="text-primary" />
             </Button>
           </div>
-          <div>
+          {/* <div>
             {error && <span className="text-red-600">{error}</span>}
             {success && <span className="text-green-600">{success}</span>}
-          </div>
+          </div> */}
         </Form>
       )}
     </Formik>

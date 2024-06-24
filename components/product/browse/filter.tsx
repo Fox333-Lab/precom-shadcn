@@ -53,7 +53,7 @@ const Filter = ({
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant={"ghost"}>
-            <FilterIcon />
+            <FilterIcon strokeWidth={0.7} className="text-primary" />
           </Button>
         </SheetTrigger>
         <SheetContent side={"left"}>
@@ -97,7 +97,7 @@ const Filter = ({
           {styles && styles.length > 0 && <StylesFilter styles={styles} />}
           <PriceFilter priceFilterHandler={priceFilterHandler} />
           <SheetFooter>
-            <div className="flex justify-between w-full mt-8 gap-2">
+            <div className="mt-8 flex w-full justify-between gap-2">
               <Button className="flex-1">Apply</Button>
               <Button
                 className="flex-1"

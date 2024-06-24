@@ -7,10 +7,14 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { UserRound } from "lucide-react";
+import { Power, UserRound } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-const UserAccountMenus = () => {
+type UserAccountMenusPropsTypes = {
+  signOut: () => void;
+};
+
+const UserAccountMenus = ({ signOut }: UserAccountMenusPropsTypes) => {
   return (
     <div>
       <DropdownMenu>
@@ -22,20 +26,35 @@ const UserAccountMenus = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56 py-1">
           <DropdownMenuItem className="py-3">
-            <Link href="/profile" className="flex w-full items-start">
-              <UserRound className="mr-2 h-5 w-5" />
-              <span>My Account</span>
+            <Link href="/user/dashboard" className="flex w-full items-start">
+              <UserRound className="mr-2 h-5 w-5 text-primary" />
+              <span>Dashboard</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="py-3">
             <Link href="/profile" className="flex w-full items-start">
-              <UserRound className="mr-2 h-5 w-5" />
+              <UserRound className="mr-2 h-5 w-5 text-primary" />
+              <span>My Account</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="py-3">
+            <Link
+              href="/user/dashboard/orders"
+              className="flex w-full items-start"
+            >
+              <UserRound className="mr-2 h-5 w-5 text-primary" />
               <span>Orders</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Button variant="default" className="w-full" size="sm">
-              Logout
+            <Button
+              variant="default"
+              className="flex w-full items-center gap-2"
+              size="sm"
+              onClick={() => signOut()}
+            >
+              <Power size={18} />
+              <span>Logout</span>
             </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>

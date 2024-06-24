@@ -18,7 +18,7 @@ const ImageSwiper = ({ images }: { images: IImage[] }) => {
   return (
     <Card
       // className="flex overflow-hidden border-none h-full"
-      className="h-auto overflow-hidden bg-gray-100 border-none shadow-none"
+      className="h-auto overflow-hidden border-none bg-gray-100 shadow-none"
       onMouseEnter={() => {
         swiperRef?.current?.swiper.autoplay.start();
       }}
@@ -41,7 +41,7 @@ const ImageSwiper = ({ images }: { images: IImage[] }) => {
               src={image.url.toString()}
               alt="image"
               // className="object-cover w-full h-full"
-              className="w-1/2 h-auto inset-0 box-border border-none mx-auto"
+              className="inset-0 mx-auto box-border h-auto w-1/2 border-none"
             />
             {/* <Image
               src={image.url.toString()}

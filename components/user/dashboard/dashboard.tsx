@@ -1,30 +1,15 @@
 "use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { H1, H2, Para } from "@/components/ui/textui";
-import Link from "next/link";
+import { H2, Para } from "@/components/ui/textui";
 import { signOut, useSession } from "next-auth/react";
-import { useSWRFetch } from "@/lib/hooks/usefetch";
 import SummaryTiles from "./summarytiles";
 import { Button } from "@/components/ui/button";
 import { Power } from "lucide-react";
-import { redirect } from "next/navigation";
 
 const UserDashboard = () => {
   const { data: session, status } = useSession();
   const user = session?.user;
-  if (!session) {
-    redirect("/signin");
-  }
   return (
-    <div className="flex flex-col items-center gap-10">
+    <div className="flex flex-col items-center gap-10 py-5">
       <div className="flex flex-col items-center gap-4">
         <Para className="font-semibold">PROFILE</Para>
         <H2 className="font-bold">Welcome, {user?.name?.toString()}</H2>

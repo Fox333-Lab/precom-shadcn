@@ -46,7 +46,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <div className="hidden items-center gap-3 lg:flex">
               {isUser ? (
-                <UserAccountMenus signOut={signOut} />
+                <UserAccountMenus signOut={signOut} user={session?.user} />
               ) : (
                 <>
                   <Link
@@ -81,7 +81,7 @@ const Navbar = () => {
               <div
                 className={cn(
                   "absolute -end-2 -top-1 inline-flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-gray-600 text-xs font-bold text-white dark:border-gray-900",
-                  { "bg-red-600": cartCount > 0 },
+                  { "bg-primary": cartCount > 0 },
                 )}
               >
                 {cartCount.toString()}

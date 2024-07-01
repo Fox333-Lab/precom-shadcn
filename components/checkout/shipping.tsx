@@ -50,6 +50,7 @@ type ShippingPropsTypes = {
   user: IUser;
   addresses: IAddress[];
   setAddresses: React.Dispatch<React.SetStateAction<IAddress[]>>;
+  className?: string;
 };
 
 const Shipping = ({
@@ -58,6 +59,7 @@ const Shipping = ({
   user,
   addresses,
   setAddresses,
+  className,
 }: ShippingPropsTypes) => {
   const [shipping, setShipping] = useState(initialValues);
   const [isVisible, setIsVisible] = useState(false);
@@ -151,7 +153,7 @@ const Shipping = ({
     setAddresses(res.addresses);
   };
   return (
-    <div>
+    <div className={cn("", className)}>
       <div className="">
         <RadioGroup defaultValue="" onValueChange={changeActiveHandler}>
           {addresses.map((address, i) => {
@@ -164,8 +166,8 @@ const Shipping = ({
                   })}
                 >
                   <CardHeader className="pb-1">
-                    <CardTitle className="flex gap-2 items-center justify-between">
-                      <div className="flex gap-2 items-center">
+                    <CardTitle className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
                         <RadioGroupItem
                           value={address._id.toString()}
                           id={i.toString()}
@@ -194,16 +196,16 @@ const Shipping = ({
                       </Button>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="ml-6 tracking-wide text-md text-muted-foreground">
+                  <CardContent className="text-md ml-6 tracking-wide text-muted-foreground">
                     <Para>
                       {address.address1}, {address.address2}, {address.city},
-                      {address.state}, ${address.zipcode?.toString()},
+                      {address.state}, {address.zipcode?.toString()},
                       {address.country}
                     </Para>
                   </CardContent>
                   {address.active && (
                     <CardFooter>
-                      <div className="animate-c-pulse2 text-xs px-2 py-0.5 font-medium text-white tracking-wide bg-green-500 inline-block rounded-full shadow-[0_0_1px_1px_rgba(0, 0, 0, 0.1)]">
+                      <div className="shadow-[0_0_1px_1px_rgba(0, 0, 0, 0.1)] inline-block animate-c-pulse2 rounded-full bg-green-500 px-2 py-0.5 text-xs font-medium tracking-wide text-white">
                         active
                       </div>
                     </CardFooter>
@@ -235,7 +237,7 @@ const Shipping = ({
         >
           {(props: FormikProps<ShippingInputTypes>) => (
             <Form>
-              <div className="flex flex-col gap-4 mt-7">
+              <div className="mt-7 flex flex-col gap-4">
                 <SingularSelect
                   name="country"
                   // value={country}

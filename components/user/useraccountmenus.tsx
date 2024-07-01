@@ -3,6 +3,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
@@ -12,19 +14,25 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 type UserAccountMenusPropsTypes = {
   signOut: () => void;
+  user: any;
 };
 
-const UserAccountMenus = ({ signOut }: UserAccountMenusPropsTypes) => {
+const UserAccountMenus = ({ signOut, user }: UserAccountMenusPropsTypes) => {
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarImage
+              src={user?.image?.toString()}
+              alt={user?.name?.toString()}
+            />
+            <AvatarFallback>{user?.name?.substring(0, 1)}</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56 py-1">
+          <DropdownMenuLabel>Welcome {user?.name}!</DropdownMenuLabel>
+          <DropdownMenuSeparator />
           <DropdownMenuItem className="py-3">
             <Link href="/user/dashboard" className="flex w-full items-start">
               <UserRound className="mr-2 h-5 w-5 text-primary" />

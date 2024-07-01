@@ -12,6 +12,8 @@ import {
 import { TextBox } from "../inputs";
 import { H3 } from "../ui/textui";
 import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Gitlab } from "lucide-react";
 
 const initialValues: ResetPasswordInitialValueTypes = {
   new_password: "",
@@ -42,7 +44,7 @@ const ResetPasswordForm = ({ resetid }: { resetid: string }) => {
       .required()
       .oneOf(
         [Yup.ref("new_password")],
-        "Entry should match with password field"
+        "Entry should match with password field",
       ),
   });
 
@@ -77,44 +79,56 @@ const ResetPasswordForm = ({ resetid }: { resetid: string }) => {
   };
 
   return (
-    <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-      <H3 className="text-center">Reset Password</H3>
-      <Formik
-        enableReinitialize
-        initialValues={{ new_password, conf_password }}
-        validationSchema={passwordValidation}
-        onSubmit={ResetPasswordHandler}
-      >
-        {(props: FormikProps<ResetPasswordInputTypes>) => (
-          <Form>
-            <div className="flex flex-col gap-5">
-              <TextBox
-                type="password"
-                // label="New Password"
-                placeholder="enter new password"
-                iconName="Lock"
-                name="new_password"
-                onChange={handleChange}
-              />
-              <TextBox
-                type="password"
-                // label="Confirm Password"
-                placeholder="confirm new password"
-                iconName="Lock"
-                name="conf_password"
-                onChange={handleChange}
-              />
-              <Button type="submit" className="w-full cursor-pointer">
-                Reset
-              </Button>
-              <div>
-                {error && <span className="text-red-600">{error}</span>}
-                {success && <span className="text-green-600">{success}</span>}
-              </div>
-            </div>
-          </Form>
-        )}
-      </Formik>
+    <div className="sm:20 flex w-full flex-col gap-8 p-8 md:p-52 lg:w-1/2 lg:p-36">
+      {/* <H3 className="text-center">Reset Password</H3> */}
+      <div className="flex items-center justify-center">
+        <Gitlab size={60} strokeWidth={0.8} />
+      </div>
+      <Card className="px-2">
+        <CardHeader>
+          <CardTitle className="text-center">Reset Password</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Formik
+            enableReinitialize
+            initialValues={{ new_password, conf_password }}
+            validationSchema={passwordValidation}
+            onSubmit={ResetPasswordHandler}
+          >
+            {(props: FormikProps<ResetPasswordInputTypes>) => (
+              <Form>
+                <div className="flex flex-col gap-5">
+                  <TextBox
+                    type="password"
+                    label="New Password"
+                    placeholder="enter new password"
+                    iconName="Lock"
+                    name="new_password"
+                    onChange={handleChange}
+                  />
+                  <TextBox
+                    type="password"
+                    label="Confirm Password"
+                    placeholder="confirm new password"
+                    iconName="Lock"
+                    name="conf_password"
+                    onChange={handleChange}
+                  />
+                  <Button type="submit" className="mt-3 w-full cursor-pointer">
+                    Reset
+                  </Button>
+                  <div>
+                    {error && <span className="text-red-600">{error}</span>}
+                    {success && (
+                      <span className="text-green-600">{success}</span>
+                    )}
+                  </div>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </CardContent>
+      </Card>
     </div>
   );
 };

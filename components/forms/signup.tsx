@@ -93,7 +93,7 @@ const SignUpForm = () => {
     redirect(searchParams.get("callbackUrl") || "/cart");
   }
   return (
-    <div className="sm:20 flex w-full flex-col gap-6 p-8 md:p-52 lg:w-1/2 lg:p-36">
+    <div className="sm:20 flex w-full flex-col gap-8 p-8 md:p-52 lg:w-1/2 lg:p-36">
       {/* <H3 className="text-center">Sign Up</H3> */}
       <div className="flex items-center justify-center">
         <Gitlab size={60} strokeWidth={0.8} />

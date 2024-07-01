@@ -10,6 +10,7 @@ import { applyCoupon } from "@/lib/functions/shipping";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/lib/functions/order";
+import { H4, H5 } from "../ui/textui";
 
 type SummaryPropsTypes = {
   totalAfterDiscount: string;
@@ -18,6 +19,7 @@ type SummaryPropsTypes = {
   cart: ICart;
   paymentMethod: string;
   selectedAddress: IAddress;
+  className?: string;
 };
 
 const Summary = ({
@@ -27,6 +29,7 @@ const Summary = ({
   cart,
   paymentMethod,
   selectedAddress,
+  className,
 }: SummaryPropsTypes) => {
   const [coupon, setCoupon] = useState<string>("");
   const [discount, setDiscount] = useState<string>("");
@@ -36,6 +39,7 @@ const Summary = ({
   const validateCoupon = Yup.object({
     coupon: Yup.string().required("Coupon is required"),
   });
+  const total = Number(cart.cartTotal) + Number(cart.shippingFee);
   const applyCouponHandler = async () => {
     console.log("In summary.tsx applyCouponHandler");
     if (coupon == "") {
@@ -69,7 +73,7 @@ const Summary = ({
         selectedAddress,
         paymentMethod,
         totalAfterDiscount,
-        coupon
+        coupon,
       );
       console.log("placeOrderHandler : ", res);
       router.push(`/order/${res.order_id}`);
@@ -78,8 +82,10 @@ const Summary = ({
       setOrderError(error.response.data.message);
     }
   };
+
+  console.log("totalAfterDiscount :>> ", totalAfterDiscount);
   return (
-    <div>
+    <div className={cn("flex flex-col gap-3", className)}>
       <Formik
         enableReinitialize
         initialValues={{ coupon }}
@@ -88,8 +94,8 @@ const Summary = ({
       >
         {(props: FormikProps<CouponInputTypes>) => (
           <Form>
-            <div className="flex flex-col gap-3">
-              <div className="flex flex-col gap-1">
+            <div className="flex items-end gap-3">
+              <div className="flex flex-1 flex-col gap-1">
                 <TextBox
                   type="text"
                   label="Coupon"
@@ -99,43 +105,41 @@ const Summary = ({
                   iconName="this property currently not used"
                   className={cn("", { "border border-red-400": error != "" })}
                 />
-                <span className={cn("hidden text-sm", { block: error != "" })}>
+                {/* <span className={cn("hidden text-sm", { block: error != "" })}>
                   {error && <span className="text-red-500">*{error}</span>}
-                </span>
+                </span> */}
               </div>
 
               <Button type="submit" className="">
                 Apply
               </Button>
             </div>
-
-            <div className="flex flex-col mt-2">
-              <div className="flex gap-2">
-                <span>Total :</span>
-                <span>{cart.cartTotal.toFixed(2)}</span>
-              </div>
-              {Number(discount) > 0 && (
-                <div className="flex gap-2">
-                  <span>Coupon Applied :</span>
-                  <span className="text-green-500 font-semibold">
-                    -{discount}%
-                  </span>
-                </div>
-              )}
-              {totalAfterDiscount != "" &&
-                Number(totalAfterDiscount) < Number(cart.cartTotal) && (
-                  <div className="flex gap-2">
-                    <span>Total After Discount :</span>
-                    <span>{totalAfterDiscount}</span>
-                  </div>
-                )}
-            </div>
           </Form>
         )}
       </Formik>
+      <div className="mt-2 flex flex-col gap-2">
+        <div className="flex items-center gap-3">
+          <span>Total :</span>
+          <H5>{total.toFixed(2)}</H5>
+        </div>
+        {Number(discount) > 0 && (
+          <div className="flex items-center gap-2">
+            <span>Coupon Applied :</span>
+            <H5 className="text-green-500">-{discount}%</H5>
+          </div>
+        )}
 
+        {totalAfterDiscount &&
+          totalAfterDiscount != "" &&
+          Number(totalAfterDiscount) < Number(total) && (
+            <div className="flex items-center gap-2">
+              <span>Total After Discount :</span>
+              <H5>{totalAfterDiscount}</H5>
+            </div>
+          )}
+      </div>
       <div className="mt-2">
-        <Button type="submit" className="" onClick={() => placeOrderHandler()}>
+        <Button type="submit" size="full" onClick={() => placeOrderHandler()}>
           Place Order
         </Button>
       </div>

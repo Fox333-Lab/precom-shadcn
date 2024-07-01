@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { H4, H5, H6, Para } from "../ui/textui";
+import { H1, H2, H3, H4, H5, H6, Para } from "../ui/textui";
 import { cn } from "@/lib/utils";
 import { Separator } from "../ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,6 +21,7 @@ import {
 } from "@paypal/react-paypal-js";
 import { StripePay } from "../payment";
 import axios from "axios";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 type OrderPropsTypes = {
   data: IOrder;
@@ -49,7 +50,7 @@ const Order = ({ data }: OrderPropsTypes) => {
 
   const createOrderHandler = async (
     data: any,
-    actions: any
+    actions: any,
   ): Promise<string> => {
     console.log("in createOrderHandler");
     return actions.order
@@ -78,7 +79,7 @@ const Order = ({ data }: OrderPropsTypes) => {
           {
             details,
             order_id: orderData._id.toString(),
-          }
+          },
         );
         console.log("first data : ", data);
         dispatch({ type: "PAY_SUCCESS", payload: data });
@@ -113,237 +114,267 @@ const Order = ({ data }: OrderPropsTypes) => {
   }, [order]);
 
   return (
-    <div className="flex flex-col justify-between gap-12 md:flex-row">
-      <div style={{ flexGrow: 6 }}>
-        <div className="flex flex-col">
-          <div className="flex gap-2">
-            <span>Order Status</span>
-            <span>:</span>
-            <span
-              className={cn("font-medium", {
-                "text-orange-500":
-                  orderData.status.toLocaleLowerCase() === "pending",
-                "text-green-500":
-                  orderData.status.toLocaleLowerCase() === "delivered",
-                "text-red-500":
-                  orderData.status.toLocaleLowerCase() === "cancelled",
-                "text-yellow-300":
-                  orderData.status.toLocaleLowerCase() === "processing",
-                "text-yellow-500":
-                  orderData.status.toLocaleLowerCase() === "shipped",
-              })}
-            >
-              {orderData.status}
-            </span>
+    <div className="flex flex-col gap-10">
+      <H1 className="text-center">Checkout</H1>
+      <div className="flex flex-col justify-between gap-12 md:flex-row">
+        <div style={{ flexGrow: 6 }} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-1">
+            <div className="flex gap-2">
+              <span>Order Status</span>
+              <span>:</span>
+              <span
+                className={cn("font-medium", {
+                  "text-orange-500":
+                    orderData.status.toLocaleLowerCase() === "pending",
+                  "text-green-500":
+                    orderData.status.toLocaleLowerCase() === "delivered",
+                  "text-red-500":
+                    orderData.status.toLocaleLowerCase() === "cancelled",
+                  "text-yellow-300":
+                    orderData.status.toLocaleLowerCase() === "processing",
+                  "text-yellow-500":
+                    orderData.status.toLocaleLowerCase() === "shipped",
+                })}
+              >
+                {orderData.status}
+              </span>
+            </div>
+            <div className="flex gap-2">
+              <span>Payment Status</span>
+              <span>:</span>
+              <span
+                className={cn("font-semibold", {
+                  "text-green-400": orderData.isPaid === true,
+                  "text-orange-500": orderData.isPaid === false,
+                })}
+              >
+                {orderData.isPaid ? "Paid" : "Pending"}
+              </span>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <span>Payment Status</span>
-            <span>:</span>
-            <span
-              className={cn("font-semibold", {
-                "text-green-400": orderData.isPaid === true,
-                "text-orange-500": orderData.isPaid === false,
-              })}
-            >
-              {orderData.isPaid ? "Paid" : "Pending"}
-            </span>
-          </div>
-        </div>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Item</TableHead>
-              <TableHead>Quantity</TableHead>
-              <TableHead>Price</TableHead>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            {orderProducts &&
-              orderProducts.map((orderProduct: any) => {
-                return (
-                  <TableRow key={orderProduct._id}>
-                    <TableCell>
-                      <div className="flex gap-4 items-center">
-                        <div className="h-24 w-24 bg-gray-50 rounded-md border border-gray-200 overflow-hidden">
-                          <img
-                            src={orderProduct.image.toString()}
-                            alt={orderProduct.name.toString()}
-                            className="w-full object-cover aspect-square rounded-md"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <H4>
-                            {orderProduct.name.length > 30
-                              ? `${orderProduct.name
-                                  .toString()
-                                  .substring(0, 30)}`
-                              : orderProduct.name}
-                          </H4>
-                          <div className="flex flex-col gap-0">
-                            <div className="flex gap-1">
-                              <span color="gray">Size</span>
-                              <span className="font-medium">:</span>
-                              <span className="font-medium">
-                                {orderProduct.size}
-                              </span>
+          <div className="rounded-lg border">
+            <Table className="">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Item</TableHead>
+                  <TableHead>Quantity</TableHead>
+                  <TableHead>Price</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {orderProducts &&
+                  orderProducts.map((orderProduct: any) => {
+                    return (
+                      <TableRow key={orderProduct._id}>
+                        <TableCell>
+                          <div className="flex items-center gap-4">
+                            <div className="h-24 w-24 overflow-hidden rounded-md border border-gray-200 bg-gray-50">
+                              <img
+                                src={orderProduct.image.toString()}
+                                alt={orderProduct.name.toString()}
+                                className="aspect-square w-full rounded-md object-cover"
+                              />
                             </div>
-                            <div className="flex gap-1">
-                              <span color="gray">Color</span>
-                              <span className="font-medium">:</span>
-                              <span className="font-medium">
-                                {orderProduct.color.color}
-                              </span>
-                            </div>
-                            <div className="flex gap-1">
-                              <span color="gray">Price</span>
-                              <span className="font-medium">:</span>
-                              <span className="font-medium">
-                                {orderProduct.price}
-                              </span>
+                            <div className="flex flex-col gap-2">
+                              <H4>
+                                {orderProduct.name.length > 30
+                                  ? `${orderProduct.name
+                                      .toString()
+                                      .substring(0, 30)}`
+                                  : orderProduct.name}
+                              </H4>
+                              <div className="flex flex-col gap-0">
+                                <div className="flex gap-1">
+                                  <span color="gray">Size</span>
+                                  <span className="font-medium">:</span>
+                                  <span className="font-medium">
+                                    {orderProduct.size}
+                                  </span>
+                                </div>
+                                <div className="flex gap-1">
+                                  <span color="gray">Color</span>
+                                  <span className="font-medium">:</span>
+                                  <span className="font-medium">
+                                    {orderProduct.color.color}
+                                  </span>
+                                </div>
+                                <div className="flex gap-1">
+                                  <span color="gray">Price</span>
+                                  <span className="font-medium">:</span>
+                                  <span className="font-medium">
+                                    {orderProduct.price}
+                                  </span>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell>{orderProduct.qty}</TableCell>
-                    <TableCell>
-                      {orderProduct.price * orderProduct.qty}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            {/* total */}
-            <TableRow>
-              <TableCell colSpan={2}>Subtotal</TableCell>
-              <TableCell align="right">
-                {/* {orderProducts.reduce(
+                        </TableCell>
+                        <TableCell>{orderProduct.qty}</TableCell>
+                        <TableCell>
+                          {orderProduct.price * orderProduct.qty}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {/* total */}
+                <TableRow>
+                  <TableCell colSpan={2}>Subtotal</TableCell>
+                  <TableCell align="right">
+                    {/* {orderProducts.reduce(
                     (acc: number, item: IOrderProduct) =>
                     acc + item.price * item.qty,
                     0
                 )} */}
-                {orderData.totalBeforeDiscount.toString()}
-              </TableCell>
-            </TableRow>
-            {orderData.couponApplied && (
-              <TableRow>
-                <TableCell colSpan={2}>
-                  <div className="flex gap-1">
-                    <span color="gray"> Coupon Applied</span>
-                    <span className="font-medium">:</span>
-                    <span className="text-green-500 font-medium">
-                      {orderData.couponApplied.toString()}
-                    </span>
+                    {orderData.totalBeforeDiscount.toString()}
+                  </TableCell>
+                </TableRow>
+                {orderData.couponApplied && (
+                  <TableRow>
+                    <TableCell colSpan={2}>
+                      <div className="flex gap-1">
+                        <span color="gray"> Coupon Applied</span>
+                        <span className="font-medium">:</span>
+                        <span className="font-medium text-green-500">
+                          {orderData.couponApplied.toString()}
+                        </span>
+                      </div>
+                    </TableCell>
+                    <TableCell align="right">
+                      -{" "}
+                      {(
+                        Number(orderData.totalBeforeDiscount) -
+                        Number(orderData.total)
+                      ).toFixed(2)}
+                    </TableCell>
+                  </TableRow>
+                )}
+                <TableRow>
+                  <TableCell colSpan={2}>Tax</TableCell>
+                  <TableCell align="right">
+                    + {orderData.taxPrice.toString()}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TableCell colSpan={2}>
+                    <H4>Total</H4>
+                  </TableCell>
+                  <TableCell align="right">
+                    <H4>{orderData.total.toString()}</H4>
+                  </TableCell>
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </div>
+        </div>
+        <div style={{ flexGrow: 4 }} className="">
+          <div className="flex flex-col gap-10">
+            <div className="flex items-center gap-2">
+              <Avatar>
+                <AvatarImage src={user?.image.toString()} />
+                <AvatarFallback>{user?.name.substring(0, 1)}</AvatarFallback>
+              </Avatar>
+              <div className="flex items-center gap-1">
+                <H6>{user.name}</H6>
+                <Para>({user.email})</Para>
+              </div>
+            </div>
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3">
+                <H4>Billing Address</H4>
+                {/* <Separator className="my-2" /> */}
+                <Card>
+                  <CardHeader className="py-3">
+                    <H6>
+                      {orderData.shippingAddress.firstname}{" "}
+                      {orderData.shippingAddress.lastname}
+                    </H6>
+                  </CardHeader>
+                  <CardContent>
+                    {/* <div className="flex gap-1">
+                    <H6>
+                      {orderData.shippingAddress.firstname}{" "}
+                      {orderData.shippingAddress.lastname}
+                    </H6>
+                  </div> */}
+                    <Para className="flex flex-col">
+                      <span>
+                        {orderData.shippingAddress.address1},{" "}
+                        {orderData.shippingAddress.address2}
+                      </span>
+                      <span>
+                        {orderData.shippingAddress.state},{" "}
+                        {orderData.shippingAddress.city} -{" "}
+                        {orderData.shippingAddress.zipcode}
+                      </span>
+                      <span>{orderData.shippingAddress.country}</span>
+                    </Para>
+                  </CardContent>
+                </Card>
+              </div>
+              <div className="flex flex-col gap-3">
+                <H4>Shipping Address</H4>
+                {/* <Separator className="my-2" /> */}
+                <Card>
+                  <CardHeader className="py-3">
+                    <H6>
+                      {orderData.shippingAddress.firstname}{" "}
+                      {orderData.shippingAddress.lastname}
+                    </H6>
+                  </CardHeader>
+                  <CardContent>
+                    {/* <div className="flex gap-1">
+                    <H6>
+                      {orderData.shippingAddress.firstname}{" "}
+                      {orderData.shippingAddress.lastname}
+                    </H6>
+                  </div> */}
+                    <Para className="flex flex-col">
+                      <span>
+                        {orderData.shippingAddress.address1},{" "}
+                        {orderData.shippingAddress.address2}
+                      </span>
+                      <span>
+                        {orderData.shippingAddress.state},{" "}
+                        {orderData.shippingAddress.city} -{" "}
+                        {orderData.shippingAddress.zipcode}
+                      </span>
+                      <span>{orderData.shippingAddress.country}</span>
+                    </Para>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+            {!orderData.isPaid && (
+              <div>
+                {orderData.paymentMethod.toLocaleLowerCase() === "paypal" && (
+                  <div>
+                    {isPending ? (
+                      <span>loading...</span>
+                    ) : (
+                      <PayPalButtons
+                        createOrder={createOrderHandler}
+                        onApprove={onApproveHandler}
+                        onError={onErrorHandler}
+                      ></PayPalButtons>
+                    )}
                   </div>
-                </TableCell>
-                <TableCell align="right">
-                  -{" "}
-                  {(
-                    Number(orderData.totalBeforeDiscount) -
-                    Number(orderData.total)
-                  ).toFixed(2)}
-                </TableCell>
-              </TableRow>
+                )}
+                {orderData.paymentMethod.toLocaleLowerCase() === "stripe" && (
+                  <div>
+                    <StripePay
+                      total={Number(orderData.total)}
+                      orderId={orderData._id.toString()}
+                      stripePublicKey={
+                        "pk_test_51OoOyfSCNDS3BJgKa9ZO5ofvMtBUWXlRlqqfpevFAFApKQh3XT5R6V94o5nLULC2iHVSLEFy3KZwmCXbO395xZ5n00ZeZPOs7p"
+                      }
+                    />
+                  </div>
+                )}
+              </div>
             )}
-            <TableRow>
-              <TableCell colSpan={2}>Tax</TableCell>
-              <TableCell align="right">
-                + {orderData.taxPrice.toString()}
-              </TableCell>
-            </TableRow>
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan={2}>Total</TableCell>
-              <TableCell align="right">{orderData.total.toString()}</TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </div>
-      <div style={{ flexGrow: 4 }}>
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-2 items-center">
-            <Avatar>
-              <AvatarImage src={user.image.toString()} />
-              <AvatarFallback>{user.name.substring(0, 1)}</AvatarFallback>
-            </Avatar>
-            <div className="flex gap-1 items-center">
-              <H6>{user.name}</H6>
-              <Para>({user.email})</Para>
-            </div>
           </div>
-          <div>
-            <H4>Billing Address</H4>
-            <Separator className="my-2" />
-            <div className="flex gap-1">
-              <H6>
-                {orderData.shippingAddress.firstname}{" "}
-                {orderData.shippingAddress.lastname}
-              </H6>
-            </div>
-            <Para className="flex flex-col">
-              <span>
-                {orderData.shippingAddress.address1},{" "}
-                {orderData.shippingAddress.address2}
-              </span>
-              <span>
-                {orderData.shippingAddress.state},{" "}
-                {orderData.shippingAddress.city} -{" "}
-                {orderData.shippingAddress.zipcode}
-              </span>
-              <span>{orderData.shippingAddress.country}</span>
-            </Para>
-          </div>
-          <div>
-            <H4>Shipping Address</H4>
-            <Separator className="my-2" />
-            <div className="flex gap-1">
-              <H6>
-                {orderData.shippingAddress.firstname}{" "}
-                {orderData.shippingAddress.lastname}
-              </H6>
-            </div>
-            <Para className="flex flex-col">
-              <span>
-                {orderData.shippingAddress.address1},{" "}
-                {orderData.shippingAddress.address2}
-              </span>
-              <span>
-                {orderData.shippingAddress.state},{" "}
-                {orderData.shippingAddress.city} -{" "}
-                {orderData.shippingAddress.zipcode}
-              </span>
-              <span>{orderData.shippingAddress.country}</span>
-            </Para>
-          </div>
-          {!orderData.isPaid && (
-            <div>
-              {orderData.paymentMethod.toLocaleLowerCase() === "paypal" && (
-                <div>
-                  {isPending ? (
-                    <span>loading...</span>
-                  ) : (
-                    <PayPalButtons
-                      createOrder={createOrderHandler}
-                      onApprove={onApproveHandler}
-                      onError={onErrorHandler}
-                    ></PayPalButtons>
-                  )}
-                </div>
-              )}
-              {orderData.paymentMethod.toLocaleLowerCase() === "stripe" && (
-                <div>
-                  <StripePay
-                    total={Number(orderData.total)}
-                    orderId={orderData._id.toString()}
-                    stripePublicKey={
-                      "pk_test_51OoOyfSCNDS3BJgKa9ZO5ofvMtBUWXlRlqqfpevFAFApKQh3XT5R6V94o5nLULC2iHVSLEFy3KZwmCXbO395xZ5n00ZeZPOs7p"
-                    }
-                  />
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </div>

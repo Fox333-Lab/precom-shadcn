@@ -9,6 +9,14 @@ import { TextBox } from "../inputs";
 import { H3 } from "../ui/textui";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { Gitlab } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 
 const emailValidation = Yup.object({
   email: Yup.string().required().email(),
@@ -43,46 +51,65 @@ const ForgotPasswordForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-      <H3 className="text-center">Forgot Password?</H3>
-      <Formik
-        enableReinitialize
-        initialValues={{
-          email,
-        }}
-        validationSchema={emailValidation}
-        onSubmit={ForgotPasswordHandler}
-      >
-        {(props: FormikProps<ForgetPasswordInputTypes>) => (
-          <Form>
-            <div className="flex flex-col gap-5">
-              <TextBox
-                type="email"
-                label="Email"
-                placeholder="enter email"
-                iconName="AtSign"
-                name="email"
-                onChange={handleChange}
-              />
-              <Button type="submit" className="w-full cursor-pointer">
-                Submit
-              </Button>
-              <div>
-                {error && <span className="text-red-600">{error}</span>}
-                {success && <span className="text-green-600">{success}</span>}
-              </div>
-              <div className="flex justify-center items-center gap-4">
-                <Separator orientation="horizontal" />
-                <span>OR</span>
-                <Separator orientation="horizontal" />
-              </div>
-              <Link href="/auth/signin" className="mx-auto">
-                Sign In
-              </Link>
+    <div className="sm:20 flex w-full flex-col gap-8 p-8 md:p-52 lg:w-1/2 lg:p-36">
+      {/* <H3 className="text-center">Forgot Password?</H3> */}
+      <div className="flex items-center justify-center">
+        <Gitlab size={60} strokeWidth={0.8} />
+      </div>
+      <Card className="px-2">
+        <CardHeader>
+          <CardTitle className="text-center">Forgot Password?</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Formik
+            enableReinitialize
+            initialValues={{
+              email,
+            }}
+            validationSchema={emailValidation}
+            onSubmit={ForgotPasswordHandler}
+          >
+            {(props: FormikProps<ForgetPasswordInputTypes>) => (
+              <Form>
+                <div className="flex flex-col gap-5">
+                  <TextBox
+                    type="email"
+                    label="Email"
+                    placeholder="enter email"
+                    iconName="AtSign"
+                    name="email"
+                    onChange={handleChange}
+                  />
+                  <Button type="submit" className="mt-3 w-full cursor-pointer">
+                    Submit
+                  </Button>
+                  <div>
+                    {error && <span className="text-red-600">{error}</span>}
+                    {success && (
+                      <span className="text-green-600">{success}</span>
+                    )}
+                  </div>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </CardContent>
+        {/* <CardFooter>
+          {/ * <div className="flex w-full flex-col">
+            <div className="flex w-full items-center justify-center gap-4">
+              <Separator orientation="horizontal" />
+              <span>OR</span>
+              <Separator orientation="horizontal" />
             </div>
-          </Form>
-        )}
-      </Formik>
+            <Link href="/auth/signin" className="mx-auto">
+              Sign In
+            </Link>
+          </div> * /}
+
+          {/ * <div>{success && <span>{success}</span>}</div>
+      <div>{error && <span className="text-red-600">{error}</span>}</div> * /}
+        </CardFooter> */}
+      </Card>
     </div>
   );
 };

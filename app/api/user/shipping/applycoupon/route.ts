@@ -27,12 +27,11 @@ export const POST = async (req: NextRequest) => {
       await db.DisconnectDB();
       return new NextResponse(JSON.stringify({ message: "Invalid Coupon" }));
     }
-    const { cartTotal } = await Cart.findOne({ user: userId });
+    const { cartTotal, shippingFee } = await Cart.findOne({ user: userId });
     console.log("cartTotal : ", cartTotal);
-    let totalAfterDiscount = (
-      cartTotal -
-      (cartTotal * checkCoupon.discount) / 100
-    ).toFixed(2);
+    let totalAfterDiscount =
+      cartTotal - (cartTotal * checkCoupon.discount) / 100;
+    totalAfterDiscount = (totalAfterDiscount + shippingFee).toFixed(2);
     console.log("totalAfterDiscount : ", totalAfterDiscount);
 
     await db.DisconnectDB();
@@ -41,7 +40,7 @@ export const POST = async (req: NextRequest) => {
       JSON.stringify({ totalAfterDiscount, discount: checkCoupon.discount }),
       {
         status: 200,
-      }
+      },
     );
   } catch (err: any) {
     await db.DisconnectDB();

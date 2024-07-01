@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: { userid: string } }
+  { params }: { params: { userid: string } },
 ) => {
   try {
     await db.ConnectDB();
@@ -20,6 +20,7 @@ export const GET = async (
       const user = (await User.findById(uid)) as IUser;
       //console.log("api/user/cart/[userid] user.address : ", user.address);
       const cart = (await Cart.findOne({ user: user._id })) as ICart;
+      // const cart = await Cart.findOne({ user: user._id }).lean();
       console.log("api/user/cart/[userid] cart : ", cart);
 
       await db.DisconnectDB();

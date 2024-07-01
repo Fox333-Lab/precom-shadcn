@@ -42,6 +42,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { toast } from "sonner";
 
 const Details = ({ params }: { params: { slug: string } }) => {
   const [activeImg, setActiveImg] = useState("");
@@ -87,10 +88,12 @@ const Details = ({ params }: { params: { slug: string } }) => {
     if (pqty > pdata.quantity) {
       //setError("Quantity not available in stock");
       console.log("Quantity not available in stock");
+      toast.error("Quantity not available in stock");
       return;
     } else if (pqty < 1) {
       //setError("Out of stock");
-      console.log("Out of stock");
+      console.log("Item out of stock");
+      toast.error("Item out of stock");
       return;
     } else {
       let _uid = `${pdata._id}_${pdata.style}_${pdata.size}`;
@@ -106,8 +109,10 @@ const Details = ({ params }: { params: { slug: string } }) => {
         });
         console.log("newCart : ", newCart);
         dispatch(updateCart(newCart));
+        toast.success("Cart updated successfully");
       } else {
         dispatch(addToCart({ ...pdata, pqty, size: pdata.size, _uid }));
+        toast.success("Item added to cart successfully");
       }
     }
     if (pdata) {

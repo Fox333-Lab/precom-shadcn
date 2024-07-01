@@ -54,7 +54,7 @@ const ItemsCart = ({ cartItems }: { cartItems: ICartProduct[] }) => {
     if (selected.length > 0) {
       setShippingFee(selected.reduce((a, c: any) => a + Number(c.shipping), 0));
       setSubTotal(
-        selected.reduce((a, c: any) => a + Number(c.price) * Number(c.pqty), 0)
+        selected.reduce((a, c: any) => a + Number(c.price) * Number(c.pqty), 0),
       );
       // let ttotal = selected.reduce((a, c) => a + c.price * c.pqty, 0);
       // ttotal = ttotal + shippingFee;
@@ -76,7 +76,7 @@ const ItemsCart = ({ cartItems }: { cartItems: ICartProduct[] }) => {
   const saveCartToDBHandler = async () => {
     if (session) {
       console.log("itemscart : saveCartToDBHandler : ", session);
-      const res = await saveCartToDB(selected);
+      const res = await saveCartToDB(selected, shippingFee);
       if (res != null) {
         console.log("items cart : saveCartToDBHandler : res :", res);
       }

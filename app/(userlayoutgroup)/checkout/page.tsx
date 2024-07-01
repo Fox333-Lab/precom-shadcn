@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 const CheckoutPage = () => {
   const { data: session, status } = useSession();
   const { data, error, isLoading } = useSWRFetch(
-    `/api/user/cart/${session?.user?.uid}`
+    `/api/user/cart/${session?.user?.uid}`,
   );
   if (isLoading) return <div>loading...</div>;
   if (error) {

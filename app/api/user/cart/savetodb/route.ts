@@ -16,8 +16,10 @@ export const POST = async (req: NextRequest) => {
     console.log("in add to cart post request");
     await db.ConnectDB();
     console.log("in add to cart : after connectdb");
-    const { cart }: { cart: ICartProduct[] } = await req.json();
+    const { cart, shippingFee }: { cart: ICartProduct[]; shippingFee: number } =
+      await req.json();
     console.log("in add to cart post request : ", cart);
+    console.log("in add to cart post request : ", shippingFee);
     let products: ICartProduct[] = [];
     let user = await User.findById(userId);
     console.log("in add to cart post request : user : ", user);
@@ -30,11 +32,11 @@ export const POST = async (req: NextRequest) => {
       "in add to cart post request : starting for loop : cart.length : ",
       cart.length,
       " / deleted : ",
-      existing_cart
+      existing_cart,
     );
     for (let i = 0; i < cart.length; i++) {
       let dbProduct: IProduct | null = await Product.findById(
-        cart[i]._id
+        cart[i]._id,
       ).lean();
       console.log("in add to cart post request found dbProduct : ");
       if (!dbProduct) {
@@ -52,11 +54,11 @@ export const POST = async (req: NextRequest) => {
       };
       console.log(
         "in add to cart post request : before image / cart[i].pqty",
-        cart[i].pqty
+        cart[i].pqty,
       );
       console.log(
         "in add to cart post request : before image / cart[i].style",
-        cart[i].style
+        cart[i].style,
       );
 
       tempProduct.images = subProduct.images as unknown as IImage[];
@@ -66,17 +68,17 @@ export const POST = async (req: NextRequest) => {
       tempProduct.size = cart[i].size.toString();
       console.log("in add to cart post request : before price");
       let price = Number(
-        subProduct?.sizes.find((p) => p.size == cart[i].size)?.price
+        subProduct?.sizes.find((p) => p.size == cart[i].size)?.price,
       );
       console.log("in add to cart post request : before temp price");
       tempProduct.price = Number(
         subProduct?.discount > 0
           ? (price - price / Number(subProduct?.discount)).toFixed(2)
-          : price.toFixed(2)
+          : price.toFixed(2),
       );
       console.log(
         "in add to cart post request: pushing tempProduct : ",
-        tempProduct
+        tempProduct,
       );
       products.push(tempProduct);
       console.log("in add to cart post request: pushing products : ", products);
@@ -89,14 +91,16 @@ export const POST = async (req: NextRequest) => {
     await new Cart({
       products,
       cartTotal: cartTotal.toFixed(2),
+      shippingFee: shippingFee,
       user: user._id,
     }).save();
+    console.log("saved");
     await db.DisconnectDB();
     return new NextResponse(
       JSON.stringify({ message: "success", isAddedToCart: true }),
       {
         status: 200,
-      }
+      },
     );
   } catch (err: any) {
     await db.DisconnectDB();
@@ -104,7 +108,7 @@ export const POST = async (req: NextRequest) => {
       JSON.stringify({ message: err.message, isAddedToCart: false }),
       {
         status: 500,
-      }
+      },
     );
   }
 };

@@ -10,9 +10,14 @@ import { H4 } from "../ui/textui";
 type PaymentPropsTypes = {
   paymentMethod: string;
   setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
+  className?: string;
 };
 
-const Payment = ({ paymentMethod, setPaymentMethod }: PaymentPropsTypes) => {
+const Payment = ({
+  paymentMethod,
+  setPaymentMethod,
+  className,
+}: PaymentPropsTypes) => {
   console.log("paymentMethod : ", paymentMethod);
   const changePaymentMethod = async (name: string) => {
     console.log("In changePaymentMethod : ", name);
@@ -20,14 +25,15 @@ const Payment = ({ paymentMethod, setPaymentMethod }: PaymentPropsTypes) => {
   };
 
   return (
-    <div>
+    <div className={cn("", className)}>
       <RadioGroup
         defaultValue={paymentMethod}
         onValueChange={changePaymentMethod}
+        className="flex gap-4"
       >
         {paymentMethods.map((method) => (
-          <Card key={method.id} className={cn("shadow-none p-2")}>
-            <div className="flex gap-2 items-center">
+          <Card key={method.id} className={cn("p-2 shadow-none")}>
+            <div className="flex items-center gap-2">
               <RadioGroupItem
                 value={method.name.toString()}
                 id={method.id.toString()}

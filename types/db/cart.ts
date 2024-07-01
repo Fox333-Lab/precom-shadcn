@@ -19,6 +19,7 @@ export default interface ICart {
   products: Types.ArraySubdocument<ICartProduct>;
   cartTotal: Number;
   totalAfterDiscount: Number;
+  shippingFee: Number; // added during UI refinement
   user: {
     type: Types.ObjectId;
   };

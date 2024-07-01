@@ -42,12 +42,13 @@ const cartSchema = new mongoose.Schema<ICart>(
     ],
     cartTotal: Number,
     totalAfterDiscount: Number,
+    shippingFee: Number,
     user: {
       type: ObjectId,
       ref: "User",
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 const Cart = mongoose.models.Cart || mongoose.model<ICart>("Cart", cartSchema);
 

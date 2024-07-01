@@ -2,12 +2,16 @@ import { ICartProduct } from "@/types/db/cart";
 import axios from "axios";
 import { useSWRFetch } from "../hooks/usefetch";
 
-export const saveCartToDB = async (cart: ICartProduct[]) => {
+export const saveCartToDB = async (
+  cart: ICartProduct[],
+  shippingFee: number,
+) => {
   console.log("In functions/saveCartToDB");
   console.log("In functions/saveCartToDB : ", cart);
   try {
     const { data } = await axios.post("/api/user/cart/savetodb", {
       cart,
+      shippingFee,
     });
     return data;
   } catch (err: any) {
@@ -20,7 +24,7 @@ export const getCartByUserId = async (userId: string) => {
   console.log("Inside functions/getCartByUserId : userId : ", userId);
   try {
     const { data, error, isLoading } = await useSWRFetch(
-      `/api/user/cart/${userId}`
+      `/api/user/cart/${userId}`,
     );
     if (data) return data;
   } catch (err: any) {

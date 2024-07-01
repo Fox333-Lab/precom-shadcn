@@ -14,7 +14,7 @@ const Checkout = ({ cart, user }: CheckoutPropsTypes) => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
   const [selectedAddress, setSelectedAddress] = useState<IAddress>(
-    {} as IAddress
+    {} as IAddress,
   );
 
   useEffect(() => {
@@ -26,18 +26,20 @@ const Checkout = ({ cart, user }: CheckoutPropsTypes) => {
     }
   }, [addresses]);
   return (
-    <div className="flex flex-col gap-3">
+    <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
       <Shipping
         // selectedAddress={selectedAddress}
         // setSelectedAddress={setSelectedAddress}
         user={user as IUser}
         addresses={addresses}
         setAddresses={setAddresses}
+        className="lg:col-span-3"
       />
-      <CheckoutCart cart={cart} />
+      <CheckoutCart cart={cart} className="lg:col-span-2" />
       <Payment
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
+        className="lg:col-span-3"
       />
       <Summary
         totalAfterDiscount={totalAfterDiscount}
@@ -46,6 +48,7 @@ const Checkout = ({ cart, user }: CheckoutPropsTypes) => {
         cart={cart}
         paymentMethod={paymentMethod}
         selectedAddress={selectedAddress}
+        className="lg:col-span-2"
       />
     </div>
   );
